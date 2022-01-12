@@ -1,13 +1,12 @@
 const express = require('express');
+const AuthGuard = require('../middleware/tokenChecker');
 
 const router = express.Router();
 
-router.get('/profile', (req, res, next) => {
-  res.json({
-    message: 'You made it to the secure route',
-    user: req.user,
-    token: req.query.secret_token,
-  });
+router.use(AuthGuard);
+
+router.get('/secret', (req, res, next) => {
+  res.json('Secret Data');
 });
 
 module.exports = router;

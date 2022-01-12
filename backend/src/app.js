@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const xss = require('xss-clean');
@@ -10,8 +11,7 @@ const logger = require('./config/logger');
 const config = require('./config/config');
 const morgan = require('./config/morgan');
 const authRoute = require('./routes/auth.routes');
-const secureRoute = require('./routes/secure.routes');
-require('./config/passport');
+const personRoute = require('./routes/persons.routes');
 
 const app = express();
 
@@ -36,10 +36,11 @@ app.use(compression()); // gzip compression
 app.use(cors());
 app.options('*', cors());
 
-// api authentication endpoint
-app.use('/api/auth', authRoute);
+// Frontend Routes
+app.use('/', express.static(path.join(__dirname, '/../../frontend')));
 
-// api secure endpoint [must be logged in to access]
-app.use('/api/secure', passport.authenticate('jwt', { session: false }), secureRoute);
+// API Routes
+app.use('/api/auth', authRoute);
+app.use('/api/persons', personRoute);
 
 module.exports = app;
