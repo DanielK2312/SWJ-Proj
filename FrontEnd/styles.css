@@ -82,13 +82,6 @@
   /* border: 3px solid red; */
 }
 
-.flexbox-item-5 {
-  /* border: 3px solid black; */
-}
-
-.after-header {
-}
-
 .body-flexbox {
   display: flex;
   justify-content: center;
@@ -100,11 +93,12 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 1000px;
+  /* this height is for testing */
+  height: 2000px; 
   width: 1000px;
   background-color: wheat;
 
-  border: 3px solid black;
+  /* border: 3px solid black; */
 }
 
 .about-header {
@@ -115,3 +109,10 @@
   font-weight: bold;
 }
 
+.list-one {
+  list-style: lower-roman;
+}
+
+.list-two {
+  list-style: lower-roman;
+}
