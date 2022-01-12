@@ -87,6 +87,31 @@
 }
 
 .after-header {
-  background-color: rgb(201, 167, 120);
-  height: 900px;
 }
+
+.body-flexbox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: tan;
+}
+
+.body-child-1 {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 1000px;
+  width: 1000px;
+  background-color: wheat;
+
+  border: 3px solid black;
+}
+
+.about-header {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
