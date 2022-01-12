@@ -82,6 +82,10 @@
   /* border: 3px solid red; */
 }
 
+.flexbox-item-5 {
+  /* border: 3px solid black; */
+}
+
 .after-header {
   background-color: rgb(201, 167, 120);
   height: 900px;
