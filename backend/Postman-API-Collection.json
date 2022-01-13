@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "f50eb9af-fab0-4ef2-a11a-b31440f88f03",
+		"name": "Society of Women Journalists - Capstone II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "",
+									"description": "User's Email Address",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"description": "User's Password",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refreshToken",
+									"value": "",
+									"description": "Refresh Token from Login/Signup",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"description": "Current User's Email Address",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Persons [Secured]",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"description": "Current Auth Token",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "surname",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "firstname",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "prefix",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "pen_name",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "dob",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "dod",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "position",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "orgs",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "neighborhood",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "city",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "post_code",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "proposer",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "periodicals",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "other",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "joined",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/persons/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"persons",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/persons/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"persons",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/persons/get/61de4783e70f0c744eacba48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"persons",
+								"get",
+								"61de4783e70f0c744eacba48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit One",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "pen_name",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/persons/edit/61de4783e70f0c744eacba48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"persons",
+								"edit",
+								"61de4783e70f0c744eacba48"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete One",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "confirm_delete",
+									"value": "true",
+									"description": "Designated confirmation in request - for auditing purposes",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/persons/delete/61de4783e70f0c744eacba48",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"persons",
+								"delete",
+								"61de4783e70f0c744eacba48"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

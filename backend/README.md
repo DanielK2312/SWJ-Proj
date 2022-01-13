@@ -2,17 +2,20 @@
 
 ## Table of Contents
 
-- [Features](#technology)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
+- [Society of Women Journalist - Capstone II Project](#society-of-women-journalist---capstone-ii-project)
+  - [Table of Contents](#table-of-contents)
+  - [Technology](#technology)
+  - [Commands](#commands)
+  - [Project Structure](#project-structure)
+  - [API Documentation](#api-documentation)
 
 ## Technology
 
 - **NoSQL database**: [MongoDB](https://www.mongodb.com) object data modeling using [Mongoose](https://mongoosejs.com)
-- **Authentication and authorization**: using [passport](http://www.passportjs.org)
+- **Authentication and authorization**: using [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 - **Validation**: request data validation using [validator](https://github.com/validatorjs/validator.js)
 - **Logging**: using [winston](https://github.com/winstonjs/winston) and [morgan](https://github.com/expressjs/morgan)
-- **API documentation**: with [Insomnia](https://insomnia.rest/)
+- **API documentation**: with [Postman](https://www.postman.com/)
 - **Process management**: advanced production process management using [PM2](https://pm2.keymetrics.io)
 - **Dependency management**: with [node](https://nodejs.com)
 - **Environment variables**: using [dotenv](https://github.com/motdotla/dotenv) and [cross-env](https://github.com/kentcdodds/cross-env#readme)
@@ -20,9 +23,6 @@
 - **Santizing**: sanitize request data against xss and query injection
 - **CORS**: Cross-Origin Resource-Sharing enabled using [cors](https://github.com/expressjs/cors)
 - **Compression**: gzip compression with [compression](https://github.com/expressjs/compression)
-- **CI**: continuous integration with [Travis CI](https://travis-ci.org)
-- **Docker support**
-- **Code quality**: with [Codacy](https://www.codacy.com)
 - **Linting**: with [ESLint](https://eslint.org) and [Prettier](https://prettier.io)
 
 
@@ -40,16 +40,6 @@ Running in production:
 npm run start
 ```
 
-Docker:
-
-```bash
-# run docker container in development mode
-npm run docker:dev
-
-# run docker container in production mode
-npm run docker:prod
-
-```
 
 Linting:
 
@@ -66,13 +56,13 @@ npm run lint:fix
 
 ```
 src\
- |--config\         # Environment variables, logging, and JWT configuration
+ |--config\         # Environment variables and logging
  |--models\         # Mongoose models
  |--routes\         # Routes
  |--app.js          # Express app
 ```
 
-### API Endpoints
+## API Documentation
 
 List of available routes:
 
@@ -82,8 +72,8 @@ List of available routes:
 `POST /api/auth/prune` - remove all user account [DANGER]
 
 **Person routes**:\
-`POST /api/secure/persons` - create a person\
-`GET /api/secure/persons` - get all persons\
-`GET /api/secure/persons/:personID` - get person\
-`PATCH /api/secure/persons/:personID` - update person\
-`DELETE /api/secure/persons/:personID` - delete person
+`POST /api/persons/create` - create a person\
+`GET /api/persons/list` - get all persons\
+`GET /api/persons/get/:personID` - get person\
+`PATCH /api/persons/edit/:personID` - update person\
+`DELETE /api/persons/delete/:personID` - delete person

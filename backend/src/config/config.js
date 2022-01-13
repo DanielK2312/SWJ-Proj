@@ -4,7 +4,7 @@ const path = require('path');
 dotenv.config({ path: path.join(__dirname, '../../.env') });
 
 /**
- * Reads backend environmental variables into config.
+ * Reads backend environmental variables (from .env) into config.
  */
 
 module.exports = {
@@ -13,7 +13,6 @@ module.exports = {
   mongoose: {
     url: process.env.MONGODB_URL,
     options: {
-      useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
@@ -21,20 +20,5 @@ module.exports = {
   jwt: {
     secret: process.env.JWT_SECRET,
     refreshSecret: process.env.JWT_REFRESH_SECRET,
-    accessExpirationMinutes: process.env.JWT_ACCESS_EXPIRATION_TIME,
-    refreshExpirationDays: process.env.JWT_REFRESH_EXPIRATION_TIME,
-    resetPasswordExpirationMinutes: process.env.JWT_RESET_PASSWORD_EXPIRATION_MINUTES,
-    verifyEmailExpirationMinutes: process.env.JWT_VERIFY_EMAIL_EXPIRATION_MINUTES,
-  },
-  email: {
-    smtp: {
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      auth: {
-        user: process.env.SMTP_USERNAME,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    },
-    from: process.env.EMAIL_FROM,
   },
 };

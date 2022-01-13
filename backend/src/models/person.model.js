@@ -94,11 +94,10 @@ const personSchema = mongoose.Schema(
 /**
  * Check if name is taken
  * @param {string} name - The person's name
- * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
  * @returns {Promise<boolean>}
  */
-personSchema.statics.isNameTaken = async function (name, excludeUserId) {
-  const user = await this.findOne({ name, _id: { $ne: excludeUserId } });
+personSchema.statics.isNameTaken = async function (name) {
+  const user = await this.findOne({ name });
   return !!user;
 };
 
