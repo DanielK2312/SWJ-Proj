@@ -93,15 +93,15 @@
   text-align: center;
 }
 
+.top {
+  margin-top: -15px;;
+}
+
 .bold {
   font-weight: bold;
 }
 
 .list-one {
-  list-style: lower-roman;
-}
-
-.list-three{
   list-style: lower-roman;
 }
 
