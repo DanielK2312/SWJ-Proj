@@ -127,6 +127,6 @@
   background-image: url(../images/body-footer.jpeg);
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: contain;
   height: 100vh;
-  border: 3px solid black;
 }
