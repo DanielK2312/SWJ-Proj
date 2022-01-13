@@ -16,6 +16,9 @@
   flex-wrap: wrap;
 }
 
+.link {
+  color: blue
+}
 .flexbox-item-1 {
   min-height: 400px;
   min-width: 550px;
@@ -49,7 +52,7 @@
   text-align: center;
   color: white;
   max-width: 25ch;
-  opacity: 0.7; 
+  opacity: 0.75; 
 
   /* border: 3px solid white; */
 }
@@ -114,5 +117,9 @@
 }
 
 .list-two {
+  list-style: lower-roman;
+}
+
+.list-three{
   list-style: lower-roman;
 }
