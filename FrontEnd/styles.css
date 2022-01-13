@@ -130,3 +130,23 @@
   background-size: contain;
   height: 100vh;
 }
+
+.section-three-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: tan;
+}
+
+.section-three {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%; 
+  width: 1000px;
+  background-color: wheat;
+}
+
+.three-h1 {
+  text-align: center;
+}
