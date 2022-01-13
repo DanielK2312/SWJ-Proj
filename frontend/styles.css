@@ -1,19 +1,14 @@
 .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: url(../images/homepage.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100vh;
+  /* height: 100vh; */
   background-blend-mode: darken;
   padding-top: 0px;
-}
-
-.header-text.flexbox-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  flex-wrap: wrap;
 }
 
 .link {
