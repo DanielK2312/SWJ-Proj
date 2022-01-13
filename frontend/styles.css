@@ -6,9 +6,9 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  /* height: 100vh; */
   background-blend-mode: darken;
   padding-top: 0px;
+  overflow: hidden;
 }
 
 .link {
@@ -27,8 +27,6 @@
   text-align: center;
   color: white;
   max-width: 20ch;
-
-  /* border: 3px solid white; */
 }
 
 .item-1-text {
@@ -48,8 +46,6 @@
   color: white;
   max-width: 25ch;
   opacity: 0.75; 
-
-  /* border: 3px solid white; */
 }
 
 .item-2-text {
@@ -64,8 +60,6 @@
   padding: 0px;
   margin: 0px;
   opacity: 0.8;
-
-  /* border: 3px solid white; */
 }
 
 .flexbox-item-4 {
@@ -76,8 +70,6 @@
   padding: 0px;
   margin: 0px;
   opacity: 0.8;
-
-  /* border: 3px solid red; */
 }
 
 .body-flexbox {
@@ -85,6 +77,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: tan;
+  overflow: hidden;
 }
 
 .body-child-1 {
@@ -94,8 +87,6 @@
   height: 100%; 
   width: 1000px;
   background-color: wheat;
-
-  /* border: 3px solid black; */
 }
 
 .about-header {
@@ -107,10 +98,6 @@
 }
 
 .list-one {
-  list-style: lower-roman;
-}
-
-.list-two {
   list-style: lower-roman;
 }
 
@@ -131,6 +118,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: tan;
+  overflow: hidden;
 }
 
 .section-three {
@@ -151,6 +139,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 100%;
+  background-color: wheat;
+  overflow: hidden;
 }
 
 .section-four {
@@ -158,15 +148,14 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  height: 100%; 
   width: 100%;
-  background-color: wheat;
 }
 
 .four-left-content {
-  /* border: 3px solid black;  */
   width: 23.5%;
-  height: 200px;
+  height: 100vh;
+  flex: 1;
+  overflow: visible;
 }
 
 .four-right-content {
@@ -175,22 +164,27 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  height: 100vh;
   width: 29%;
-
-  /* border: 3px solid black;  */
-
+  flex: 1;
+  height: 100vh;
 }
 
 .copyright-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 25%;
-  width: 100%;
   background-color: black;
+  overflow: hidden;
+}
+
+.copyright-block {
+  display: flex;
 }
 
 .copyright {
   color: white;
+}
+
+.space {
+  line-height: 40px;
+  text-align: center;
 }
