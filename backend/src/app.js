@@ -6,7 +6,6 @@ const xss = require('xss-clean');
 const mongoSanitize = require('express-mongo-sanitize');
 const compression = require('compression');
 const cors = require('cors');
-const passport = require('passport');
 const logger = require('./config/logger');
 const config = require('./config/config');
 const morgan = require('./config/morgan');
