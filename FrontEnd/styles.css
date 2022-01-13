@@ -150,3 +150,58 @@
 .three-h1 {
   text-align: center;
 }
+
+.section-four-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.section-four {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%; 
+  width: 100%;
+  background-color: wheat;
+}
+
+.four-left-content {
+  /* border: 3px solid black;  */
+  width: 23.5%;
+  height: 200px;
+}
+
+.four-right-content {
+
+  background-image: url(../images/reference.d49b3c23.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 100vh;
+  width: 29%;
+
+  /* border: 3px solid black;  */
+
+}
+
+.space {
+  line-height: 50px;
+}
+
+.copyright-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25%;
+  width: 100%;
+  background-color: black;
+}
+
+.copyright {
+  color: white;
+}
