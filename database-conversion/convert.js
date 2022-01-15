@@ -1,10 +1,11 @@
 const excelToJson = require('convert-excel-to-json');
+const http = require('http');
 
 const result = excelToJson({
-	sourceFile: 'source.xlsx',
+    sourceFile: 'source.xlsx',
     columnToKey: {
-		A: 'surname',
-		B: 'firstname',
+        A: 'surname',
+        B: 'firstname',
         C: 'prefix',
         D: 'pen_name',
         E: 'dob',
@@ -24,21 +25,23 @@ const result = excelToJson({
         S: 'sources',
         T: 'other',
         U: 'joined'
-	},
+    },
     sheetStubs: true
 });
 
 const filled_data = [];
+
+console.log("XLSX to JSON DONE.")
 
 // Go through each sheet
 
 var keysArray = Object.keys(result);
 for (var i = 0; i < keysArray.length; i++) {
     var key = keysArray[i];
-    
-    for (var j = 0; j < result[key].length; j++ ) {
+
+    for (var j = 0; j < result[key].length; j++) {
         result[key][j]['date_range'] = key
-        
+
         if (result[key][j]['surname'] == null) {
             result[key][j]['surname'] = ''
         }
@@ -112,9 +115,69 @@ for (var i = 0; i < keysArray.length; i++) {
             result[key][j]['joined'] = ''
         }
 
-        if (!result[key][j]['surname'] == 'Surname') {
+        if (!result[key][j]['surname'] === 'Surname') {
+
+        } else {
             filled_data.push(result[key][j])
         }
     }
- }
+}
 
+console.log("All Missing Data is Filled")
+
+console.log(filled_data.length)
+
+
+function JSON_to_URLEncoded(element, key, list) {
+    var list = list || [];
+    if (typeof (element) == 'object') {
+        for (var idx in element)
+            JSON_to_URLEncoded(element[idx], key ? key + '[' + idx + ']' : idx, list);
+    } else {
+        list.push(key + '=' + encodeURIComponent(element));
+    }
+    return list.join('&');
+}
+
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+}
+
+async function upload(person) {
+    await sleep(5000)
+    const options = {
+        hostname: 'localhost',
+        port: 3000,
+        path: '/api/persons/create',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZ2hvYmFuMTRAZ21haWwuY29tIiwiaWF0IjoxNjQyMjA4OTk4LCJleHAiOjE2NDIyMTA3OTh9.MN1BkREALhGLz8IzTkR49rJp136gL9kLxmpWPrkQXTY',
+        }
+    }
+
+    const req = http.request(options, res => {
+        console.log(`statusCode: ${res.statusCode}`)
+
+        res.on('data', d => {
+            process.stdout.write(d)
+        })
+    })
+
+    req.on('error', error => {
+        console.error(error)
+    })
+
+    req.write(JSON_to_URLEncoded(person))
+    req.end()
+
+    console.log("Added ", person)
+}
+
+// LET THE FUN BEGIN
+
+for (let x = 0; x < filled_data.length; x++) {
+    upload(filled_data[x])
+}

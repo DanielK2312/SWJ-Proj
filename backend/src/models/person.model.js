@@ -10,7 +10,7 @@ const personSchema = mongoose.Schema(
     surname: {
       type: String,
       required: true,
-      unique: true,
+      unique: false,
       trim: true,
     },
     firstname: {
