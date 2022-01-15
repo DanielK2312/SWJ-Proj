@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const personSchema = mongoose.Schema(
   {
+    date_range: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     surname: {
       type: String,
       required: true,
@@ -38,13 +43,6 @@ const personSchema = mongoose.Schema(
       required: false,
       trim: true,
     },
-    orgs: [
-      {
-        type: String,
-        required: false,
-        trim: true,
-      },
-    ],
     address: {
       type: String,
       required: false,
@@ -70,7 +68,19 @@ const personSchema = mongoose.Schema(
       required: false,
       trim: true,
     },
+    orgs: [
+      {
+        type: String,
+        required: false,
+        trim: true,
+      },
+    ],
     periodicals: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    sources: {
       type: String,
       required: false,
       trim: true,
@@ -90,16 +100,6 @@ const personSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
-/**
- * Check if name is taken
- * @param {string} name - The person's name
- * @returns {Promise<boolean>}
- */
-personSchema.statics.isNameTaken = async function (name) {
-  const user = await this.findOne({ name });
-  return !!user;
-};
 
 const Person = mongoose.model('Person', personSchema);
 module.exports = Person;
