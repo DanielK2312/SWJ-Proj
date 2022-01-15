@@ -1,6 +1,12 @@
 const excelToJson = require('convert-excel-to-json');
 const http = require('http');
 
+/**
+ * Script to upload historical figures from an Excel Collection to MongoDB.
+ * 
+ * Gabe Hoban - 01/14/2022
+ */
+
 const result = excelToJson({
     sourceFile: 'source.xlsx',
     columnToKey: {
@@ -31,15 +37,20 @@ const result = excelToJson({
 
 const filled_data = [];
 
-console.log("XLSX to JSON DONE.")
-
-// Go through each sheet
-
+/**
+ * The excelToJson tool works pretty well, however, it does
+ * not fill in any blank/null entries from the excel sheet.
+ * 
+ * This is needed to stay uniform when adding the enteries to the DB.
+ */
 var keysArray = Object.keys(result);
 for (var i = 0; i < keysArray.length; i++) {
     var key = keysArray[i];
 
     for (var j = 0; j < result[key].length; j++) {
+        // As a person can appear accross multiple date ranges,
+        // lets add a field specifying which one.
+
         result[key][j]['date_range'] = key
 
         if (result[key][j]['surname'] == null) {
@@ -79,6 +90,7 @@ for (var i = 0; i < keysArray.length; i++) {
             result[key][j]['proposer'] = ''
         }
 
+        // I created the orgs as an array in the database, lets convert it.
         let orgs = [];
         if (!result[key][j]['org1'] == null) {
             orgs.push(result[key][j]['org1'])
@@ -115,11 +127,7 @@ for (var i = 0; i < keysArray.length; i++) {
             result[key][j]['joined'] = ''
         }
 
-        if (!result[key][j]['surname'] === 'Surname') {
-
-        } else {
-            filled_data.push(result[key][j])
-        }
+        filled_data.push(result[key][j])
     }
 }
 
@@ -179,5 +187,9 @@ async function upload(person) {
 // LET THE FUN BEGIN
 
 for (let x = 0; x < filled_data.length; x++) {
-    upload(filled_data[x])
+    if (filled_data[x].surname == 'Surname') {
+        console.log("Found row #1 in sheet, ignoring.")
+    } else {
+        upload(filled_data[x])
+    }
 }
