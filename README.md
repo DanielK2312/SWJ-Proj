@@ -2,7 +2,7 @@ University of Dayton
 
 Department of Computer Science
 
-CPS 490 - Fall 2021
+CPS 491 - Fall 2021
 
 Dr. Phu Phung
 
@@ -51,7 +51,7 @@ Figure 1. - A Sample of Overview Architecture of the proposed project.
 This project is being created in order to:  
 Recover the identities of women working as journalists at the turn of the twentieth century  
 Map networks of social and professional support among female journalists  
-Recover a more detailed history of the early years of the SWJ  
+Recover a more detailed history of the early years of the SWJ (Society of Women Journalists)  
 Centralize and make more widely accessible SWJ membership lists
 
 
@@ -328,7 +328,7 @@ These technologies have also been used so far in the projects development and ar
 # Software Process Management
 
 We will follow the Scrum approach, thus your team needs to identify the task in each sprint cycles, team meeting schedules, including this Fall and next Spring semester. The tenative schedule and sprint cycles for Spring 2022 are as follows.
-Ww will be following a SCRUM style approach to managment.
+We will be following a SCRUM style approach to managment.
 ![Spring 2022 Timeline](https://capstones-cs-udayton.bitbucket.io/imgs/cps491timeline.png "Spring 2022 Timeline")
 
 
@@ -354,10 +354,10 @@ Duration: 10/01/2022-16/01/2022
 
 #### Contributions: 
 
-1.  Daniel Kosmin, 10 hours, contributed in Refactoring the Frontend
-2.  Gabe Hoban, 10 hours, contributed in Refactoring the Backend
-3.  Samantha Adrian, 8 hours, contributed in Deployment to Heroku
-4.  Samuel Miller,  8 hours, contributed in Refactoring the Frontend and ReadMe
+1.  Daniel Kosmin, 13 hours, contributed in Refactoring the Frontend
+2.  Gabe Hoban, 13 hours, contributed in Refactoring the Backend
+3.  Samantha Adrian, 11 hours, contributed in Deployment to Heroku
+4.  Samuel Miller,  11 hours, contributed in Refactoring the Frontend, Readme and docker deployment. 
 
 ### Sprint 1
 
