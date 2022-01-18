@@ -68,7 +68,7 @@ router.post('/login', async function (req, res, next) {
       };
   
       res.cookie("swj-refresh", JSON.stringify(dataToSecure), {
-        secure: false,
+        secure: true,
         path: '/api/auth/token',
         httpOnly: true,
         sameSite: 'strict',
