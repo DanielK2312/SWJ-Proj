@@ -38,6 +38,9 @@ app.options('*', cors());
 // Frontend Routes
 app.use('/', express.static(path.join(__dirname, '/../../frontend')));
 
+// Admin Routes
+app.use('/admin', express.static(path.join(__dirname, '/../../admin')));
+
 // API Routes
 app.use('/api/auth', authRoute);
 app.use('/api/persons', personRoute);

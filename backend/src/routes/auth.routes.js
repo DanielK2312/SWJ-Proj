@@ -1,4 +1,5 @@
 const express = require('express');
+const dayjs = require('dayjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const User = require('../models/user.model');
@@ -13,14 +14,12 @@ const router = express.Router();
 // Access token life: 30 minutes
 // Refresh token life: 3 days
 const genToken = (email) => {
-  const token = jwt.sign({ data: email }, config.jwt.secret, { expiresIn: '30m' });
-  const refreshToken = jwt.sign({ data: email }, config.jwt.refreshSecret, { expiresIn: '3d' });
+  const token = jwt.sign({ data: email }, config.jwt.secret, { expiresIn: '2h' });
   const response = {
     status: 'Logged in',
     token,
-    refreshToken,
   };
-  tokenList[refreshToken] = response;
+  tokenList[email] = response;
   return response;
 };
 
@@ -55,7 +54,6 @@ router.post('/register', async function (req, res, next) {
  */
 router.post('/login', async function (req, res, next) {
   const { email, password } = req.body;
-
   // Check If User Exists
   const foundUser = await User.findOne({ email });
   if (foundUser) {
@@ -64,6 +62,19 @@ router.post('/login', async function (req, res, next) {
     if (successful) {
       // Generate authentication tokens
       const response = genToken(email);
+
+      const dataToSecure = {
+        email: email,
+      };
+  
+      res.cookie("swj-refresh", JSON.stringify(dataToSecure), {
+        secure: false,
+        path: '/api/auth/token',
+        httpOnly: true,
+        sameSite: 'strict',
+        expires: dayjs().add(30, "days").toDate(),
+      });
+
       res.status(200).json(response);
     } else {
       return res.status(403).json({ error: 'Authentication failed' });
@@ -82,8 +93,8 @@ router.post('/login', async function (req, res, next) {
 router.post('/token', (req, res) => {
   const postData = req.body;
   // Check if refresh token exists and is in known tokenList
-  if (postData.refreshToken && postData.refreshToken in tokenList) {
-    const token = jwt.sign({ data: postData.email }, config.jwt.secret, { expiresIn: '30m' });
+  if (postData.refreshToken && postData.email in tokenList) {
+    const token = jwt.sign({ data: postData.email }, config.jwt.secret, { expiresIn: '2h' });
     const response = {
       token,
     };
