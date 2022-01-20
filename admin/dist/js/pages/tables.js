@@ -38,7 +38,7 @@ function refreshTable() {
             const data = JSON.parse(xhr.responseText);
             console.log(data[0])
 
-            $("#main-table").DataTable(
+            var table = $("#main-table").DataTable(
                 {
                     data: data,
                     columns: [
@@ -54,6 +54,22 @@ function refreshTable() {
                     "autoWidth": false,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
+
+                $('#main-table tbody').on('click', 'td.dt-control', function () {
+                    var tr = $(this).closest('tr');
+                    var row = table.row(tr);
+            
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    }
+                    else {
+                        // Open this row
+                        row.child(format(row.data())).show();
+                        tr.addClass('shown');
+                    }
+                });
         }
     };
     xhr.send()
@@ -71,37 +87,23 @@ function format(d) {
         '</table>';
 }
 
-$(document).ready(function () {
-    var table = $('#main-table').DataTable({
-        data: data,
-        columns: [
-            { data: 'date_range' },
-            { data: 'surname' },
-            { data: 'firstname' },
-            { data: 'proposer' },
-            { data: 'city' },
-            { data: 'joined' }
-        ],
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    });
+// $(document).ready(function () {
+//     var table = $('#main-table').DataTable({
+//         data: data,
+//         columns: [
+//             { data: 'date_range' },
+//             { data: 'surname' },
+//             { data: 'firstname' },
+//             { data: 'proposer' },
+//             { data: 'city' },
+//             { data: 'joined' }
+//         ],
+//         "responsive": true,
+//         "lengthChange": false,
+//         "autoWidth": false,
+//         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+//     });
 
-    // Add event listener for opening and closing details
-    $('#main-table tbody').on('click', 'td.dt-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
-
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child(format(row.data())).show();
-            tr.addClass('shown');
-        }
-    });
-});
+//     // Add event listener for opening and closing details
+    
+// });
