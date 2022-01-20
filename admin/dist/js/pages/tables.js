@@ -38,7 +38,7 @@ function refreshTable() {
             const data = JSON.parse(xhr.responseText);
             console.log(data[0])
 
-            var table = $("#main-table").DataTable(
+            $("#main-table").DataTable(
                 {
                     data: data,
                     columns: [
@@ -55,6 +55,23 @@ function refreshTable() {
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
 
+                var table = $("#main-table").DataTable(
+                    {
+                        data: data,
+                        columns: [
+                            { data: 'date_range' },
+                            { data: 'surname' },
+                            { data: 'firstname' },
+                            { data: 'proposer' },
+                            { data: 'city' },
+                            { data: 'joined' }
+                        ],
+                        "responsive": true,
+                        "lengthChange": false,
+                        "autoWidth": false,
+                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    })
+                    
                 $('#main-table tbody').on('click', 'td.dt-control', function () {
                     var tr = $(this).closest('tr');
                     var row = table.row(tr);
