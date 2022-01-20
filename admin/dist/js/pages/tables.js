@@ -53,24 +53,28 @@ function refreshTable() {
                     "lengthChange": false,
                     "autoWidth": false,
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
+                })
+
+            table.buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
+
+            $('#main-table tbody').on('click', 'td.dt-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
         }
     };
-    $('#main-table tbody').on('click', 'td.dt-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
 
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child(format(row.data())).show();
-            tr.addClass('shown');
-        }
-    });
     xhr.send()
 }
 
