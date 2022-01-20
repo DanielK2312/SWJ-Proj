@@ -1,3 +1,23 @@
+.pink-border {
+  border: 3px solid pink;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.left-margin {
+  margin-left: 90px;
+}
+
+.right-margin {
+  margin-right: 90px;
+}
+
+.top {
+  margin-top: 10px;
+}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -7,18 +27,20 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-blend-mode: darken;
-  padding-top: 0px;
+  /* padding-top: 0px; */
   overflow: hidden;
+}
+
+.opacity {
+  opacity: 0.75;
+  color: white;
+  font-size: 15px;
 }
 
 .link {
   color: blue
 }
 .flexbox-item-1 {
-  min-height: 400px;
-  min-width: 550px;
-  height: 400px;
-  width: 550px;
   padding: 0px;
   margin: 0px;
   font-size: 60px;
@@ -34,10 +56,6 @@
 }
 
 .flexbox-item-2 {
-  min-height: 100px;
-  min-width: 450px;
-  height: 100px;
-  width: 450px;
   padding: 0px;
   margin: 0px;
   font-size: 30px;
@@ -72,6 +90,10 @@
   opacity: 0.8;
 }
 
+.flexbox-item-5 {
+  margin: 50px;
+}
+
 .body-flexbox {
   display: flex;
   justify-content: center;
@@ -91,10 +113,6 @@
 
 .about-header {
   text-align: center;
-}
-
-.top {
-  margin-top: -15px;;
 }
 
 .bold {
