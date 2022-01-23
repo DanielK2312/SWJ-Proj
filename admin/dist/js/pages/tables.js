@@ -24,6 +24,12 @@ function refreshTable() {
                 {
                     data: data,
                     columns: [
+                        {
+                            "className": 'dt-control',
+                            "orderable": false,
+                            "data": null,
+                            "defaultContent": ''
+                        },
                         { data: 'date_range' },
                         { data: 'surname' },
                         { data: 'firstname' },
