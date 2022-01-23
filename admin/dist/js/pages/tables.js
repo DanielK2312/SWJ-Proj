@@ -1,21 +1,3 @@
-// On page load, check for auth
-document.addEventListener("DOMContentLoaded", function () {
-    // Check for access token
-    const access_token = localStorage.getItem('swj-access');
-
-    if (access_token == null) {
-        const refresh_exists = doesHttpOnlyCookieExist('swj-refresh');
-
-        if (refresh_exists) {
-            // Attempt to refresh access... ill figure this out later
-        } else {
-            // Send to login window
-            // window.location.replace("https://swj-capstone.herokuapp.com/admin/pages/login.html");
-            window.location.replace("https://swj-capstone-staging.herokuapp.com/admin/pages/login.html");
-        }
-    }
-});
-
 // Once everything is loaded, get the data
 window.addEventListener("load", function () {
     refreshTable()
@@ -31,7 +13,7 @@ function refreshTable() {
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("x-access-token", localStorage.getItem('swj-access'));
+    xhr.setRequestHeader("x-access-token", localStorage.getItem('accessToken'));
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {

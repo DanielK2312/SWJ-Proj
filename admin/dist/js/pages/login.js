@@ -18,7 +18,7 @@ loginButton.addEventListener("click", (e) => {
     if (xhr.readyState === 4) {
         console.log(xhr.responseText);
         if(JSON.parse(xhr.responseText)['status'] == 'Logged in') {
-            localStorage.setItem('swj-access', JSON.parse(xhr.responseText)['token'])
+            localStorage.setItem('accessToken', JSON.parse(xhr.responseText)['token'])
             window.location.replace("https://swj-capstone-staging.herokuapp.com/admin")
         } else {
             // Go through login errors...
