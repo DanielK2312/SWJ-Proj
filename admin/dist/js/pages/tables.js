@@ -45,9 +45,8 @@ function refreshTable() {
 
             $('#main-table tbody').on('click', 'td.dt-control', function () {
                 console.log("Made it to here at line 41")
-                //var tr = $(this).closest('tr');
-                var tr = table.closest('tr');
-                var row = table.row(tr);
+                var tr = $(this).closest('tr');
+                var row = table.row( tr );
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
