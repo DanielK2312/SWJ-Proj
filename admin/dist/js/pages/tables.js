@@ -1,11 +1,4 @@
-// Once everything is loaded, get the data
-window.addEventListener("load", function () {
-    refreshTable()
-});
-
-
-// Magic script to get the nice datatable
-function refreshTable() {
+$(document).ready(function() {
     var url = "https://swj-capstone-staging.herokuapp.com/api/persons/list";
 
     var xhr = new XMLHttpRequest();
@@ -63,7 +56,8 @@ function refreshTable() {
         }
     };
     xhr.send()
-}
+
+})
 
 /* Formatting function for row details - modify as you need */
 function format(d) {
