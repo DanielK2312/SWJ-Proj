@@ -68,15 +68,48 @@ function format(d) {
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
         '</tr>';
 
-        if (d.pen_name != ''){
-            memberInfo += '<tr>' +
-                '<td>Pen Name:</td>' +
-                '<td>' + d.pen_name + '</td>' +
-                '</tr>';
-        }
+    if (d.pen_name != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Pen Name:</td>' +
+            '<td>' + d.pen_name + '</td>' +
+            '</tr>';
+    }
 
-        memberInfo += '</table>';
+    if (d.dob != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Born:</td>' +
+            '<td>' + d.dob + '</td>' +
+            '</tr>';
+    }
 
-        return memberInfo;
+    if (d.dod != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Died:</td>' +
+            '<td>' + d.dod + '</td>' +
+            '</tr>';
+    }
+
+    if (d.position != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Position Held:</td>' +
+            '<td>' + d.position + '</td>' +
+            '</tr>';
+    }
+
+    //CHECK THIS SAMANTHA
+    if (d.address != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Address:</td>' +
+            '<td>' + d.address + '</td>' +
+            '</tr>';
+    }
+        
+    memberInfo += '</table>';
+    return memberInfo;
 }
 
