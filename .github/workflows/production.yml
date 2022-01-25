@@ -9,27 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@master
-    - name: login
-      uses: actions/heroku@master
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      with:
-        args: container:login
-    - name: push
-      uses: actions/heroku@master
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      with:
-        args: container:push -a $HEROKU_APP_NAME
-      
-    - name: release
-      uses: actions/heroku@master
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      with:
-        args: container:release -a $HEROKU_APP_NAME
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: "hobang1@udayton.edu"
+          usedocker: true
