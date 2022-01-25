@@ -105,8 +105,42 @@ function format(d) {
         memberInfo +=
             '<tr>' +
             '<td>Address:</td>' +
-            '<td>' + d.address + '</td>' +
+            '<td>' + d.address + "\n" + d.neighborhood + "\n" +
+            d.city + "\n" + d.post_code + '</td>' +
             '</tr>';
+    }
+
+    if (d.proposer != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Proposer:</td>' +
+            '<td>' + d.proposer + '</td>' +
+            '</tr>';
+    }
+
+    //CHECK THIS SAMANTHA
+    if (d.org1 != '' || d.org2 != '' || d.org3 != '' || d.org4 != '' || d.org5 != '')
+    {
+        memberInfo +=
+            '<tr>' +
+            '<td>Other Organizations:</td>'
+            ;
+        if (d.org1 != '') {
+            memberInfo +='<td>' + d.org1 + '</td>';
+        }
+        if (d.org2 != '') {
+            memberInfo +='<td>' + d.org2 + '</td>';
+        }
+        if (d.org3 != '') {
+            memberInfo +='<td>' + d.org3 + '</td>';
+        }
+        if (d.org4 != '') {
+            memberInfo +='<td>' + d.org4 + '</td>';
+        }
+        if (d.org5 != '') {
+            memberInfo +='<td>' + d.org5 + '</td>';
+        }
+        memberInfo += '</tr>';
     }
         
     memberInfo += '</table>';
