@@ -1,6 +1,6 @@
 # Dockerfile
 
-FROM node:12
+FROM node:16.13.2 
 
 COPY . /app
 
