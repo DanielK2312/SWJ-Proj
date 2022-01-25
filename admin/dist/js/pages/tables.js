@@ -68,7 +68,7 @@ function format(d) {
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
         '</tr>';
 
-        if (d.pen_name != null){
+        if (d.pen_name != ''){
             memberInfo += '<tr>' +
                 '<td>Pen Name:</td>' +
                 '<td>' + d.pen_name + '</td>' +
