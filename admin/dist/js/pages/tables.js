@@ -70,11 +70,11 @@ function format(d) {
 
         if (d.pen_name != null){
             memberInfo += '<tr>' +
-                '<td>Extension number:</td>' +
-                '<td>' + d.extn + '</td>' +
+                '<td>Pen Name:</td>' +
+                '<td>' + d.pen_name + '</td>' +
                 '</tr>';
         }
-        
+
         memberInfo += '</table>';
 
         return memberInfo;
