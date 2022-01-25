@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ REFACTOR ]
   pull_request:
-    branches: [ main ]
+    branches: [ REFACTOR ]
 
 jobs:
   build:
