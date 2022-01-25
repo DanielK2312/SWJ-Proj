@@ -1,0 +1,36 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Verify HEROKU_API_KEY is set
+      env:
+        credentials: ${{ secrets.HEROKU_API_KEY }}
+      run: echo $HEROKU_API_KEY
+      
+    - name: Install Heroku on VM
+      run: curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+      
+    - name: Login to Heroku
+      env:
+        credentials: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:login
+      
+    - name: Build and push docker image
+      env:
+        credentials: ${{ secrets.HEROKU_APP_NAME }}
+      run: heroku container:push web -a $HEROKU_APP_NAME
+      
+    - name: Release the image to the web
+      env:
+        credentials: ${{ secrets.HEROKU_APP_NAME }}
+      run: heroku container:release web -a $HEROKU_APP_NAME
