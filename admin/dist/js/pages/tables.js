@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var url = "https://swj-capstone-staging.herokuapp.com/api/persons/list";
 
     var xhr = new XMLHttpRequest();
@@ -13,7 +13,7 @@ $(document).ready(function() {
             const data = JSON.parse(xhr.responseText);
             console.log(data[0])
             console.log("Made it to here at line 22")
-            var table =  $("#main-table").DataTable(
+            var table = $("#main-table").DataTable(
                 {
                     data: data,
                     columns: [
@@ -39,7 +39,7 @@ $(document).ready(function() {
             $('#main-table tbody').on('click', 'td.dt-control', function () {
                 console.log("Made it to here at line 41")
                 var tr = $(this).closest('tr');
-                var row = table.row( tr );
+                var row = $('#main-table').DataTable().row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
@@ -52,7 +52,7 @@ $(document).ready(function() {
                     tr.addClass('shown');
                 }
             });
-            
+
         }
     };
     xhr.send()
@@ -65,7 +65,7 @@ function format(d) {
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Full name:</td>' +
-        // '<td>' + d.name + '</td>' +
+        '<td>' + d.firstname + d.surname + '</td>' +
         '</tr>' +
         '<tr>' +
         '<td>Extension number:</td>' +
