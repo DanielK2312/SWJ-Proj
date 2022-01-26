@@ -12,7 +12,6 @@ $(document).ready(function () {
         if (xhr.readyState === 4) {
             const data = JSON.parse(xhr.responseText);
             console.log(data[0])
-            console.log("Made it to here at line 22")
             var table = $("#main-table").DataTable(
                 {
                     data: data,
@@ -63,6 +62,15 @@ $(document).ready(function () {
 function format(d) {
     // `d` is the original data object for the row
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<button class="btn">Edit Member</button>' +
+        '<div class="dropdown">' +
+        '<button class="btn" style="border-left:1px solid navy">' +
+        '<i class="fa fa-caret-down"></i>' +
+        '</button>' +
+        '<div class="dropdown-content">' +
+        '<a href="#">Delete Member</a>' +
+        '</div>' +
+        '</div>' +
         '<tr>' +
         '<td>Full name:</td>' +
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
@@ -120,26 +128,25 @@ function format(d) {
 
     if ((d.org1 != '' || d.org2 != '' || d.org3 != '' || d.org4 != '' || d.org5 != '')
         && (d.org1 != undefined || d.org2 != undefined || d.org3 != undefined ||
-        d.org4 != undefined || d.org5 != undefined))
-    {
+            d.org4 != undefined || d.org5 != undefined)) {
         memberInfo +=
             '<tr>' +
             '<td>Other Organizations:</td>'
             ;
         if (d.org1 != '' && d.org1 != undefined) {
-            memberInfo +='<td>' + d.org1 + '</td>';
+            memberInfo += '<td>' + d.org1 + '</td>';
         }
         if (d.org2 != '' && d.org2 != undefined) {
-            memberInfo +='<td>' + d.org2 + '</td>';
+            memberInfo += '<td>' + d.org2 + '</td>';
         }
         if (d.org3 != '' && d.org3 != undefined) {
-            memberInfo +='<td>' + d.org3 + '</td>';
+            memberInfo += '<td>' + d.org3 + '</td>';
         }
         if (d.org4 != '' && d.org4 != undefined) {
-            memberInfo +='<td>' + d.org4 + '</td>';
+            memberInfo += '<td>' + d.org4 + '</td>';
         }
         if (d.org5 != '' && d.org5 != undefined) {
-            memberInfo +='<td>' + d.org5 + '</td>';
+            memberInfo += '<td>' + d.org5 + '</td>';
         }
         memberInfo += '</tr>';
     }
@@ -167,7 +174,7 @@ function format(d) {
             '<td>' + d.other + '</td>' +
             '</tr>';
     }
-        
+
     memberInfo += '</table>';
     return memberInfo;
 }
