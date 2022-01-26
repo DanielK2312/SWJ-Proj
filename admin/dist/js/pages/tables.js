@@ -109,15 +109,15 @@ function format(d) {
             '</tr>';
     }
 
-    if (d.proposer != '') {
-        memberInfo +=
-            '<tr>' +
-            '<td>Proposer:</td>' +
-            '<td>' + d.proposer + '</td>' +
-            '</tr>';
-    }
+    //Already shows before dropdown, but will leave here if we want it to show twice
+    // if (d.proposer != '') {
+    //     memberInfo +=
+    //         '<tr>' +
+    //         '<td>Proposer:</td>' +
+    //         '<td>' + d.proposer + '</td>' +
+    //         '</tr>';
+    // }
 
-    //CHECK THIS SAMANTHA
     if ((d.org1 != '' || d.org2 != '' || d.org3 != '' || d.org4 != '' || d.org5 != '')
         && (d.org1 != undefined || d.org2 != undefined || d.org3 != undefined ||
         d.org4 != undefined || d.org5 != undefined))
@@ -142,6 +142,30 @@ function format(d) {
             memberInfo +='<td>' + d.org5 + '</td>';
         }
         memberInfo += '</tr>';
+    }
+
+    if (d.periodicals != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Periodicals:</td>' +
+            '<td>' + d.periodicals + '</td>' +
+            '</tr>';
+    }
+
+    if (d.sources != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Source of Info:</td>' +
+            '<td>' + d.sources + '</td>' +
+            '</tr>';
+    }
+
+    if (d.other != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Additional Info:</td>' +
+            '<td>' + d.other + '</td>' +
+            '</tr>';
     }
         
     memberInfo += '</table>';
