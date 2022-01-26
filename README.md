@@ -8,6 +8,8 @@ Dr. Phu Phung
 
 ## Capstone II Proposal
 
+[![Staging Branch](https://github.com/udayton-swj/cps491s22-team5/actions/workflows/staging.yml/badge.svg?branch=sprint1)](https://github.com/udayton-swj/cps491s22-team5/actions/workflows/staging.yml)
+
 # Project Topic
 
 # Team members
