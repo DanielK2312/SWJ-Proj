@@ -105,8 +105,8 @@ function format(d) {
         memberInfo +=
             '<tr>' +
             '<td>Address:</td>' +
-            '<td>' + d.address + "\n" + d.neighborhood + "\n" +
-            d.city + "\n" + d.post_code + '</td>' +
+            '<td>' + d.address + '<br>' + d.neighborhood + '<br>' +
+            d.city + '<br>' + d.post_code + '</td>' +
             '</tr>';
     }
 
@@ -119,25 +119,27 @@ function format(d) {
     }
 
     //CHECK THIS SAMANTHA
-    if (d.org1 != '' || d.org2 != '' || d.org3 != '' || d.org4 != '' || d.org5 != '')
+    if ((d.org1 != '' || d.org2 != '' || d.org3 != '' || d.org4 != '' || d.org5 != '')
+        && (d.org1 != 'undefined' || d.org2 != 'undefined' || d.org3 != 'undefined' ||
+        d.org4 != 'undefined' || d.org5 != 'undefined'))
     {
         memberInfo +=
             '<tr>' +
             '<td>Other Organizations:</td>'
             ;
-        if (d.org1 != '') {
+        if (d.org1 != '' && d.org1 != 'undefined') {
             memberInfo +='<td>' + d.org1 + '</td>';
         }
-        if (d.org2 != '') {
+        if (d.org2 != '' && d.org2 != 'undefined') {
             memberInfo +='<td>' + d.org2 + '</td>';
         }
-        if (d.org3 != '') {
+        if (d.org3 != '' && d.org3 != 'undefined') {
             memberInfo +='<td>' + d.org3 + '</td>';
         }
-        if (d.org4 != '') {
+        if (d.org4 != '' && d.org4 != 'undefined') {
             memberInfo +='<td>' + d.org4 + '</td>';
         }
-        if (d.org5 != '') {
+        if (d.org5 != '' && d.org5 != 'undefined') {
             memberInfo +='<td>' + d.org5 + '</td>';
         }
         memberInfo += '</tr>';
