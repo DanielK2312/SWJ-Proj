@@ -62,12 +62,13 @@ $(document).ready(function () {
 function format(d) {
     // `d` is the original data object for the row
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<button class="btn">Edit Member</button>' +
+        '<button class="btn">Manage Member</button>' +
         '<div class="dropdown">' +
         '<button class="btn" style="border-left:1px solid navy">' +
         '<i class="fa fa-caret-down"></i>' +
         '</button>' +
         '<div class="dropdown-content">' +
+        '<a href="#">Edit Member</a>' +
         '<a href="#">Delete Member</a>' +
         '</div>' +
         '</div>' +
