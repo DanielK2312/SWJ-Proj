@@ -1,39 +1,54 @@
+.pink-border {
+  border: 3px solid pink;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.left-margin {
+  margin-left: 90px;
+}
+
+.right-margin {
+  margin-right: 90px;
+}
+
+.top {
+  margin-top: 20px;
+}
+
 .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: url(../images/homepage.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100vh;
   background-blend-mode: darken;
-  padding-top: 0px;
+  /* padding-top: 0px; */
+  overflow: hidden;
 }
 
-.header-text.flexbox-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  flex-wrap: wrap;
+.opacity {
+  opacity: 0.75;
+  color: white;
+  font-size: 15px;
 }
 
 .link {
   color: blue
 }
 .flexbox-item-1 {
-  min-height: 400px;
-  min-width: 550px;
-  height: 400px;
-  width: 550px;
-  padding: 0px;
-  margin: 0px;
+  padding: 10px;
+  margin: 50px;
   font-size: 60px;
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  letter-spacing: 0.5cm;
+  /* letter-spacing: 0.5cm; */
   text-align: center;
   color: white;
-  max-width: 20ch;
-
-  /* border: 3px solid white; */
+  max-width: 25ch;
 }
 
 .item-1-text {
@@ -41,20 +56,14 @@
 }
 
 .flexbox-item-2 {
-  min-height: 100px;
-  min-width: 450px;
-  height: 100px;
-  width: 450px;
-  padding: 0px;
-  margin: 0px;
+  padding: 10px;
+  margin: 20px;
   font-size: 30px;
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   text-align: center;
   color: white;
   max-width: 25ch;
   opacity: 0.75; 
-
-  /* border: 3px solid white; */
 }
 
 .item-2-text {
@@ -69,8 +78,6 @@
   padding: 0px;
   margin: 0px;
   opacity: 0.8;
-
-  /* border: 3px solid white; */
 }
 
 .flexbox-item-4 {
@@ -81,8 +88,10 @@
   padding: 0px;
   margin: 0px;
   opacity: 0.8;
+}
 
-  /* border: 3px solid red; */
+.flexbox-item-5 {
+  margin: 50px;
 }
 
 .body-flexbox {
@@ -90,6 +99,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: tan;
+  overflow: hidden;
 }
 
 .body-child-1 {
@@ -99,8 +109,6 @@
   height: 100%; 
   width: 1000px;
   background-color: wheat;
-
-  /* border: 3px solid black; */
 }
 
 .about-header {
@@ -112,14 +120,6 @@
 }
 
 .list-one {
-  list-style: lower-roman;
-}
-
-.list-two {
-  list-style: lower-roman;
-}
-
-.list-three{
   list-style: lower-roman;
 }
 
@@ -136,13 +136,14 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: tan;
+  overflow: auto;
+  height: 100%;
 }
 
 .section-three {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 100%; 
   width: 1000px;
   background-color: wheat;
 }
@@ -156,6 +157,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 100%;
+  background-color: wheat;
+  overflow: auto;
 }
 
 .section-four {
@@ -163,15 +166,13 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  height: 100%; 
   width: 100%;
-  background-color: wheat;
 }
 
 .four-left-content {
-  /* border: 3px solid black;  */
   width: 23.5%;
-  height: 200px;
+  height: 100vh;
+  flex: 1;
 }
 
 .four-right-content {
@@ -180,22 +181,27 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  height: 100vh;
   width: 29%;
-
-  /* border: 3px solid black;  */
-
+  flex: 1;
+  height: 100vh;
 }
 
 .copyright-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 25%;
-  width: 100%;
   background-color: black;
+  overflow: hidden;
+}
+
+.copyright-block {
+  display: flex;
 }
 
 .copyright {
   color: white;
+}
+
+.space {
+  line-height: 40px;
+  text-align: center;
 }
