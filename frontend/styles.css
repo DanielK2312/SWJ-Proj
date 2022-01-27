@@ -41,14 +41,14 @@
   color: blue
 }
 .flexbox-item-1 {
-  padding: 0px;
-  margin: 0px;
+  padding: 10px;
+  margin: 50px;
   font-size: 60px;
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  letter-spacing: 0.5cm;
+  /* letter-spacing: 0.5cm; */
   text-align: center;
   color: white;
-  max-width: 20ch;
+  max-width: 25ch;
 }
 
 .item-1-text {
@@ -56,8 +56,8 @@
 }
 
 .flexbox-item-2 {
-  padding: 0px;
-  margin: 0px;
+  padding: 10px;
+  margin: 20px;
   font-size: 30px;
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   text-align: center;
@@ -136,7 +136,7 @@
   justify-content: center;
   flex-wrap: wrap;
   background-color: tan;
-  overflow: hidden;
+  overflow: auto;
   height: 100%;
 }
 
@@ -158,7 +158,7 @@
   flex-wrap: wrap;
   height: 100%;
   background-color: wheat;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .section-four {
@@ -173,7 +173,6 @@
   width: 23.5%;
   height: 100vh;
   flex: 1;
-  overflow: visible;
 }
 
 .four-right-content {
