@@ -9,5 +9,5 @@ leadershipPosition.addEventListener("input", (e) => {
   e.preventDefault();
   let position = leadershipPosition.value;
 
-  console.log(position);
+  // console.log(position);
 });

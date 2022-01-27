@@ -6,5 +6,5 @@ let yearDropdown = document.getElementById("year-dropdown");
 
 yearDropdown.addEventListener("change", (e) => {
   let result = yearDropdown.options[yearDropdown.selectedIndex].text;
-  console.log(result);
+  // console.log(result);
 });
