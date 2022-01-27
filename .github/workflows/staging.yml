@@ -3,7 +3,10 @@ name: Staging Branch
 on:
   push:
     branches:
+      - sprint0
       - sprint1
+      - sprint2
+      - sprint3
 
 jobs:
   build:
