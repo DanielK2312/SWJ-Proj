@@ -119,10 +119,8 @@ function format(d) {
 
     //Attempt at showing the organizations
     console.log("Here are the orgs for: " + d.firstname)
-    console.log(d.org1)
-    console.log(d.org2)
-    console.log(d.org3)
-    console.log(d.org4)
+    console.log(typeof (d.orgs))
+    console.log(d.orgs[0])
     if (d.orgs[0] != '') {
         memberInfo +=
             '<tr>' +
