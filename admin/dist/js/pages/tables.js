@@ -36,7 +36,6 @@ $(document).ready(function () {
                 }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
 
             $('#main-table tbody').on('click', 'td.dt-control', function () {
-                console.log("Made it to here at line 41")
                 var tr = $(this).closest('tr');
                 var row = $('#main-table').DataTable().row(tr);
 
@@ -120,7 +119,7 @@ function format(d) {
 
     //Attempt at showing the organizations
     console.log("Here are the orgs for: " + d.firstname)
-    console.log(d.orgs)
+    console.log(d.orgs[0])
     if (d.orgs[0] != '') {
         memberInfo +=
             '<tr>' +
