@@ -118,15 +118,23 @@ function format(d) {
     //         '</tr>';
     // }
 
-    if (d.orgs[0] != '') {
+    // if (d.orgs[0] != '') {
+    //     memberInfo +=
+    //         '<tr>' +
+    //         '<td>Other Organizations:</td>';
+    //     for (var i = 0; i < orgs.length; i++) {
+    //         memberInfo +=
+    //             '<td>' + d.orgs[i] + '</td>';
+    //     }
+    //     memberInfo +=
+    //         '</tr>';
+    // }
+
+    if (d.orgs != '') {
         memberInfo +=
             '<tr>' +
-            '<td>Other Organizations:</td>';
-        for (var i = 0; i < orgs.length; i++) {
-            memberInfo +=
-                '<td>' + d.orgs[i] + '</td>';
-        }
-        memberInfo +=
+            '<td>Other Organizations:</td>' +
+            '<td>' + d.orgs + '</td>' +
             '</tr>';
     }
 
