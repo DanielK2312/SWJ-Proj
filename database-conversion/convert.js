@@ -92,19 +92,19 @@ for (var i = 0; i < keysArray.length; i++) {
 
         // I created the orgs as an array in the database, lets convert it.
         let orgs = [];
-        if (!result[key][j]['org1'] == null) {
+        if (result[key][j]['org1'] != null) {
             orgs.push(result[key][j]['org1'])
         }
-        if (!result[key][j]['org2'] == null) {
+        if (result[key][j]['org2'] != null) {
             orgs.push(result[key][j]['org2'])
         }
-        if (!result[key][j]['org3'] == null) {
+        if (result[key][j]['org3'] != null) {
             orgs.push(result[key][j]['org3'])
         }
-        if (!result[key][j]['org4'] == null) {
+        if (result[key][j]['org4'] != null) {
             orgs.push(result[key][j]['org4'])
         }
-        if (!result[key][j]['org5'] == null) {
+        if (result[key][j]['org5'] != null) {
             orgs.push(result[key][j]['org5'])
         }
 
