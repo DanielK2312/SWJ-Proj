@@ -90,6 +90,16 @@
   opacity: 0.8;
 }
 
+.flexbox-item-6 {
+  min-height: 47px;
+  min-width: 150px;
+  height: 47px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+  opacity: 0.8;
+}
+
 .flexbox-item-5 {
   margin: 50px;
 }

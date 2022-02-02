@@ -3,62 +3,70 @@
  */
 
 let inputName = document.getElementById("search-name");
-let mainPageLeadershipPosition = document.getElementById("leadership-position");
-let mainPageYear = document.getElementById("year-dropdown");
+let submitButton = document.getElementById("search-members");
+let inputNameValue = "";
+let firstName = "";
+let lastName = "";
 
 /**
- * checks for every letter that is inputted
+ * Checks for name value inputted and splits the name into first and last into seperate variables
  */
 inputName.addEventListener("input", (e) => {
   e.preventDefault();
 
-  let name = inputName.value;
-  let split = name.split(" ");
+  inputNameValue = inputName.value;
+  let split = inputNameValue.split(" ");
 
   // split input into first and last name
-  let firstName = split[0];
-  let lastName = split[1];
+  firstName = split[0];
+  lastName = split[1];
+});
 
-  /**
-   * deal with submit button and ensure there is no input in either of the other options
-   */
-  let submitButton = document.getElementById("search-members");
+/**
+ * handles the search button being pressed querying data from teh database
+ */
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
 
-  /**
-   * event listener works only if there is a value for name due to event listener nested
-   */
-  submitButton.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // case makes sure leadership position and year are empty
-    if (
-      mainPageLeadershipPosition.value === "" &&
-      mainPageYear.options[mainPageYear.selectedIndex].text == "Select Year..."
-    ) {
-      console.log("Cool");
-      // make API request
-    }
-    // case handles situation where name leadership position is filled and year is either empty or has a selected year
-    else if (
-      mainPageLeadershipPosition.value !== "" &&
-      (mainPageYear.options[mainPageYear.selectedIndex].text ===
-        "Select Year..." ||
-        mainPageYear.options[mainPageYear.selectedIndex].text !==
-          "Select Year...")
-    ) {
-      // TODO: need to add some sort of message
-      console.log("no");
-    }
-    // case handles if leadership position is either empty or has a value and the year dropdown has a filled value
-    else if (
-      (mainPageLeadershipPosition.value !== "" ||
-        mainPageLeadershipPosition.value === "") &&
-      mainPageYear.options[mainPageYear.selectedIndex].text !== "Select Year..."
-    ) {
-      console.log("Also bad");
-      // TODO: need to add some sort of message
-    } else {
-      alert("Something Went Wrong...");
-    }
-  });
+  // case where ONLY name input is filled
+  if (
+    inputNameValue !== "" &&
+    leadershipPosition.options[leadershipPosition.selectedIndex].text ===
+      "Select Leadership Position..." &&
+    yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
+  ) {
+    console.log("Success");
+  }
+  // case where name and leadership position is filled with year staying empty
+  else if (
+    inputNameValue !== "" &&
+    leadershipPosition.options[leadershipPosition.selectedIndex].text !==
+      "Select Leadership Position..." &&
+    yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
+  ) {
+    console.log("Error1");
+  }
+  // case where name and year are filled but leadership is empty
+  else if (
+    inputNameValue !== "" &&
+    yearDropdown.options[yearDropdown.selectedIndex].text !==
+      "Select Year..." &&
+    leadershipPosition.options[leadershipPosition.selectedIndex].text ===
+      "Select Leadership Position..."
+  ) {
+    console.log("Error2");
+  }
+  // case where name, leadership, and year are filled
+  else if (
+    inputNameValue !== "" &&
+    leadershipPosition.options[leadershipPosition.selectedIndex].text !==
+      "Select Leadership Position..." &&
+    yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
+  ) {
+    console.log("Error3");
+  }
+  // account for any other case
+  else {
+    alert("Error");
+  }
 });

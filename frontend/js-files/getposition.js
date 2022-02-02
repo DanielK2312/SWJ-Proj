@@ -2,12 +2,13 @@
  * Javascript file to extract leadership position
  */
 
-let leadershipPosition = document.getElementById("leadership-position");
+let leadershipPosition = document.getElementById("leadership-dropdown");
 
 // extract value
-leadershipPosition.addEventListener("input", (e) => {
+leadershipPosition.addEventListener("change", (e) => {
   e.preventDefault();
-  let position = leadershipPosition.value;
+  let position =
+    leadershipPosition.options[leadershipPosition.selectedIndex].text;
 
   // console.log(position);
 });
