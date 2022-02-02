@@ -129,10 +129,6 @@
   font-weight: bold;
 }
 
-.list-one {
-  list-style: lower-roman;
-}
-
 .body-image {
   background-image: url(../images/body-footer.jpeg);
   background-repeat: no-repeat;

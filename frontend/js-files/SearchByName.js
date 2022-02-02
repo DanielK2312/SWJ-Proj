@@ -1,9 +1,10 @@
 /**
- * Javascript file to get value inputted in name input
+ * Javascript file to get value inputted in name input. Handles situation where a user wants to search ONLY by name and display the results to the page
  */
 
 let inputName = document.getElementById("search-name");
 let submitButton = document.getElementById("search-members");
+// local variables to store name value
 let inputNameValue = "";
 let firstName = "";
 let lastName = "";
@@ -64,9 +65,5 @@ submitButton.addEventListener("click", (e) => {
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
     console.log("Error3");
-  }
-  // account for any other case
-  else {
-    alert("Error");
   }
 });
