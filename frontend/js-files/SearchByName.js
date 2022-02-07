@@ -36,7 +36,7 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
-    console.log("Success");
+    // console.log("Success");
   }
   // case where name and leadership position is filled with year staying empty
   else if (
@@ -45,7 +45,9 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
-    console.log("Error1");
+    // console.log("Error1");
+    document.querySelector(".w3-panel").style.display = "block";
+    autoClose();
   }
   // case where name and year are filled but leadership is empty
   else if (
@@ -55,7 +57,9 @@ submitButton.addEventListener("click", (e) => {
     leadershipPosition.options[leadershipPosition.selectedIndex].text ===
       "Select Leadership Position..."
   ) {
-    console.log("Error2");
+    // console.log("Error2");
+    document.querySelector(".w3-panel").style.display = "block";
+    autoClose();
   }
   // case where name, leadership, and year are filled
   else if (
@@ -64,6 +68,17 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
-    console.log("Error3");
+    // console.log("Error3");
+    document.querySelector(".w3-panel").style.display = "block";
+    autoClose();
   }
 });
+
+/**
+ * Function automatically closes alert message after 5 seconds
+ */
+let autoClose = () => {
+  setTimeout(function () {
+    document.querySelector(".w3-panel").style.display = "none";
+  }, 5000);
+};

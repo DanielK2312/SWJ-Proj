@@ -19,7 +19,7 @@ leadershipPosition.addEventListener("change", (e) => {
 });
 
 /**
- * extract seelcted year value and assign to local variable
+ * extract selected year value and assign to local variable
  */
 yearDropdown.addEventListener("change", (e) => {
   e.preventDefault();
@@ -37,7 +37,7 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
-    console.log("success2");
+    // console.log("success2");
   }
   // case where name is blank, leadership is blank, and year is filled
   else if (
@@ -46,7 +46,7 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
-    console.log("success3");
+    // console.log("success3");
   }
   // case where name is blank, leadership and year are filled
   else if (
@@ -55,6 +55,6 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
-    console.log("success4");
+    // console.log("success4");
   }
 });
