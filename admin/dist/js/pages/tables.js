@@ -36,7 +36,6 @@ $(document).ready(function () {
                 }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
 
             $('#main-table tbody').on('click', 'td.dt-control', function () {
-                console.log("Made it to here at line 41")
                 var tr = $(this).closest('tr');
                 var row = $('#main-table').DataTable().row(tr);
 
@@ -62,7 +61,7 @@ $(document).ready(function () {
 function format(d) {
     // `d` is the original data object for the row
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<button class="btn">Manage Member</button>' +
+        '<button class="btn" style="border:1px; border-style:solid, padx:5px;">Manage Member</button>' +
         '<tr>' +
         '<td>Full name:</td>' +
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
@@ -118,29 +117,20 @@ function format(d) {
     //         '</tr>';
     // }
 
-    if ((d.org1 != '' || d.org2 != '' || d.org3 != '' || d.org4 != '' || d.org5 != '')
-        && (d.org1 != undefined || d.org2 != undefined || d.org3 != undefined ||
-            d.org4 != undefined || d.org5 != undefined)) {
+    //Attempt at showing the organizations
+    console.log("Here are the orgs for: " + d.firstname)
+    console.log(typeof (d.orgs))
+    console.log(d.orgs[0])
+    if (d.orgs[0] != '') {
         memberInfo +=
             '<tr>' +
-            '<td>Other Organizations:</td>'
-            ;
-        if (d.org1 != '' && d.org1 != undefined) {
-            memberInfo += '<td>' + d.org1 + '</td>';
+            '<td>Other Organizations:</td>';
+        for (var i = 0; i < orgs.length; i++) {
+            memberInfo +=
+                '<td>' + d.orgs[i] + '</td>';
         }
-        if (d.org2 != '' && d.org2 != undefined) {
-            memberInfo += '<td>' + d.org2 + '</td>';
-        }
-        if (d.org3 != '' && d.org3 != undefined) {
-            memberInfo += '<td>' + d.org3 + '</td>';
-        }
-        if (d.org4 != '' && d.org4 != undefined) {
-            memberInfo += '<td>' + d.org4 + '</td>';
-        }
-        if (d.org5 != '' && d.org5 != undefined) {
-            memberInfo += '<td>' + d.org5 + '</td>';
-        }
-        memberInfo += '</tr>';
+        memberInfo +=
+            '</tr>';
     }
 
     if (d.periodicals != '') {

@@ -6,12 +6,11 @@
   <title>SWJ Home</title>
   <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="alerts.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.css" integrity="sha512-Ef5r/bdKQ7JAmVBbTgivSgg3RM+SLRjwU0cAgySwTSv4+jYcVeDukMp+9lZGWT78T4vCUxgT3g+E8t7uabwRuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="errorMessage.css">
 </head>
 <body>
 
-  <!--  -->
   <!-- Navbar -->
   <div class="w3-bar w3-dark-grey">
     <a href="index.html" class="link-one w3-bar-item w3-button w3-mobile w3-grey w3-padding-16 w3-large" style="width:33%">Home</a>
@@ -28,14 +27,35 @@
     </div>
     <div class="flexbox-item flexbox-item-3">
       <form class="w3-container">
-        <input id="search-name" class="w3-input w3-border w3-round-large" type="text" placeholder="Name...">
+        <input id="search-name" class="w3-input w3-border" type="text" placeholder="Name...">
       </form>
     </div>
     <p class="opacity">OR</p>
-    <div class="flexbox-item flexbox-item-3">
-      <form class="w3-container">
-        <input id="leadership-position" class="w3-input w3-border w3-round-large" type="text" placeholder="Leadership Position...">
-      </form>
+    <div class="flexbox-item flexbox-item-6">
+      <select name="option" id="leadership-dropdown" class="w3-select">
+        <option value="" selected>Select Leadership Position...</option>
+        <option value="">President</option>
+        <option value="">Vice President</option>
+        <option value="">Council Member</option>
+        <option value="">Treasurer</option>
+        <option value="">Chairman of Council</option>
+        <option value="">Vice Chairman of Council</option>
+        <option value="">American Secretary</option>
+        <option value="">Australian Secretary</option>
+        <option value="">Canadian Secretary</option>
+        <option value="">French Secretary</option>
+        <option value="">German Secretary</option>
+        <option value="">Indian Secretary</option>
+        <option value="">Irish Secretary</option>
+        <option value="">Italian Secretary</option>
+        <option value="">New Zealand Secretary</option>
+        <option value="">Paris Secretary</option>
+        <option value="">Peking Secretary</option>
+        <option value="">Rome Secretary</option>
+        <option value="">Scottish Secretary</option>
+        <option value="">Swedish Secretary</option>
+        <option value="">American Secretary</option>
+      </select>
     </div>
     <p class="opacity">OR</p>
     <div class="flexbox-item flexbox-item-4">
@@ -66,6 +86,15 @@
     </div>
     <div class="flexbox-item flexbox-item-5">
       <button id="search-members" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Search</button>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <!-- alert -->
+    <div id="alert-message" class="w3-panel w3-red w3-display-container">
+      <span id="error-alert" class="w3-button w3-large w3-display-topright">x</span>
+      <h3>Error!</h3>
+      <p>Please make sure you are searching by Name, Leadership Position, Year, or Leadership Position and Year</p>
     </div>
   </div>
 
@@ -127,8 +156,8 @@
       <p class="copyright">Copyright © Laura Vorachek 2022</p>
     </div>
   </div>
-<script src="./js-files/getname.js"></script>
-<script src="./js-files/getposition.js"></script>
-<script src="./js-files/getyear.js"></script>
+<script src="./js-files/SearchByName.js"></script>
+<script src="./js-files/SearchByNameAndOrPosition.js"></script>
+<script src="./js-files/HandleErrorAlert.js"></script>
 </body>
 </html>
