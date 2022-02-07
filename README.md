@@ -357,7 +357,7 @@ Trello Board Overview
 
 ### Sprint 0
 
-Duration: 10/01/2022-16/01/2022
+Duration: 01/10/2022-01/16/2022
 
 #### Completed Tasks: 
 
@@ -382,7 +382,8 @@ Duration:01/18/2022-01/25/2022
 
 1. Added dropdown to admin page
 2. Move to GitHub
-3. PUT STUFF OTHERS DID THAT I'M NOT THINKING OF
+3. Created a database for the member information
+4. PUT STUFF OTHERS DID THAT I'M NOT THINKING OF
 
 #### Contributions: 
 
@@ -415,14 +416,13 @@ Duration: 01/25/2022-01/31/2022
 2. Formatted the Home and Admin page
 3. Fixed Merge Conflicts
 4. Edit/ delete memeber button
-5. Fixed Merge Conflicts
 
 #### Contributions: 
 
-1.  Daniel Kosmin, 5 commits, y hours, contributed in xxx
-2.  Member 2, x commits, y hours, contributed in xxx
-3.  Member 3, x commits, y hours, contributed in xxx
-4.  Member 4, x commits, 7 hours, contributed in xxx
+1.  Daniel Kosmin, x commits, y hours, contributed in xxx
+2.  Gabe Hoban, x commits, y hours, contributed in xxx
+3.  Samuel Miller, 7 commits, y hours, contributed in xxx
+4.  Samantha Adrian, 5 commits, 7 hours, contributed in documenting in README, formatting admin page
 
 #### Sprint Retrospection: 
 
