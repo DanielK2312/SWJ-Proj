@@ -203,7 +203,7 @@ As the Admin I want to edit the infomation of a member on the website
 #### Acceptance Criteria
 
 ```
-1. User must have access to the websit
+1. User must have access to the website
 2. User must input the name of the member they want to edit the information for
 3. User must input the new information for the member
 ```
@@ -302,9 +302,10 @@ a database and relays the quiered information from the database back to the fron
 
 _(Start from Sprint 1, keep updating)_
 
-## Use-Case Realization  
+## Use-Case Realization
+Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page.
 
-## Database   
+## Database
 
 ## User Interface
 
@@ -314,7 +315,13 @@ _(Start from Sprint 1, keep updating. However, it is important to prepare the te
 
 For each new sprint cycle, update the implementation of your system (break it down into subsections). It is helpful if you can include some code snippets to illustrate the implementation
 
-Specify the development approach of your team, including programming languages, database, development, testing, and deployment environments. 
+Specify the development approach of your team, including programming languages, database, development, testing, and deployment environments.
+
+## Site
+Was able to create a website that scales with different window sizes while also having all the information needed. Includes tabs that take the user to different links in order to see Contributors and References. Includes a dropdown for years.
+
+## Admin Page
+Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information.
 
 # Technology
 
@@ -369,20 +376,20 @@ Duration: 10/01/2022-16/01/2022
 
 ### Sprint 1
 
-Duration: MM/DD/YYYY-MM/DD/YYYY
+Duration:01/18/2022-01/25/2022
 
 #### Completed Tasks: 
 
-1. Task 1
-2. Task 2
-3. ...
+1. Added dropdown to admin page
+2. Move to GitHub
+3. PUT STUFF OTHERS DID THAT I'M NOT THINKING OF
 
 #### Contributions: 
 
-1.  Member 1, x commits, y hours, contributed in xxx
-2.  Member 2, x commits, y hours, contributed in xxx
-3.  Member 3, x commits, y hours, contributed in xxx
-4.  Member 4, x commits, y hours, contributed in xxx
+1.  Daniel Kosmin, 5 commits, y hours, contributed in xxx
+2.  Gabe Hoban, 12 commits, y hours, contributed in xxx
+3.  Samuel Miller, 13 commits, y hours, contributed in xxx
+4.  Samantha Adrian, 10 commits, 10 hours, contributed in creating a dropdown button for the admin page and formatting the information included.
 
 #### Sprint Retrospection:
 
@@ -392,6 +399,32 @@ _Working through the sprints is a continuous improvement process. Discussing the
 Discussing good things happened during the sprint can improve the team's morale, good team-collaboration, appreciating someone who did a fantastic job to solve a blocker issue, work well-organized, helping someone in need. This is to improve the team's confidence and keep them motivated.
 As a team, we can discuss what has gone wrong during the sprint and come-up with improvement points for the next sprints. Few points can be like, need to manage time well, need to prioritize the tasks properly and finish a task in time, incorrect design lead to multiple reviews and that wasted time during the sprint, team meetings were too long which consumed most of the effective work hours. We can mention every problem is in the sprint which is hindering the progress.
 Finally, this meeting should improve your next sprint drastically and understand the team dynamics well. Mention the bullet points and discuss how to solve it.)_
+
+| Good     |   Could have been better    |  How to improve?  |
+|----------|:---------------------------:|------------------:|
+|          |                             |                   |
+
+
+### Sprint 2
+
+Duration: 01/25/2022-01/31/2022
+
+#### Completed Tasks: 
+
+1. Continuation of Sprint 1
+2. Formatted the Home and Admin page
+3. Fixed Merge Conflicts
+4. Edit/ delete memeber button
+5. Fixed Merge Conflicts
+
+#### Contributions: 
+
+1.  Daniel Kosmin, 5 commits, y hours, contributed in xxx
+2.  Member 2, x commits, y hours, contributed in xxx
+3.  Member 3, x commits, y hours, contributed in xxx
+4.  Member 4, x commits, 7 hours, contributed in xxx
+
+#### Sprint Retrospection: 
 
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
