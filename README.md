@@ -40,6 +40,12 @@ Project homepage (public): [Team 5 Webpage](https://cps491s22-team5.bitbucket.io
 |------------|:-------------:|-------------:|
 | 28/12/2021 |  0.0          | Gain access to established code repository  |
 | 10/01/2022 |  0.0          | Redesign code repository to make more readable   |
+| 14/01/2022 |  1.0          | Formatted the Home page |
+| 17/01/2022 |  1.1          | Created an admin page |
+| 24/01/2022 |  1.2          | Added dropdown to admin page |
+| 25/01/2022 |  1.3          | Move to GitHub and added information to dropdown |
+| 26/01/2022 |  1.4          | Edit/ delete memeber button |
+| 01/02/2022 |  1.5          | Fixed Merge Conflicts |
 
 # Overview
 
