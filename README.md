@@ -348,8 +348,8 @@ These technologies have also been used so far in the projects development and ar
 
 Trello Board Overview
 (Update here) 
-![Spring 2022 Timeline on Trello](https://i.imgur.com/1dw0R0b.jpg)
-
+![Spring 2022 Timeline on Trello](https://i.imgur.com/G1M94t0.png)
+Our Team has Opted for longer sprint to allow ample time for trickier tasks that will need more time to complete.  
 ## Scrum process
 
 ### Sprint 0
