@@ -30,7 +30,7 @@ University of Dayton English Department
 # Project Management Information  
 Management board (private access): [Trello Board](https://trello.com/b/tJ4jWeiA/cps-491-dr-vorachek)
 
-Source code repository (private access): [Bitbucket](https://bitbucket.org/cps491s22-team5/cps491s22-team5swj/src/main/)
+Source code repository (private access): [Github](https://github.com/udayton-swj)
 
 Project homepage (public): [Team 5 Webpage](https://cps491s22-team5.bitbucket.io/)
 
@@ -40,6 +40,10 @@ Project homepage (public): [Team 5 Webpage](https://cps491s22-team5.bitbucket.io
 |------------|:-------------:|-------------:|
 | 28/12/2021 |  0.0          | Gain access to established code repository  |
 | 10/01/2022 |  0.0          | Redesign code repository to make more readable   |
+| 17/01/2022 |  1.0          | Deploy Code base to Heroku.   |
+| 24/01/2022 |  1.1          | Design Homepage to Clients Specifications   |
+| 31/01/2022 |  1.2          | Implement base Admin page   |
+| 07/01/2022 |  1.3          | Add additional features to homepage and admin page   |
 
 # Overview
 
@@ -300,15 +304,27 @@ _(Start from Sprint 1, keep updating)_
 
 ## Database   
 
-## User Interface
+We are using MongoDB to store our data that is converted from an Excelsheet.  
+Then we are using APIs and javascript to access the information stored in the Database before displaying it to the users.  
 
+
+## User Interface
+![Homepage](https://i.imgur.com/F20aLGR.jpg)
+
+For the UI we are using CSS and HTML to style the webpage and recieve user input.  
 # Implementation
 
-_(Start from Sprint 1, keep updating. However, it is important to prepare the technology from Sprint 0)_
+For our implementation our team is using HTML, Javascript, and CSS to develop our project.   
+Tools we are using include: Heroku for Deployment, Github for code managment, and MongoDB for the Database.
+We are using a Scrum style development approach were we meet daily to discuss what needs to be done, what progress has been made since the previous meeting, and what we have planned for the next 24 hours.   
+To help with our Scrum development we are utilizing Trello to stay organized and keep track of what tasks need to be done and by who.   
 
-For each new sprint cycle, update the implementation of your system (break it down into subsections). It is helpful if you can include some code snippets to illustrate the implementation
+For the frontend of our project we are utilizing HTML and Javacript to get input fromt the user and to display differnt items when requested. 
 
-Specify the development approach of your team, including programming languages, database, development, testing, and deployment environments. 
+For the backend of our project we are using Javascript to query our database to retrieve infomration when requested by the frontend. 
+
+For testing of our application we are using a CICD Pipeline to push our changes to a staging application hosted on Heroku Servers. Here we can view what we are doing and the implementation so far in the project before pushing final changes to the public website.   
+
 
 # Technology
 
@@ -329,15 +345,9 @@ These technologies have also been used so far in the projects development and ar
 
 # Software Process Management
 
-We will follow the Scrum approach, thus your team needs to identify the task in each sprint cycles, team meeting schedules, including this Fall and next Spring semester. The tenative schedule and sprint cycles for Spring 2022 are as follows.
-We will be following a SCRUM style approach to managment.
-![Spring 2022 Timeline](https://capstones-cs-udayton.bitbucket.io/imgs/cps491timeline.png "Spring 2022 Timeline")
-
-
-Include the screenshot of the timeline from your Trello board (with tasks). You can use the Trello template available here (only with timeline): [https://trello.com/b/uIgKfjr6/cps491-s21](https://trello.com/b/uIgKfjr6/cps491-s21)
 
 Trello Board Overview
-
+(Update here) 
 ![Spring 2022 Timeline on Trello](https://i.imgur.com/1dw0R0b.jpg)
 
 ## Scrum process
@@ -363,33 +373,31 @@ Duration: 10/01/2022-16/01/2022
 
 ### Sprint 1
 
-Duration: MM/DD/YYYY-MM/DD/YYYY
+Duration: 17/01/2022-01/03/2022
 
 #### Completed Tasks: 
 
-1. Task 1
-2. Task 2
-3. ...
+1. Redesign Homepage Astetic 
+2. Add Seperated Homepage Content
+3. Add Admin Page
+4. Link Database to Admin Page
+5. Add Functionality to Admin Page
 
 #### Contributions: 
 
-1.  Member 1, x commits, y hours, contributed in xxx
-2.  Member 2, x commits, y hours, contributed in xxx
-3.  Member 3, x commits, y hours, contributed in xxx
-4.  Member 4, x commits, y hours, contributed in xxx
+1.  Daniel Kosmin,   ~20 commits, ~35 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller,   ~13 commits, ~25 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~14 commits, ~25 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban,   ~20 commits, ~35 hours, contributed in Developing the Admin Page and Managing the Database
 
 #### Sprint Retrospection:
 
-_(Introduction to Sprint Retrospection:
+| Good                                                         |                                           Could have been better                                           |                                                           How to improve? |
+| ------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------: |
+| We were able to meet/exceed the client sexpectations on what she wanted done.     | There was idile time when waiting for other parts of the project to be finished.                           |      Make sure during meetings we are asking for help with struggle areas.|
+| Everyones efforts were visable on the project.                                    | Some miss-coumunication with ideas about direction of project.                                               |       Add more detail to the trello board to lessen confusion.            |
+|                |                                                                                                            |                                                                           |
 
-_Working through the sprints is a continuous improvement process. Discussing the sprint has just completed can improve the next sprints walk through a much efficient one. Sprint retrospection is done once a sprint is finished and the team is ready to start another sprint planning meeting. This discussion can take up to 1 hour depending on the ideal team size of 6 members. 
-Discussing good things happened during the sprint can improve the team's morale, good team-collaboration, appreciating someone who did a fantastic job to solve a blocker issue, work well-organized, helping someone in need. This is to improve the team's confidence and keep them motivated.
-As a team, we can discuss what has gone wrong during the sprint and come-up with improvement points for the next sprints. Few points can be like, need to manage time well, need to prioritize the tasks properly and finish a task in time, incorrect design lead to multiple reviews and that wasted time during the sprint, team meetings were too long which consumed most of the effective work hours. We can mention every problem is in the sprint which is hindering the progress.
-Finally, this meeting should improve your next sprint drastically and understand the team dynamics well. Mention the bullet points and discuss how to solve it.)_
-
-| Good     |   Could have been better    |  How to improve?  |
-|----------|:---------------------------:|------------------:|
-|          |                             |                   |
 
 
 ### Sprint x
@@ -416,9 +424,33 @@ Duration: MM/DD/YYYY-MM/DD/YYYY
 |          |                             |                   |
 
 
+
+
 # User guide/Demo
 
-Write as a demo with screenshots and as a guide for users to use your system.
+## For Regular Members: 
+Begin by Accesses the website at https://swj-capstone.herokuapp.com/  
+![Homepage](https://i.imgur.com/zUQFVeD.jpg)
+
+After accessing the homepage feel free to explore around and discover the History of the Society of Womens Journalists, by searching for names, leadership positions and year!  
+
+You can also check out the Contributions for the project by clicking on the contriutor tab!
+![Contributions](https://i.imgur.com/Siu9YdU.png)
+
+The References for the Project are also available in the References tab!
+![References](https://i.imgur.com/azOW4lL.png)
+
+
+## For Admin Members: 
+
+Begin by Accessing the Admin Page at https://swj-capstone.herokuapp.com/admin/pages/login.html  
+![Admin login](https://i.imgur.com/wclGkfj.png)
+After you have logged in you will be redirected to the Admin Homepage  
+![Admin Homepage](https://i.imgur.com/NgcYTIx.png)
+At the Admin Homepage you can view the database of members and add new members. 
+![Admin Tables](https://i.imgur.com/5eBzPbT.png)
+Create Member(Below)
+![Admin Add Member](https://i.imgur.com/oxOtbZq.png)
 
 (Start from Sprint 1, keep updating)
 
