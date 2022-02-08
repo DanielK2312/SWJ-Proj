@@ -1,0 +1,9 @@
+.w3-container {
+  padding: 0 !important;
+}
+
+.w3-panel {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  display: none;
+}

@@ -44,6 +44,12 @@ Project homepage (public): [Team 5 Webpage](https://cps491s22-team5.bitbucket.io
 | 24/01/2022 |  1.1          | Design Homepage to Clients Specifications   |
 | 31/01/2022 |  1.2          | Implement base Admin page   |
 | 07/01/2022 |  1.3          | Add additional features to homepage and admin page   |
+| 14/01/2022 |  1.0          | Formatted the Home page |
+| 17/01/2022 |  1.1          | Created an admin page |
+| 24/01/2022 |  1.2          | Added dropdown to admin page |
+| 25/01/2022 |  1.3          | Move to GitHub and added information to dropdown |
+| 26/01/2022 |  1.4          | Edit/ delete memeber button |
+| 01/02/2022 |  1.5          | Fixed Merge Conflicts |
 
 # Overview
 
@@ -201,7 +207,7 @@ As the Admin I want to edit the infomation of a member on the website
 #### Acceptance Criteria
 
 ```
-1. User must have access to the websit
+1. User must have access to the website
 2. User must input the name of the member they want to edit the information for
 3. User must input the new information for the member
 ```
@@ -300,9 +306,10 @@ a database and relays the quiered information from the database back to the fron
 
 _(Start from Sprint 1, keep updating)_
 
-## Use-Case Realization  
+## Use-Case Realization
+Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page.
 
-## Database   
+## Database
 
 We are using MongoDB to store our data that is converted from an Excelsheet.  
 Then we are using APIs and javascript to access the information stored in the Database before displaying it to the users.  
@@ -325,6 +332,13 @@ For the backend of our project we are using Javascript to query our database to 
 
 For testing of our application we are using a CICD Pipeline to push our changes to a staging application hosted on Heroku Servers. Here we can view what we are doing and the implementation so far in the project before pushing final changes to the public website.   
 
+Specify the development approach of your team, including programming languages, database, development, testing, and deployment environments.
+
+## Site
+Was able to create a website that scales with different window sizes while also having all the information needed. Includes tabs that take the user to different links in order to see Contributors and References. Includes a dropdown for years.
+
+## Admin Page
+Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information.
 
 # Technology
 
@@ -354,7 +368,7 @@ Our Team has Opted for longer sprint to allow ample time for trickier tasks that
 
 ### Sprint 0
 
-Duration: 10/01/2022-16/01/2022
+Duration: 01/10/2022-01/16/2022
 
 #### Completed Tasks: 
 
@@ -398,8 +412,6 @@ Duration: 17/01/2022-01/03/2022
 | Everyones efforts were visable on the project.                                    | Some miss-coumunication with ideas about direction of project.                                               |       Add more detail to the trello board to lessen confusion.            |
 |                |                                                                                                            |                                                                           |
 
-
-
 ### Sprint x
 
 Duration: MM/DD/YYYY-MM/DD/YYYY
@@ -422,9 +434,6 @@ Duration: MM/DD/YYYY-MM/DD/YYYY
 | Good     |   Could have been better    |  How to improve?  |
 |----------|:---------------------------:|------------------:|
 |          |                             |                   |
-
-
-
 
 # User guide/Demo
 
