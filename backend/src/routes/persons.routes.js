@@ -4,30 +4,12 @@ const AuthGuard = require('../middleware/tokenChecker');
 
 const router = express.Router();
 
-// Any routers/routes after this need to be authenticated.
-router.use(AuthGuard);
-
-/**
- * API Route to create a person.
- * @name /api/persons/create
- * @param req.headers ['x-access-token'] Authentication token.
- * @param req.body { ... See Person Schema }
- */
-router.post('/create', (req, res, next) => {
-  // Surname is the only required field to create a person.
-  if (req.body.surname) {
-    const newPerson = new Person(req.body);
-    newPerson.save();
-    res.status(200).json(newPerson);
-  }
-});
-
 /**
  * API Route to list all persons.
  * @name /api/persons/list
  * @param req.headers ['x-access-token'] Authentication token.
  */
-router.get('/list', (req, res, next) => {
+ router.get('/list', (req, res, next) => {
   Person.find({})
     .then((allPersons) => {
       res.status(200).json(allPersons);
@@ -44,11 +26,34 @@ router.get('/list', (req, res, next) => {
  * @param req.headers ['x-access-token'] Authentication token.
  * @todo Add error for no person found.
  */
-router.get('/get/:id', (req, res, next) => {
+ router.get('/get/:id', (req, res, next) => {
   Person.findById(req.params.id)
     .then((person) => {
       res.status(200).json(person);
     })
+});
+
+// Any routers/routes after this need to be authenticated.
+// Current protected methods:
+// - /create
+// - /edit/:id
+// - /delete/:id
+
+router.use(AuthGuard);
+
+/**
+ * API Route to create a person.
+ * @name /api/persons/create
+ * @param req.headers ['x-access-token'] Authentication token.
+ * @param req.body { ... See Person Schema }
+ */
+router.post('/create', (req, res, next) => {
+  // Surname is the only required field to create a person.
+  if (req.body.surname) {
+    const newPerson = new Person(req.body);
+    newPerson.save();
+    res.status(200).json(newPerson);
+  }
 });
 
 /**

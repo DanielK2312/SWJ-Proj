@@ -43,8 +43,10 @@ function checkAccessToken() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 401) {
             // Access token is invalid, need to refresh
+            console.log('[AUTH] - Invalid access token.')
             refreshToken();
         } else if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log('[AUTH] - Access token is valid.')
             // Token is valid
             return true;
         }
@@ -63,9 +65,11 @@ function refreshToken() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 404) {
+            console.log('[AUTH] - No valid refresh tokens, sending to login page.')
             // No auth, send to login page
             window.location.replace("https://swj-capstone-staging.herokuapp.com/admin/pages/login.html");
         } else if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log('[AUTH] - Refresh token valid.')
             // Token is valid
             localStorage.setItem('accessToken', JSON.parse(xhr.responseText)['token'])
         }

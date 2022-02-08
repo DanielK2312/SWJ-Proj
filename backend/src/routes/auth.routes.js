@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const User = require('../models/user.model');
+const logger = require('../config/logger');
 
 // Store list of current refresh and access tokens
 // Format: tokenList[email] = { status, access_token }
@@ -29,8 +30,6 @@ const genToken = (nonce) => {
 // now we have to go invalidate all children token in order to keep account secure.
 const killChildren = (parent) => {
   // Hopefully this will never be called
-
-  
 }
 
 /**
@@ -74,6 +73,9 @@ router.post('/login', async function (req, res, next) {
       // Generate authentication tokens
       const response = genToken(nonce);
 
+      // HTTPonly cookie.
+      // Created by backend and cannot be read/changed by the frontend.
+      // Only gets sent on requests to /api/auth/token.
       res.cookie("refreshToken", nonce, {
         secure: true,
         path: '/api/auth/token',
@@ -88,6 +90,30 @@ router.post('/login', async function (req, res, next) {
     }
   } else {
     return res.status(403).json({ error: 'User not found' });
+  }
+});
+
+/**
+ * API Route for token validity checker.
+ * @name /api/auth/check
+ */
+ router.post('/check', (req, res) => {
+  const token = req.headers['x-access-token'];
+  if (token) {
+    // verifies secret and checks if token is expired
+    jwt.verify(token, config.jwt.secret, function (err) {
+      if (err) {
+        logger.warn('[AUTH] - Acess Token not valid\n' + err.message);
+        return res.status(401).json({ error: true, message: 'Unauthorized access.' });
+      }
+      return res.status(200).json({ message: 'Token is valid.' });
+    });
+  } else {
+    // if no token was included, send 403 unauthorized response.
+    return res.status(403).send({
+      error: true,
+      message: 'No token provided.',
+    });
   }
 });
 
@@ -138,31 +164,8 @@ router.post('/token', (req, res) => {
     }
 
   } else {
+    logger.warn('[AUTH] - Refresh Token not detected.');
     res.status(404).send('Invalid request');
-  }
-});
-
-/**
- * API Route for token validity checker.
- * @name /api/auth/check
- */
- router.post('/check', (req, res) => {
-  const token = req.headers['x-access-token'];
-  if (token) {
-    // verifies secret and checks if token is expired
-    jwt.verify(token, config.jwt.secret, function (err) {
-      if (err) {
-        return res.status(401).json({ error: true, message: 'Unauthorized access.' });
-      }
-
-      return res.status(200).json({ message: 'Token is valid.' });
-    });
-  } else {
-    // if no token was included, send 403 unauthorized response.
-    return res.status(403).send({
-      error: true,
-      message: 'No token provided.',
-    });
   }
 });
 
