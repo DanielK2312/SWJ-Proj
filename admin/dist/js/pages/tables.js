@@ -120,6 +120,7 @@ function format(d) {
     //Attempt at showing the organizations
     console.log("Here are the orgs for: " + d.firstname)
     console.log(typeof (d.orgs))
+    console.log(typeof (d.orgs[0]))
     console.log(d.orgs[0])
     if (d.orgs[0] != '') {
         memberInfo +=
