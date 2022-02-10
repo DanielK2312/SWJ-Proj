@@ -1,4 +1,5 @@
 const express = require('express');
+const logger = require('../config/logger');
 const Person = require('../models/person.model');
 const AuthGuard = require('../middleware/tokenChecker');
 
@@ -38,10 +39,13 @@ router.get('/name/:name', (req, res, next) => {
     }
   };
 
-  Person.find(fullTextSearchOptions)
-    .then((person) => {
-      res.status(200).json(person);
-    })
+  Person.find(fullTextSearchOptions, function(err, results) {
+    if (err) {
+      logger.error(err.message);
+    } else {
+      res.status(200).json(results);
+    }
+  })
 });
 
 // Any routers/routes after this need to be authenticated.
