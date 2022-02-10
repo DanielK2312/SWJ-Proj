@@ -32,8 +32,14 @@ app.use(mongoSanitize()); // sanitize database data
 app.use(compression()); // gzip compression
 
 // enable cors
-app.use(cors());
-app.options('*', cors());
+// app.use(cors());
+// app.options('*', cors());
+app.use(function (res, req, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-TypeError, Accept');
+  res.header('Content-Security-Policy', "Default-src 'self' localhost:3000;");
+  next();
+});
 
 // Frontend Routes
 app.use('/', express.static(path.join(__dirname, '/../../frontend')));
