@@ -31,7 +31,14 @@ router.get('/name/:name', (req, res, next) => {
 
   // Verify first letter is capitalized (QOL)
   input_parameter[0].toUpperCase()
-  Person.find({ surname: {"$regex": /input_parameter/}})
+
+  var fullTextSearchOptions = {
+    "$text":{
+      "$search": input_parameter
+    }
+  };
+
+  Person.find(fullTextSearchOptions)
     .then((person) => {
       res.status(200).json(person);
     })
