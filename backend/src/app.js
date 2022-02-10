@@ -24,10 +24,10 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
 
 app.use(morgan.successHandler); // HTTP API request success logging
 app.use(morgan.errorHandler); // HTTP API request failure logging
-app.use(helmet()); // set security HTTP headers
+// app.use(helmet()); // set security HTTP headers
 app.use(express.json()); // parse json request body
 app.use(express.urlencoded({ extended: true })); // parse urlencoded request body
-app.use(xss()); // sanitize request data
+// app.use(xss()); // sanitize request data
 app.use(mongoSanitize()); // sanitize database data
 app.use(compression()); // gzip compression
 
