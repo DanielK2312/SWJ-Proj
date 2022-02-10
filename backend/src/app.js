@@ -37,7 +37,7 @@ app.use(compression()); // gzip compression
 app.use(function (res, req, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-TypeError, Accept');
-  res.header('Content-Security-Policy', "Default-src 'self' localhost:3000;");
+  res.header('Content-Security-Policy', "default-src 'self' localhost:3000;");
   next();
 });
 
