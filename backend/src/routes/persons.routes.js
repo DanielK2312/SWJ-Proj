@@ -9,7 +9,7 @@ const router = express.Router();
  * @name /api/persons/list
  * @param req.headers ['x-access-token'] Authentication token.
  */
- router.get('/list', (req, res, next) => {
+router.get('/list', (req, res, next) => {
   Person.find({})
     .then((allPersons) => {
       res.status(200).json(allPersons);
@@ -21,13 +21,13 @@ const router = express.Router();
 });
 
 /**
- * API Route to get one person.
- * @name /api/persons/get/{ some mongodb _id }
+ * API Route to get one person by Name.
+ * @name /api/persons/get/{ some name }
  * @param req.headers ['x-access-token'] Authentication token.
  * @todo Add error for no person found.
  */
- router.get('/get/:id', (req, res, next) => {
-  Person.findById(req.params.id)
+router.get('/get/name/:name', (req, res, next) => {
+  Person.find({ surname: req.params.name })
     .then((person) => {
       res.status(200).json(person);
     })
@@ -67,14 +67,14 @@ router.patch('/edit/:id', (req, res, next) => {
   Person.findByIdAndUpdate(
     { _id: req.params.id },
     req.body,
-    function(err, result) {
+    function (err, result) {
       if (err) {
         res.send(err);
       } else {
         res.status(200).json(result);
       }
     })
-  });
+});
 
 /**
  * API Route to delete a person.
@@ -86,7 +86,7 @@ router.delete('/delete/:id', (req, res, next) => {
   if (req.body.confirm_delete == "true") {
     Person.findOneAndDelete(
       { _id: req.params.id },
-      function(err, result) {
+      function (err, result) {
         if (err) {
           res.status(418).send(err);
         } else {
