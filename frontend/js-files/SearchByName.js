@@ -36,6 +36,34 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
+    var url = "https://swj-capstone-staging.herokuapp.com/api/persons/list";
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        // all data is loaded
+        console.log(xhr.responseText);
+        // if (JSON.parse(xhr.responseText)["status"] == "Logged in") {
+        //   localStorage.setItem(
+        //     "accessToken",
+        //     JSON.parse(xhr.responseText)["token"]
+        //   );
+        //   window.location.replace(
+        //     "https://swj-capstone-staging.herokuapp.com/admin"
+        //   );
+        // } else {
+        //   // Go through login errors...
+        // }
+      }
+    };
+
+    xhr.send();
+
     // console.log("Success");
   }
   // case where name and leadership position is filled with year staying empty
