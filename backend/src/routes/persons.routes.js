@@ -22,12 +22,16 @@ router.get('/list', (req, res, next) => {
 
 /**
  * API Route to get one person by Name.
- * @name /api/persons/get/{ some name }
- * @param req.headers ['x-access-token'] Authentication token.
- * @todo Add error for no person found.
+ * @name /api/persons/name/{ some name }
+ * @todo Add validators/error checking
  */
-router.get('/get/name/:name', (req, res, next) => {
-  Person.find({ surname: req.params.name })
+router.get('/name/:name', (req, res, next) => {
+  // Using regex to get partial matches
+  const input_parameter = req.params.name;
+
+  // Verify first letter is capitalized (QOL)
+  input_parameter[0].toUpperCase()
+  Person.find({ surname: {"$regex": /input_parameter/}})
     .then((person) => {
       res.status(200).json(person);
     })
