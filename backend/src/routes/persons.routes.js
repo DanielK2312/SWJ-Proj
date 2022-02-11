@@ -26,26 +26,22 @@ router.get('/list', (req, res, next) => {
  * @name /api/persons/name/{ some name }
  * @todo Add validators/error checking
  */
+
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 router.get('/name/:name', (req, res, next) => {
-  // Using regex to get partial matches
-  const input_parameter = req.params.name;
-
-  // Verify first letter is capitalized (QOL)
-  input_parameter[0].toUpperCase()
-
-  var fullTextSearchOptions = {
-    "$text":{
-      "$search": input_parameter
-    }
-  };
-
-  Person.find(fullTextSearchOptions, function(err, results) {
-    if (err) {
-      logger.error(err.message);
-    } else {
-      res.status(200).json(results);
-    }
-  })
+  if (req.query.name) {
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    Person.find({ "surname": regex }, function (err, persons) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).json(persons)
+      }
+    });
+  }
 });
 
 // Any routers/routes after this need to be authenticated.
