@@ -21,6 +21,22 @@ router.get('/list', (req, res, next) => {
     });
 });
 
+/**
+ * API Route to list all persons.
+ * @name /api/persons/name
+ * @param req.headers ['x-access-token'] Authentication token.
+ */
+ router.get('/N/:name', (req, res, next) => {
+  Person.find({ "surname": { "$regex": req.params.name, "$options": "i" } },
+    function(err,people) {
+      if (err) {
+        logger.error(err.message);
+      } else {
+        res.status(200).json(people);
+      }
+    })
+});
+
 // Any routers/routes after this need to be authenticated.
 // Current protected methods:
 // - /create
