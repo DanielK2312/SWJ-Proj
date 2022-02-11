@@ -21,29 +21,6 @@ router.get('/list', (req, res, next) => {
     });
 });
 
-/**
- * API Route to get one person by Name.
- * @name /api/persons/name/{ some name }
- * @todo Add validators/error checking
- */
-
-function escapeRegex(text) {
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
-
-router.get('/name/:name', (req, res, next) => {
-  if (req.query.name) {
-    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-    Person.find({ "surname": regex }, function (err, persons) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json(persons)
-      }
-    });
-  }
-});
-
 // Any routers/routes after this need to be authenticated.
 // Current protected methods:
 // - /create
