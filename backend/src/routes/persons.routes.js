@@ -23,7 +23,7 @@ router.get('/list', (req, res, next) => {
 
 /**
  * API Route to list all persons.
- * @name /api/persons/name
+ * @name /api/persons/N/{some surname here}
  * @param req.headers ['x-access-token'] Authentication token.
  */
  router.get('/N/:name', (req, res, next) => {
