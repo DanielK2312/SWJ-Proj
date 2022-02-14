@@ -37,7 +37,7 @@ submitButton.addEventListener("click", (e) => {
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
     // VVVV - Add variable to end of this URL!!!!!!!!!
-    var url = "https://swj-capstone-staging.herokuapp.com/api/persons/name/NAME_HERE";
+    var url = "https://swj-capstone-staging.herokuapp.com/api/persons/N/"+inputNameValue;
     // NOTICE ME!!!
 
     var xhr = new XMLHttpRequest();

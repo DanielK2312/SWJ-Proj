@@ -1,11 +1,12 @@
-const express = require('express');
-const path = require('path');
-const helmet = require('helmet');
-const mongoose = require('mongoose');
-const xss = require('xss-clean');
-const mongoSanitize = require('express-mongo-sanitize');
 const compression = require('compression');
 const cors = require('cors');
+const express = require('express');
+const helmet = require('helmet');
+const mongoose = require('mongoose');
+const mongoSanitize = require('express-mongo-sanitize');
+const path = require('path');
+const xss = require('xss-clean');
+
 const logger = require('./config/logger');
 const config = require('./config/config');
 const morgan = require('./config/morgan');
@@ -32,14 +33,11 @@ app.use(mongoSanitize()); // sanitize database data
 app.use(compression()); // gzip compression
 
 // enable cors
-// app.use(cors());
-// app.options('*', cors());
-app.use(function (res, req, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-TypeError, Accept');
-  res.header('Content-Security-Policy', "default-src 'self' localhost:3000;");
-  next();
-});
+const allowedOrigins = ['http://localhost:3000','https://swj-capstone-staging.herokuapp.com'];
+const options = {
+  origin: allowedOrigins
+};
+app.use(cors(options));
 
 // Frontend Routes
 app.use('/', express.static(path.join(__dirname, '/../../frontend')));
