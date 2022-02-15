@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const personSchema = mongoose.Schema(
+const personSchema = new mongoose.Schema(
   {
     date_range: [
       {
@@ -100,9 +100,9 @@ const personSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-    collection: 'person-test'
+    collection: 'people'
   }
 );
 
 const Person = mongoose.model('Person', personSchema);
-module.exports = Person;
+export default Person;

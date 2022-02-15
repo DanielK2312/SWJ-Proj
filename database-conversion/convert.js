@@ -160,13 +160,12 @@ function sleep(ms) {
 async function upload(person) {
     await sleep(5000)
     const options = {
-        hostname: 'swj-capstone-staging.herokuapp.com',
-        port: 443,
-        path: '/api/persons/create',
+        hostname: 'localhost',
+        port: 3000,
+        path: '/api/v1/person/create',
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZ2hvYmFuMTRAZ21haWwuY29tIiwiaWF0IjoxNjQyMjA4OTk4LCJleHAiOjE2NDIyMTA3OTh9.MN1BkREALhGLz8IzTkR49rJp136gL9kLxmpWPrkQXTY',
         }
     }
 
