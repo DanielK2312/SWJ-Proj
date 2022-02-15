@@ -307,18 +307,19 @@ a database and relays the quiered information from the database back to the fron
 _(Start from Sprint 1, keep updating)_
 
 ## Use-Case Realization
-Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page.
+In order to search for various members through year, name, or leadership position the user simply has to access the site. They are able to access the website by using the correct link. Admins have an addional use-case in that, with the proper qualification, they can access the admin page. After having said qualifications, they can add members, edit members, view informaiton on members, and add a photo.
 
 ## Database
 
 We are using MongoDB to store our data that is converted from an Excelsheet.  
 Then we are using APIs and javascript to access the information stored in the Database before displaying it to the users.  
-
+**GABE EDIT THIS**
 
 ## User Interface
 ![Homepage](https://i.imgur.com/F20aLGR.jpg)
 
-For the UI we are using CSS and HTML to style the webpage and recieve user input.  
+For the UI we are using CSS and HTML to style the webpage and recieve user input.
+
 # Implementation
 
 For our implementation our team is using HTML, Javascript, and CSS to develop our project.   
@@ -338,7 +339,7 @@ Specify the development approach of your team, including programming languages, 
 Was able to create a website that scales with different window sizes while also having all the information needed. Includes tabs that take the user to different links in order to see Contributors and References. Includes a dropdown for years.
 
 ## Admin Page
-Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information.
+Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information. Before the dropdown is clicked, the information displayed is Date Range (years as member), Surname, First Name, Proposer, City, and the date that the member Joined the club. After the dropdown is clicked additional information on the member's Full Name, Pen Name, date they where Born, date they Died, Address, Other Organizations, Periodicals they wrote, and any Additional Info. There's also a section on where this information was gained in Source of Info.
 
 # Technology
 
@@ -349,7 +350,7 @@ This is an ongoing project that we will be taking over from previous students in
 
 ## Deployment
 
-Our System will be deployed to the cloud based application platform Heroku. Which allows us to remotly run and operate our application. 
+Our System will be deployed to the cloud based application platform Heroku. Which allows us to remotly run and operate our application.
 
 
 # Impacts
