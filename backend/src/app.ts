@@ -41,16 +41,16 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
 const options: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(options));
-app.use(helmet.contentSecurityPolicy({
-    directives: {
-      scriptSrc: [
-        '\'self\'',
-        '\'unsafe-inline\'',
-        '\'unsafe-eval\'',
-      ],
-      imgSrc: ['*', 'blob:', 'data:'],
-    },
-}));
+// app.use(helmet.contentSecurityPolicy({
+//     directives: {
+//       scriptSrc: [
+//         '\'self\'',
+//         '\'unsafe-inline\'',
+//         '\'unsafe-eval\'',
+//       ],
+//       imgSrc: ['*', 'blob:', 'data:'],
+//     },
+// }));
 app.use(mongoSanatize());
 
 // # - Serve Static Pages -#

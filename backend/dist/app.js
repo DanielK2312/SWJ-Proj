@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const compression_1 = __importDefault(require("compression"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
-const helmet_1 = __importDefault(require("helmet"));
 const express_mongo_sanitize_1 = __importDefault(require("express-mongo-sanitize"));
 const path_1 = __importDefault(require("path"));
 const API_1 = __importDefault(require("./routes/API"));
@@ -42,23 +41,23 @@ app.use(express_1.default.urlencoded({ extended: true }));
 const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
 const options = { origin: allowedOrigins };
 app.use((0, cors_1.default)(options));
-app.use(helmet_1.default.contentSecurityPolicy({
-    directives: {
-        scriptSrc: [
-            '\'self\'',
-            '\'unsafe-inline\'',
-            '\'unsafe-eval\'',
-        ],
-        imgSrc: ['*', 'blob:', 'data:'],
-    },
-}));
+// app.use(helmet.contentSecurityPolicy({
+//     directives: {
+//       scriptSrc: [
+//         '\'self\'',
+//         '\'unsafe-inline\'',
+//         '\'unsafe-eval\'',
+//       ],
+//       imgSrc: ['*', 'blob:', 'data:'],
+//     },
+// }));
 app.use((0, express_mongo_sanitize_1.default)());
 // # - Serve Static Pages -#
 app.use('/admin', authGuard_1.default, express_1.default.static(path_1.default.join(__dirname, '/../../admin')));
 app.use('/', express_1.default.static(path_1.default.join(__dirname, '/../../frontend')));
 // API Routes
 (0, API_1.default)(app);
-app.listen(3000, () => {
-    console.log("App listening on port: " + 3000);
+app.listen(process.env.PORT || 3000, () => {
+    console.log("App listening on port: " + process.env.PORT || 3000);
 });
 //# sourceMappingURL=app.js.map
