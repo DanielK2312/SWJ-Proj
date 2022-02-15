@@ -1,12 +1,11 @@
 $(document).ready(function () {
-    var url = "https://swj-capstone-staging.herokuapp.com/api/persons/list";
+    var url = "https://swj-capstone-staging.herokuapp.com/api/v1/person/list";
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.setRequestHeader("x-access-token", localStorage.getItem('accessToken'));
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
