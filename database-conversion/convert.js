@@ -2,13 +2,13 @@ const excelToJson = require('convert-excel-to-json');
 const http = require('http');
 
 /**
- * Script to upload historical figures from an Excel Collection to MongoDB.
+ * Script to work magic on the Excel Spreadsheet.
  * 
  * Gabe Hoban - 01/14/2022
  */
 
 const result = excelToJson({
-    sourceFile: 'source.xlsx',
+    sourceFile: 'source-min.xlsx',
     columnToKey: {
         A: 'surname',
         B: 'firstname',
@@ -35,7 +35,7 @@ const result = excelToJson({
     sheetStubs: true
 });
 
-const filled_data = [];
+let filled_data = [];
 
 /**
  * The excelToJson tool works pretty well, however, it does
@@ -67,10 +67,16 @@ for (var i = 0; i < keysArray.length; i++) {
         }
         if (result[key][j]['dob'] == null) {
             result[key][j]['dob'] = ''
+        } else if (typeof (result[key][j]['dob']) == 'object') {
+            result[key][j]['dob'] = result[key][j]['dob'].toISOString().slice(0, 10);
         }
+
         if (result[key][j]['dod'] == null) {
             result[key][j]['dod'] = ''
+        } else if (typeof (result[key][j]['dod']) == 'object') {
+            result[key][j]['dod'] = result[key][j]['dod'].toISOString().slice(0, 10);
         }
+
         if (result[key][j]['position'] == null) {
             result[key][j]['position'] = ''
         }
@@ -125,15 +131,13 @@ for (var i = 0; i < keysArray.length; i++) {
         }
         if (result[key][j]['joined'] == null) {
             result[key][j]['joined'] = ''
+        } else if (typeof (result[key][j]['joined']) == 'object') {
+            result[key][j]['joined'] = result[key][j]['joined'].toISOString().slice(0, 10);
         }
 
         filled_data.push(result[key][j])
     }
 }
-
-console.log("All Missing Data is Filled")
-
-console.log(filled_data.length)
 
 
 function JSON_to_URLEncoded(element, key, list) {
@@ -149,15 +153,15 @@ function JSON_to_URLEncoded(element, key, list) {
 
 function sleep(ms) {
     return new Promise((resolve) => {
-      setTimeout(resolve, ms);
+        setTimeout(resolve, ms);
     });
 }
 
 async function upload(person) {
     await sleep(5000)
     const options = {
-        hostname: 'localhost',
-        port: 3000,
+        hostname: 'swj-capstone-staging.herokuapp.com',
+        port: 443,
         path: '/api/persons/create',
         method: 'POST',
         headers: {
@@ -185,11 +189,159 @@ async function upload(person) {
 }
 
 // LET THE FUN BEGIN
-
+let fixed = []
 for (let x = 0; x < filled_data.length; x++) {
-    if (filled_data[x].surname == 'Surname') {
-        console.log("Found row #1 in sheet, ignoring.")
-    } else {
-        upload(filled_data[x])
+    for (let y = 0; y < filled_data.length; y++) {
+        if (filled_data[x].surname == filled_data[y].surname) {
+            if (filled_data[x].date_range != filled_data[y].date_range) {
+                if (!fixed.includes(filled_data[y].surname + ";" + filled_data[y].firstname + ";" + filled_data[y].date_range)) {
+                    fixed.push(filled_data[y].surname + ";" + filled_data[y].firstname + ";" + filled_data[y].date_range)
+
+                    // Convert string to array
+                    if (typeof(filled_data[x].date_range) == 'string') {
+                        filled_data[x].date_range = [ filled_data[x].date_range ]
+                    }
+
+                    // Push date range of other version
+                    filled_data[x].date_range.push(filled_data[y].date_range)
+
+                    // Needs more validators
+                    if (filled_data[x].prefix != filled_data[y].prefix) {
+                        if (filled_data[x].prefix.search(filled_data[y].prefix) == -1) {
+                            if (filled_data[x].prefix != '' && filled_data[y].prefix != '') {
+                                filled_data[x].prefix += ", "
+                            }
+
+                            filled_data[x].prefix += filled_data[y].prefix;
+                        }
+
+                    }
+
+                    if (filled_data[x].pen_name != filled_data[y].pen_name) {
+                        if (filled_data[x].pen_name != '' && filled_data[y].pen_name != '') {
+                            filled_data[x].pen_name += ", "
+                        }
+
+                        filled_data[x].pen_name += filled_data[y].pen_name;
+                    }
+
+                    if (filled_data[x].dob != filled_data[y].dob) {
+                        if (filled_data[x].dob != '' && filled_data[y].dob != '') {
+                            filled_data[x].dob += ", "
+                        }
+
+                        filled_data[x].dob += filled_data[y].dob;
+                    }
+
+                    if (filled_data[x].dod != filled_data[y].dod) {
+                        if (filled_data[x].dod != '' && filled_data[y].dod != '') {
+                            filled_data[x].dod += ", "
+                        }
+
+                        filled_data[x] += filled_data[y].dod;
+                    }
+
+                    if (filled_data[x].position != filled_data[y].position) {
+                        if (filled_data[x].position != '' && filled_data[y].position != '') {
+                            filled_data[x].position += ", "
+                        }
+
+                        filled_data[x].position += filled_data[y].position;
+                    }
+
+                    if (filled_data[x].address != filled_data[y].address) {
+                        if (filled_data[x].address != '' && filled_data[y].address != '') {
+                            filled_data[x].address += ", ";
+                        }
+
+                        filled_data[x].address += filled_data[y].address;
+                    }
+
+                    if (filled_data[x].neighborhood != filled_data[y].neighborhood) {
+                        if (filled_data[x].neighborhood != '' && filled_data[y].neighborhood != '') {
+                            filled_data[x].neighborhood += ", ";
+                        }
+
+                        filled_data[x].neighborhood += filled_data[y].neighborhood;
+                    }
+
+                    if (filled_data[x].city != filled_data[y].city) {
+                        if (filled_data[x].city != '' && filled_data[y].city != '') {
+                            filled_data[x].city += ", ";
+                        }
+
+                        filled_data[x].city += filled_data[y].city;
+                    }
+
+                    if (filled_data[x].post_code != filled_data[y].post_code) {
+                        if (filled_data[x].post_code != '' && filled_data[y].post_code != '') {
+                            filled_data[x].post_code += ", ";
+                        }
+
+                        filled_data[x].post_code += filled_data[y].post_code;
+                    }
+
+                    if (filled_data[x].proposer != filled_data[y].proposer) {
+                        if (filled_data[x].proposer != '' && filled_data[y].proposer != '') {
+                            filled_data[x].proposer += ", ";
+                        }
+
+                        filled_data[x].proposer += filled_data[y].proposer;
+                    }
+
+                    if (filled_data[x].periodicals != filled_data[y].periodicals) {
+                        if (filled_data[x].periodicals != '' && filled_data[y].periodicals != '') {
+                            filled_data[x].periodicals += ", ";
+                        }
+
+                        filled_data[x].periodicals += filled_data[y].periodicals;
+                    }
+
+                    if (filled_data[x].sources != filled_data[y].sources) {
+                        if (filled_data[x].sources != '' && filled_data[y].sources != '') {
+                            filled_data[x].sources += ", ";
+                        }
+
+                        filled_data[x].sources += filled_data[y].sources;
+                    }
+
+                    if (filled_data[x].other != filled_data[y].other) {
+                        if (filled_data[x].other != '' && filled_data[y].other != '') {
+                            filled_data[x].other += ", ";
+                        }
+
+                        filled_data[x].other += filled_data[y].other;
+                    }
+
+                    if (filled_data[x].joined != filled_data[y].joined) {
+                        if (filled_data[x].joined != '' && filled_data[y].joined != '') {
+                            filled_data[x].joined += ", ";
+                        }
+
+                        filled_data[x].joined += filled_data[y].joined;
+                    }
+
+                    if (filled_data[x].orgs != filled_data[y].orgs) {
+                        if (filled_data[x].orgs != [''] || filled_data[y].orgs != [''])
+                        filled_data[x].orgs += filled_data[y].orgs
+                    }
+
+                    filled_data.splice(y, 1)
+                }
+            }
+        }
     }
+
+    for (let x = 0; x < filled_data.length; x++) {
+        if (filled_data[x].surname == "") {
+            filled_data.splice(x, 1)
+        } else if (filled_data[x].surname == undefined) {
+            filled_data.splice(x, 1)
+        }
+    }
+
+    // Upload to the database
+    upload(filled_data[x])
 }
+
+// console.log(JSON.stringify(filled_data))

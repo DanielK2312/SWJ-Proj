@@ -2,11 +2,13 @@ const mongoose = require('mongoose');
 
 const personSchema = mongoose.Schema(
   {
-    date_range: {
-      type: String,
-      required: false,
-      trim: true,
-    },
+    date_range: [
+      {
+        type: String,
+        required: false,
+        trim: true,
+      }
+    ],
     surname: {
       type: String,
       required: true,
@@ -98,6 +100,7 @@ const personSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    collection: 'person-test'
   }
 );
 
