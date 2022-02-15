@@ -2,6 +2,7 @@
  * Javascript file to get value inputted in name input. Handles situation where a user wants to search ONLY by name and display the results to the page
  */
 
+// variable
 let inputName = document.getElementById("search-name");
 let submitButton = document.getElementById("search-members");
 // local variables to store name value
@@ -9,6 +10,32 @@ let inputNameValue = "";
 let firstName = "";
 let lastName = "";
 
+// functions
+/**
+ * Function automatically closes alert message after 5 seconds
+ */
+let autoClose = () => {
+  setTimeout(function () {
+    document.querySelector(".w3-panel").style.display = "none";
+  }, 10000);
+};
+
+/**
+ * function resets values to default for person search submission
+ */
+let clearValue = () => {
+  inputName.value = "";
+  leadershipPosition.options[leadershipPosition.selectedIndex].text =
+    "Select Leadership Position...";
+  yearDropdown.options[yearDropdown.selectedIndex].text = "Select Year...";
+};
+
+// reset default input values if page is refreshed
+window.onload = function () {
+  clearValue();
+};
+
+// event listeners
 /**
  * Checks for name value inputted and splits the name into first and last into seperate variables
  */
@@ -24,7 +51,7 @@ inputName.addEventListener("input", (e) => {
 });
 
 /**
- * handles the search button being pressed querying data from teh database
+ * handles the search button being pressed querying data from the database
  */
 submitButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -37,7 +64,9 @@ submitButton.addEventListener("click", (e) => {
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
     // VVVV - Add variable to end of this URL!!!!!!!!!
-    var url = "https://swj-capstone-staging.herokuapp.com/api/v1/person/search/"+inputNameValue;
+    var url =
+      "https://swj-capstone-staging.herokuapp.com/api/v1/person/search/" +
+      inputNameValue;
     // NOTICE ME!!!
 
     var xhr = new XMLHttpRequest();
@@ -78,6 +107,7 @@ submitButton.addEventListener("click", (e) => {
     // console.log("Error1");
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();
+    clearValue();
   }
   // case where name and year are filled but leadership is empty
   else if (
@@ -90,6 +120,7 @@ submitButton.addEventListener("click", (e) => {
     // console.log("Error2");
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();
+    clearValue();
   }
   // case where name, leadership, and year are filled
   else if (
@@ -101,14 +132,6 @@ submitButton.addEventListener("click", (e) => {
     // console.log("Error3");
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();
+    clearValue();
   }
 });
-
-/**
- * Function automatically closes alert message after 5 seconds
- */
-let autoClose = () => {
-  setTimeout(function () {
-    document.querySelector(".w3-panel").style.display = "none";
-  }, 5000);
-};
