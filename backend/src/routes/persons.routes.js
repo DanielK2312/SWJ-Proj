@@ -37,21 +37,13 @@ router.get('/list', (req, res, next) => {
     })
 });
 
-// Any routers/routes after this need to be authenticated.
-// Current protected methods:
-// - /create
-// - /edit/:id
-// - /delete/:id
-
-router.use(AuthGuard);
-
 /**
  * API Route to create a person.
  * @name /api/persons/create
  * @param req.headers ['x-access-token'] Authentication token.
  * @param req.body { ... See Person Schema }
  */
-router.post('/create', (req, res, next) => {
+ router.post('/create', (req, res, next) => {
   // Surname is the only required field to create a person.
   if (req.body.surname) {
     const newPerson = new Person(req.body);
@@ -59,6 +51,14 @@ router.post('/create', (req, res, next) => {
     res.status(200).json(newPerson);
   }
 });
+
+// Any routers/routes after this need to be authenticated.
+// Current protected methods:
+// - /create
+// - /edit/:id
+// - /delete/:id
+
+router.use(AuthGuard);
 
 /**
  * API Route to update a person.
