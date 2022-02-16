@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "build": "npm-run-all --silent clean lint tsc",
     "dev:start": "npm-run-all --silent build start",
-    "dev": "nodemon --watch src -e ts --exec NODE_ENV=DEV npm run dev:start",
+    "dev": "nodemon --watch src -e ts --exec npm run dev:start",
     "start": "npm run build && node dist/app.js"
   },
   "author": "",

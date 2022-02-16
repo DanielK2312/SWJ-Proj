@@ -73,9 +73,7 @@ const dataToArray = (person_array) => {
             }
         }
     }
-    const data = {
-        "nodes": nodes,
-        "links": links
-    }
+    console.log(nodes)
+    console.log(links)
 }
 
