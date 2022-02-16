@@ -55,12 +55,77 @@ window.onload = function () {
   clearValue();
 };
 
+/**
+ * function processes data received about a certain person and puts it into a readable form to include in a bootstrap modal window
+ * @param {String} jsonString string containing all info about a searched person
+ */
 let processStringify = (jsonString) => {
+  let keyArr = [];
+  let valArr = [];
+
+  // split string into array of strings
   let splitArr = jsonString.split(",");
-  console.log(splitArr);
+  // console.log(splitArr); // each key AND value pair
+
+  // for each string elements, create a p tag and append to the modal body
   splitArr.forEach((element) => {
-    $("#person-modal").find(".modal-body").append(element);
+    let keyValue = element.split(":");
+
+    /**
+     * This is where a lot of processing occurs. after splitting by the comma, need to split again by the colon since each element of the key value pair has a few elements that cannot be included in the modal
+     */
+    let counter = 1;
+    keyValue.forEach((element) => {
+      // console.log(element); // each individual key and value pair
+      let ele = "";
+      for (let i = 1; i < element.length - 1; i++) {
+        // // xtra char
+        if (element[i] === '"') {
+          continue;
+          //   // xtra char
+        } else if (element[i] === "]") {
+          continue;
+        } else {
+          ele += element[i];
+        }
+      }
+      // console.log(ele);
+
+      if (counter % 2 == 0) {
+        valArr.push(ele);
+        counter++;
+      } else {
+        keyArr.push(ele);
+        counter++;
+      }
+    });
+    console.log(keyArr);
+    console.log(valArr);
+    // console.log(keyValue);
+
+    // $("#person-modal").find(".modal-body").append(element);
   });
+
+  // change title of modal to surname, firstname (if present)
+  if (valArr[1] !== "") {
+    document.getElementById(
+      "exampleModalLabel"
+    ).innerHTML = `${valArr[0]}, ${valArr[1]}`;
+  } else {
+    document.getElementById("exampleModalLabel").innerHTML = `${valArr[0]}`;
+  }
+
+  // add information present for individuals to modal
+  for (let i = 0; i < keyArr.length; i++) {
+    let p = document.createElement("p");
+    p.innerHTML = `${keyArr[i]}: ${valArr[i]}`;
+    // if information is missing, don't display on modal
+    if (valArr[i] === "") {
+      continue;
+    } else {
+      document.getElementById("person-info-body").appendChild(p);
+    }
+  }
 };
 
 // event listeners
@@ -113,7 +178,7 @@ submitButton.addEventListener("click", (e) => {
 
         // process string received from xhr response
         jsonRes = JSON.parse(jsonRes);
-        let firstIdx = jsonRes[0];
+        let firstIdx = jsonRes[0]; // #TODO fix
         for (const key in firstIdx) {
           if (Object.hasOwnProperty.call(firstIdx, key)) {
             const searchInfo = firstIdx[key];
