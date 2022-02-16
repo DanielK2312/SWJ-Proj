@@ -5,10 +5,30 @@
 // variable
 let inputName = document.getElementById("search-name");
 let submitButton = document.getElementById("search-members");
+let modalWindow = document.getElementById("trigger-modal");
 // local variables to store name value
 let inputNameValue = "";
 let firstName = "";
 let lastName = "";
+// person object used to fill out modal
+let personInformation = {
+  surname: "",
+  firstname: "",
+  prefix: "",
+  pen_name: "",
+  dob: "",
+  dod: "",
+  position: "",
+  address: "",
+  neighborhood: "",
+  city: "",
+  post_code: "",
+  proposer: "",
+  orgs: "",
+  periodicals: "",
+  sources: "",
+  date_range: "",
+};
 
 // functions
 /**
@@ -33,6 +53,14 @@ let clearValue = () => {
 // reset default input values if page is refreshed
 window.onload = function () {
   clearValue();
+};
+
+let processStringify = (jsonString) => {
+  let splitArr = jsonString.split(",");
+  console.log(splitArr);
+  splitArr.forEach((element) => {
+    $("#person-modal").find(".modal-body").append(element);
+  });
 };
 
 // event listeners
@@ -78,24 +106,41 @@ submitButton.addEventListener("click", (e) => {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         // all data is loaded
-        console.log(xhr.responseText);
-        // if (JSON.parse(xhr.responseText)["status"] == "Logged in") {
-        //   localStorage.setItem(
-        //     "accessToken",
-        //     JSON.parse(xhr.responseText)["token"]
-        //   );
-        //   window.location.replace(
-        //     "https://swj-capstone-staging.herokuapp.com/admin"
-        //   );
-        // } else {
-        //   // Go through login errors...
-        // }
+        // console.log(xhr.responseText);
+        let jsonRes = xhr.responseText;
+        // make modal window able to appear
+        modalWindow.style.display = "block";
+
+        // process string received from xhr response
+        jsonRes = JSON.parse(jsonRes);
+        let firstIdx = jsonRes[0];
+        for (const key in firstIdx) {
+          if (Object.hasOwnProperty.call(firstIdx, key)) {
+            const searchInfo = firstIdx[key];
+
+            const keys = Object.keys(personInformation);
+
+            keys.forEach((element) => {
+              if (element == key) {
+                // store matching key values in gloabl person information object
+                personInformation[element] = firstIdx[key];
+              }
+            });
+          }
+        }
+        // end string processing from xhr response
+
+        // process string to put in readable format in modal
+        processStringify(JSON.stringify(personInformation));
+
+        // add data about person to information queried from database
+        // $("#person-modal")
+        //   .find(".modal-body")
+        //   .append(JSON.stringify(personInformation));
       }
     };
 
     xhr.send();
-
-    // console.log("Success");
   }
   // case where name and leadership position is filled with year staying empty
   else if (
