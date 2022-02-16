@@ -16,7 +16,7 @@ const authGuard_1 = __importDefault(require("./utils/authGuard"));
 const secrets_1 = require("./utils/secrets");
 const app = (0, express_1.default)();
 // # - Database Setup -#
-const dbURL = "mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/myFirstDatabase";
+const dbURL = "mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ";
 mongoose_1.default.connect(dbURL)
     .then(() => {
     console.log("connection to database established");

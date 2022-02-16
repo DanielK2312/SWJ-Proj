@@ -14,7 +14,7 @@ import { KEY1, KEY2 } from './utils/secrets';
 const app = express();
 
 // # - Database Setup -#
-const dbURL: string = "mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/myFirstDatabase"
+const dbURL: string = "mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ"
 mongoose.connect(dbURL)
 .then(() => {
     console.log("connection to database established");})

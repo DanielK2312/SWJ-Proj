@@ -8,7 +8,7 @@ const http = require('http');
  */
 
 const result = excelToJson({
-    sourceFile: 'source-min.xlsx',
+    sourceFile: 'source.xlsx',
     columnToKey: {
         A: 'surname',
         B: 'firstname',
@@ -335,6 +335,8 @@ for (let x = 0; x < filled_data.length; x++) {
         if (filled_data[x].surname == "") {
             filled_data.splice(x, 1)
         } else if (filled_data[x].surname == undefined) {
+            filled_data.splice(x, 1)
+        }  else if (filled_data[x].surname == 'Surname') {
             filled_data.splice(x, 1)
         }
     }
