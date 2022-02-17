@@ -121,11 +121,11 @@ function format(d) {
     console.log(d.orgs)
     console.log(typeof (d.orgs[0]))
     console.log(d.orgs[0])
-    if (d.orgs[0] != '') {
+    if (!(typeof(d.orgs[0] === 'undefined'))) {
         memberInfo +=
             '<tr>' +
             '<td>Other Organizations:</td>';
-        for (var i = 0; i < orgs.length; i++) {
+        for (var i = 0; i < d.orgs.length; i++) {
             memberInfo +=
                 '<td>' + d.orgs[i] + '</td>';
         }
