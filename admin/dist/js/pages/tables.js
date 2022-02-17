@@ -119,18 +119,20 @@ function format(d) {
     //Attempt at showing the organizations
     console.log("Here are the orgs for: " + d.firstname)
     console.log(d.orgs)
-    console.log(typeof (d.orgs[0]))
-    console.log(d.orgs[0])
-    if (!(typeof(d.orgs[0] === 'undefined'))) {
+    if (d.orgs.length >= 1) {
         memberInfo +=
             '<tr>' +
-            '<td>Other Organizations:</td>';
+            '<td>Other Organizations:</td>' + '<td>';
         for (var i = 0; i < d.orgs.length; i++) {
             memberInfo +=
-                '<td>' + d.orgs[i] + '</td>';
+                d.orgs[i];
+            if (i != d.orgs.length - 1) {
+                memberInfo += "," + '<br>';
+            }                
+            
         }
         memberInfo +=
-            '</tr>';
+            '</td>' + '</tr>';
     }
 
     if (d.periodicals != '') {
