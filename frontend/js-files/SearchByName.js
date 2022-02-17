@@ -91,6 +91,52 @@ let processXhrResponse = (response) => {
 };
 
 /**
+ * function takes in info about people returned from search results and adds a button to the modal window for their information to be displayed
+ * @param {list} personInfoArray llist of all objects returned when serached for by name
+ */
+let processPersonInfoArray = (personInfoArray) => {
+  document.getElementById("person-info-body").innerHTML = "";
+
+  // create seperate button for each individual
+  personInfoArray.forEach((element) => {
+    document.getElementById("person-info-body").innerHTML += `
+        <div>
+          <p></p>
+          <button class="btn btn-secondary btn-block" id=${element.surname} data-toggle="modal" data-target="#${element.surname}, #person-modal"> // problem area
+            ${element.surname}, ${element.firstname} Member Information
+          </button>
+        </div
+    `;
+  });
+
+  personInfoArray.forEach((element) => {
+    document.body.innerHTML += `
+    <div class="modal fade bd-example-modal-md" id=${element.surname} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div id="person-info-body" class="modal-body">
+        test
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    `;
+  });
+
+  // clear global array so duplicates aren't made
+  personInfo = [];
+  inputName.value = "";
+};
+
+/**
  * function processes data received about a certain person and puts it into a readable form to include in a bootstrap modal window
  * @param {String} jsonString string containing all info about a searched person
  */
@@ -212,7 +258,7 @@ submitButton.addEventListener("click", (e) => {
         jsonRes = JSON.parse(jsonRes);
         // send object to function to get array of object with info
         processXhrResponse(jsonRes);
-        console.log(personInfo);
+        processPersonInfoArray(personInfo);
 
         // add data about person to information queried from database
         // $("#person-modal")
