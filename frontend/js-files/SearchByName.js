@@ -65,7 +65,7 @@ let processStringify = (jsonString) => {
 
   // split string into array of strings
   let splitArr = jsonString.split(",");
-  // console.log(splitArr); // each key AND value pair
+  console.log(splitArr); // each key AND value pair
 
   // for each string elements, create a p tag and append to the modal body
   splitArr.forEach((element) => {
