@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const personModel_1 = __importDefault(require("../models/personModel"));
 const personRouter = express_1.default.Router();
 personRouter.get('/search/:surname', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -41,6 +42,11 @@ personRouter.post('/create', (req, res, next) => {
         newPerson.save();
         res.status(200).json(newPerson);
     }
+});
+personRouter.get('/drop', (req, res, next) => {
+    // Surname is the only required field to create a person.
+    mongoose_1.default.connection.db.dropCollection('people', (err, result) => { console.log(err); });
+    res.status(200).json({ status: 'success' });
 });
 exports.default = personRouter;
 //# sourceMappingURL=personRouter.js.map

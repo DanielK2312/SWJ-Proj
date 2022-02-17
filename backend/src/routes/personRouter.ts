@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Person from '../models/personModel';
 
 const personRouter = express.Router();
@@ -29,5 +30,12 @@ personRouter.post('/create', (req, res, next) => {
       res.status(200).json(newPerson);
     }
 });
+
+personRouter.get('/drop', (req, res, next) => {
+    // Surname is the only required field to create a person.
+    mongoose.connection.db.dropCollection('people', (err, result) => { console.log(err) });
+    res.status(200).json({ status: 'success'});
+});
+
 
 export default personRouter;
