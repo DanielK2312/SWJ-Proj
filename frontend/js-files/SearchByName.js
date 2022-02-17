@@ -5,30 +5,12 @@
 // variable
 let inputName = document.getElementById("search-name");
 let submitButton = document.getElementById("search-members");
-let modalWindow = document.getElementById("trigger-modal");
 // local variables to store name value
 let inputNameValue = "";
 let firstName = "";
 let lastName = "";
-// person object used to fill out modal
-let personInformation = {
-  surname: "",
-  firstname: "",
-  prefix: "",
-  pen_name: "",
-  dob: "",
-  dod: "",
-  position: "",
-  address: "",
-  neighborhood: "",
-  city: "",
-  post_code: "",
-  proposer: "",
-  orgs: "",
-  periodicals: "",
-  sources: "",
-  date_range: "",
-};
+// store all personInformation objects
+let personInfo = [];
 
 // functions
 /**
@@ -53,6 +35,59 @@ let clearValue = () => {
 // reset default input values if page is refreshed
 window.onload = function () {
   clearValue();
+};
+
+/**
+ * Functions takes in the chr response and created and object out of every response pushing it to an array in the case where there are multiple people
+ * @param {Object} response list of objects if there is more than one match
+ * @returns array of locally created objects to fill out possible information
+ */
+let processXhrResponse = (response) => {
+  // loop through every object
+  for (let i = 0; i < Object.keys(response).length; i++) {
+    // create new object for every object in list of objects
+    let personInformation = {
+      surname: "",
+      firstname: "",
+      prefix: "",
+      pen_name: "",
+      dob: "",
+      dod: "",
+      position: "",
+      address: "",
+      neighborhood: "",
+      city: "",
+      post_code: "",
+      proposer: "",
+      orgs: "",
+      periodicals: "",
+      sources: "",
+      date_range: "",
+    };
+
+    let currentObject = response[i];
+
+    // loop through current object
+    for (const key in currentObject) {
+      if (Object.hasOwnProperty.call(currentObject, key)) {
+        const searchInfo = currentObject[key];
+
+        const keys = Object.keys(personInformation);
+
+        keys.forEach((element) => {
+          if (element == key) {
+            // store values recieved from parameter into local object
+            personInformation[element] = currentObject[key];
+          }
+        });
+      }
+    }
+    // push the object into global array to access
+    personInfo.push(personInformation);
+  }
+
+  // return the array of objects created
+  return personInfo;
 };
 
 /**
@@ -171,32 +206,13 @@ submitButton.addEventListener("click", (e) => {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         // all data is loaded
-        // console.log(xhr.responseText);
         let jsonRes = xhr.responseText;
-        // make modal window able to appear
-        modalWindow.style.display = "block";
 
-        // process string received from xhr response
+        // process string received from xhr response into object
         jsonRes = JSON.parse(jsonRes);
-        let firstIdx = jsonRes[0]; // #TODO fix
-        for (const key in firstIdx) {
-          if (Object.hasOwnProperty.call(firstIdx, key)) {
-            const searchInfo = firstIdx[key];
-
-            const keys = Object.keys(personInformation);
-
-            keys.forEach((element) => {
-              if (element == key) {
-                // store matching key values in gloabl person information object
-                personInformation[element] = firstIdx[key];
-              }
-            });
-          }
-        }
-        // end string processing from xhr response
-
-        // process string to put in readable format in modal
-        processStringify(JSON.stringify(personInformation));
+        // send object to function to get array of object with info
+        processXhrResponse(jsonRes);
+        console.log(personInfo);
 
         // add data about person to information queried from database
         // $("#person-modal")
@@ -204,7 +220,6 @@ submitButton.addEventListener("click", (e) => {
         //   .append(JSON.stringify(personInformation));
       }
     };
-
     xhr.send();
   }
   // case where name and leadership position is filled with year staying empty

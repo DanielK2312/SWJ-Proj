@@ -85,17 +85,12 @@
         <option value="">1914-1915</option>
       </select>
     </div>
+    <!-- button opens modal below when searched -->
     <div class="flexbox-item flexbox-item-5">
-      <button id="search-members" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Search</button>
+      <button id="search-members" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large" data-toggle="modal" data-target="#person-modal">Search</button>
     </div>
   </div>
 
-  <!-- Button trigger modal -->
-  <div class="d-flex justify-content-center">
-    <button id="trigger-modal" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#person-modal">
-      View Information
-    </button>
-  </div>
   <!-- Modal -->
   <div class="modal fade bd-example-modal-lg" id="person-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
