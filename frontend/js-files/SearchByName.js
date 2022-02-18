@@ -63,6 +63,7 @@ let processXhrResponse = (response) => {
       periodicals: "",
       sources: "",
       date_range: "",
+      _id: "",
     };
 
     let currentObject = response[i];
@@ -100,34 +101,37 @@ let processPersonInfoArray = (personInfoArray) => {
   // create seperate button for each individual
   personInfoArray.forEach((element) => {
     document.getElementById("person-info-body").innerHTML += `
-        <div>
-          <p></p>
-          <button class="btn btn-secondary btn-block" id=${element.surname} data-toggle="modal" data-target="#${element.surname}, #person-modal"> // problem area
-            ${element.surname}, ${element.firstname} Member Information
-          </button>
-        </div
+    <div>
+      <p></p>
+      <button class="btn btn-secondary btn-block" id="${element._id}" data-toggle="modal" data-target="#${element._id}" data-dismiss="modal">
+        ${element.surname}, ${element.firstname} Member Information
+      </button>
+    </div
     `;
   });
 
   personInfoArray.forEach((element) => {
-    document.body.innerHTML += `
-    <div class="modal fade bd-example-modal-md" id=${element.surname} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          </button>
-        </div>
-        <div id="person-info-body" class="modal-body">
-        test
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    document.getElementById("dynamic-modals").innerHTML += `
+    <div class="modal fade bd-example-modal-md" id="${element._id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+
+          <div id="person-info-body" class="modal-body">
+          </div>
+
+          <div class="modal-footer">
+          <button id="dynamic-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
     `;
   });
 
@@ -208,6 +212,11 @@ let processStringify = (jsonString) => {
     }
   }
 };
+
+document.getElementById("test").addEventListener("click", (e) => {
+  e.preventDefault();
+  $("#person-modal").modal("show");
+});
 
 // event listeners
 /**
