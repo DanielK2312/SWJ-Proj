@@ -96,48 +96,44 @@ let processXhrResponse = (response) => {
  * @param {list} personInfoArray llist of all objects returned when serached for by name
  */
 let processPersonInfoArray = (personInfoArray) => {
-  document.getElementById("person-info-body").innerHTML = "";
-
-  // create seperate button for each individual
   personInfoArray.forEach((element) => {
-    document.getElementById("person-info-body").innerHTML += `
+    $("#person-modal").find(".modal-body").append(`
     <div>
       <p></p>
-      <button class="btn btn-secondary btn-block" id="${element._id}" data-toggle="modal" data-target="#${element._id}" data-dismiss="modal">
+      <button class="btn btn-secondary btn-block" id="${element.surname}${element._id}">
         ${element.surname}, ${element.firstname} Member Information
       </button>
-    </div
+    </div`);
+  });
+};
+
+/**
+ * create dynamic modals for each individual returned by the search by name api
+ * @param {array} personInfoArray global array filled from search by name results
+ */
+let createDynamicModals = (personInfoArray) => {
+  document.getElementById("dynamic-modals").innerHTML = "";
+
+  personInfoArray.forEach((element) => {
+    document.getElementById("dynamic-modals").innerHTML += `
+    <div class="modal fade bd-example-modal-lg" id="${element._id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">${element.surname}, ${element.firstname}</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div id="person-info-body" class="modal-body">
+          </div>
+          <div class="modal-footer">
+          <button id="dynamic-close${element._id}" type="button" class="btn btn-secondary">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     `;
   });
-
-  // personInfoArray.forEach((element) => {
-  //   document.getElementById("dynamic-modals").innerHTML += `
-  //   <div class="modal fade bd-example-modal-md" id="${element._id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  //     <div class="modal-dialog modal-md" role="document">
-  //       <div class="modal-content">
-
-  //         <div class="modal-header">
-  //           <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
-  //           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-  //           </button>
-  //         </div>
-
-  //         <div id="person-info-body" class="modal-body">
-  //         </div>
-
-  //         <div class="modal-footer">
-  //         <button id="dynamic-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  //         </div>
-
-  //       </div>
-  //     </div>
-  //   </div>
-  //   `;
-  // });
-
-  // clear global array so duplicates aren't made
-  personInfo = [];
-  inputName.value = "";
 };
 
 /**
@@ -213,15 +209,29 @@ let processStringify = (jsonString) => {
   }
 };
 
-document.getElementById("search-members").addEventListener("click", (e) => {
-  e.preventDefault();
-  $("#person-modal").modal("show");
-});
-
-document.getElementById("close-person-modal").addEventListener("click", (e) => {
-  e.preventDefault();
-  $("#person-modal").modal("hide");
-});
+/**
+ * handle manual modal triggers for viewing information about each individual
+ * @param {Array} array global array containing people returned from search by name api
+ */
+let manualDynamicModalTriggers = (array) => {
+  array.forEach((element) => {
+    console.log(`${element.surname}${element._id}`);
+    document
+      .getElementById(`${element.surname}${element._id}`)
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        $("#person-modal").modal("hide"); // hide main modal
+        $(`#${element._id}`).modal("show"); // show person modal
+      });
+    document
+      .getElementById(`dynamic-close${element._id}`)
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        $(`#${element._id}`).modal("hide");
+        $("#person-modal").modal("show");
+      });
+  });
+};
 
 // event listeners
 /**
@@ -253,7 +263,7 @@ submitButton.addEventListener("click", (e) => {
   ) {
     // VVVV - Add variable to end of this URL!!!!!!!!!
     var url =
-      "https://swj-capstone-staging.herokuapp.com/api/v1/person/search/" +
+      "https://swj-capstone-staging.herokuapp.com/api/v1/person/byname/" +
       inputNameValue;
     // NOTICE ME!!!
 
@@ -273,11 +283,8 @@ submitButton.addEventListener("click", (e) => {
         // send object to function to get array of object with info
         processXhrResponse(jsonRes);
         processPersonInfoArray(personInfo);
-
-        // add data about person to information queried from database
-        // $("#person-modal")
-        //   .find(".modal-body")
-        //   .append(JSON.stringify(personInformation));
+        createDynamicModals(personInfo);
+        manualDynamicModalTriggers(personInfo);
       }
     };
     xhr.send();
@@ -319,4 +326,24 @@ submitButton.addEventListener("click", (e) => {
     autoClose();
     clearValue();
   }
+});
+
+// manually open and close main search modal
+document.getElementById("search-members").addEventListener("click", (e) => {
+  e.preventDefault();
+  $("#person-modal").modal("show");
+});
+
+document.getElementById("close-person-modal").addEventListener("click", (e) => {
+  e.preventDefault();
+  $("#person-modal").modal("hide");
+});
+
+// clear necessary values when the main serach modal is closed
+document.getElementById("close-person-modal").addEventListener("click", (e) => {
+  e.preventDefault();
+  let myModal = $("#person-modal");
+  myModal.find(".modal-body").text("");
+  personInfo = [];
+  inputName.value = "";
 });
