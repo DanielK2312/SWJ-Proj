@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sigma example: Use node and edge reducers</title>
+    <title>Sigma example template</title>
+    <script data-main="scripts/app" src="scripts/require.js"></script>
   </head>
   <body>
     <style>
@@ -17,17 +18,8 @@
         padding: 0;
         overflow: hidden;
       }
-      #search {
-        position: absolute;
-        right: 1em;
-        top: 1em;
-      }
     </style>
     <div id="sigma-container"></div>
-    <div id="search">
-      <input type="search" id="search-input" list="suggestions" placeholder="Try searching for a node..." />
-      <datalist id="suggestions"></datalist>
-    </div>
-    <script src="graph.js"></script>
+    <script src="test-graph.js"></script>
   </body>
 </html>

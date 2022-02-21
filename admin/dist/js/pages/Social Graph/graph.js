@@ -19,21 +19,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var sigma_1 = require("sigma");
 var graphology_1 = require("graphology");
 var data_json_1 = require("./data.json");
+
 // Retrieve some useful DOM elements:
 var container = document.getElementById("sigma-container");
 var searchInput = document.getElementById("search-input");
 var searchSuggestions = document.getElementById("suggestions");
+
 // Instantiate sigma:
 var graph = new graphology_1.default();
 graph.import(data_json_1.default);
 var renderer = new sigma_1.default(graph, container);
 var state = { searchQuery: "" };
+
 // Feed the datalist autocomplete values:
 searchSuggestions.innerHTML = graph
     .nodes()
     .map(function (node) { return "<option value=\"".concat(graph.getNodeAttribute(node, "label"), "\"></option>"); })
     .join("\n");
-// Actions:
+
+    // Actions:
 function setSearchQuery(query) {
     state.searchQuery = query;
     if (searchInput.value !== query)
@@ -88,6 +92,7 @@ function setHoveredNode(node) {
     // Refresh rendering:
     renderer.refresh();
 }
+
 // Bind search input interactions:
 searchInput.addEventListener("input", function () {
     setSearchQuery(searchInput.value || "");
@@ -95,6 +100,7 @@ searchInput.addEventListener("input", function () {
 searchInput.addEventListener("blur", function () {
     setSearchQuery("");
 });
+
 // Bind graph interactions:
 renderer.on("enterNode", function (_a) {
     var node = _a.node;
@@ -103,6 +109,7 @@ renderer.on("enterNode", function (_a) {
 renderer.on("leaveNode", function () {
     setHoveredNode(undefined);
 });
+
 // Render nodes accordingly to the internal state:
 // 1. If a node is selected, it is highlighted
 // 2. If there is query, all non-matching nodes are greyed
@@ -122,6 +129,7 @@ renderer.setSetting("nodeReducer", function (node, data) {
     }
     return res;
 });
+
 // Render edges accordingly to the internal state:
 // 1. If a node is hovered, the edge is hidden if it is not connected to the
 //    node
