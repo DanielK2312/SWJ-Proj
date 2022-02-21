@@ -139,6 +139,7 @@ let createDynamicModals = (personInfoArray) => {
 
   personInfoArray.forEach((element) => {
     let myModal = $(`#${element._id}`);
+
     myModal.find(`#person-info-body${element._id}`).append(`
     <p>Surname: ${element.surname}</p>
     ${element.firstname === "" ? "" : `<p>Firstname: ${element.firstname}</p>`}
@@ -158,7 +159,9 @@ let createDynamicModals = (personInfoArray) => {
       element.post_code === "" ? "" : `<p>Postal Code: ${element.post_code}</p>`
     }
     ${element.proposer === "" ? "" : `<p>Proposer: ${element.proposer}</p>`}
-    ${element.orgs === [] ? "" : `<p>Organization(s): ${element.orgs}</p>`}
+    ${
+      element.orgs.length === 0 ? "" : `<p>Organization(s): ${element.orgs}</p>`
+    }
     ${
       element.periodicals === ""
         ? ""
@@ -166,7 +169,7 @@ let createDynamicModals = (personInfoArray) => {
     }
     ${element.sources === "" ? "" : `<p>Sources: ${element.sources}</p>`}
     ${
-      element.date_range === []
+      element.date_range.length === 0
         ? ""
         : `<p>Date Range(s): ${element.date_range}</p>`
     }
