@@ -112,6 +112,8 @@ let processPersonInfoArray = (personInfoArray) => {
  * @param {array} personInfoArray global array filled from search by name results
  */
 let createDynamicModals = (personInfoArray) => {
+  console.log(personInfoArray);
+
   document.getElementById("dynamic-modals").innerHTML = "";
 
   personInfoArray.forEach((element) => {
@@ -124,7 +126,7 @@ let createDynamicModals = (personInfoArray) => {
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             </button>
           </div>
-          <div id="person-info-body" class="modal-body">
+          <div id="person-info-body${element._id}" class="modal-body">
           </div>
           <div class="modal-footer">
           <button id="dynamic-close${element._id}" type="button" class="btn btn-secondary">Close</button>
@@ -134,79 +136,42 @@ let createDynamicModals = (personInfoArray) => {
     </div>
     `;
   });
-};
 
-/**
- * function processes data received about a certain person and puts it into a readable form to include in a bootstrap modal window
- * @param {String} jsonString string containing all info about a searched person
- */
-let processStringify = (jsonString) => {
-  let keyArr = [];
-  let valArr = [];
-
-  // split string into array of strings
-  let splitArr = jsonString.split(",");
-  console.log(splitArr); // each key AND value pair
-
-  // for each string elements, create a p tag and append to the modal body
-  splitArr.forEach((element) => {
-    let keyValue = element.split(":");
-
-    /**
-     * This is where a lot of processing occurs. after splitting by the comma, need to split again by the colon since each element of the key value pair has a few elements that cannot be included in the modal
-     */
-    let counter = 1;
-    keyValue.forEach((element) => {
-      // console.log(element); // each individual key and value pair
-      let ele = "";
-      for (let i = 1; i < element.length - 1; i++) {
-        // // xtra char
-        if (element[i] === '"') {
-          continue;
-          //   // xtra char
-        } else if (element[i] === "]") {
-          continue;
-        } else {
-          ele += element[i];
-        }
-      }
-      // console.log(ele);
-
-      if (counter % 2 == 0) {
-        valArr.push(ele);
-        counter++;
-      } else {
-        keyArr.push(ele);
-        counter++;
-      }
-    });
-    console.log(keyArr);
-    console.log(valArr);
-    // console.log(keyValue);
-
-    // $("#person-modal").find(".modal-body").append(element);
-  });
-
-  // change title of modal to surname, firstname (if present)
-  if (valArr[1] !== "") {
-    document.getElementById(
-      "exampleModalLabel"
-    ).innerHTML = `${valArr[0]}, ${valArr[1]}`;
-  } else {
-    document.getElementById("exampleModalLabel").innerHTML = `${valArr[0]}`;
-  }
-
-  // add information present for individuals to modal
-  for (let i = 0; i < keyArr.length; i++) {
-    let p = document.createElement("p");
-    p.innerHTML = `${keyArr[i]}: ${valArr[i]}`;
-    // if information is missing, don't display on modal
-    if (valArr[i] === "") {
-      continue;
-    } else {
-      document.getElementById("person-info-body").appendChild(p);
+  personInfoArray.forEach((element) => {
+    let myModal = $(`#${element._id}`);
+    myModal.find(`#person-info-body${element._id}`).append(`
+    <p>Surname: ${element.surname}</p>
+    ${element.firstname === "" ? "" : `<p>Firstname: ${element.firstname}</p>`}
+    ${element.prefix === "" ? "" : `<p>Prefix: ${element.prefix}</p>`}
+    ${element.pen_name === "" ? "" : `<p>Pen Name: ${element.pen_name}</p>`}
+    ${element.dob === "" ? "" : `<p>Date of Birth: ${element.dob}</p>`}
+    ${element.dod === "" ? "" : `<p>Date of Death: ${element.dod}`}</p>
+    ${element.position === "" ? "" : `<p>Position: ${element.position}</p>`}
+    ${element.address === "" ? "" : `<p>Address: ${element.address}</p>`}
+    ${
+      element.neighborhood === ""
+        ? ""
+        : `<p>Neighborhood: ${element.neighborhood}</p>`
     }
-  }
+    ${element.city === "" ? "" : `<p>City: ${element.city}</p>`} 
+    ${
+      element.post_code === "" ? "" : `<p>Postal Code: ${element.post_code}</p>`
+    }
+    ${element.proposer === "" ? "" : `<p>Proposer: ${element.proposer}</p>`}
+    ${element.orgs === [] ? "" : `<p>Organization(s): ${element.orgs}</p>`}
+    ${
+      element.periodicals === ""
+        ? ""
+        : `<p>Periodicals: ${element.periodicals}</p>`
+    }
+    ${element.sources === "" ? "" : `<p>Sources: ${element.sources}</p>`}
+    ${
+      element.date_range === []
+        ? ""
+        : `<p>Date Range(s): ${element.date_range}</p>`
+    }
+    `);
+  });
 };
 
 /**
@@ -215,7 +180,6 @@ let processStringify = (jsonString) => {
  */
 let manualDynamicModalTriggers = (array) => {
   array.forEach((element) => {
-    console.log(`${element.surname}${element._id}`);
     document
       .getElementById(`${element.surname}${element._id}`)
       .addEventListener("click", (e) => {
@@ -296,7 +260,6 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
-    // console.log("Error1");
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();
     clearValue();
@@ -309,7 +272,6 @@ submitButton.addEventListener("click", (e) => {
     leadershipPosition.options[leadershipPosition.selectedIndex].text ===
       "Select Leadership Position..."
   ) {
-    // console.log("Error2");
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();
     clearValue();
@@ -321,12 +283,11 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
-    // console.log("Error3");
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();
     clearValue();
   }
-});
+}); // end submit button event listener
 
 // manually open and close main search modal
 document.getElementById("search-members").addEventListener("click", (e) => {
