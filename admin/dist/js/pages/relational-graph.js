@@ -20,6 +20,7 @@ async function getData() {
 // Step 2: Create a relational 2D-array
 const dataToArray = (person_array) => {
     for (let x = 0; x < person_array.length; x++) {
+        let size = 0.5;
         for (let y = 0; y < person_array.length; y++) {
 
             // Don't compare the same index
@@ -40,6 +41,7 @@ const dataToArray = (person_array) => {
                         // Add both surnames as nodes
                         for (let j = 0; j < nodes.length; j++) {
                             if (person_array[x]._id === nodes[j].id) {
+                                nodes[j].size = nodes[j].size + 0.4
                                 foundX = true;
                             }
 
@@ -49,7 +51,6 @@ const dataToArray = (person_array) => {
                         }
 
                         if (foundX === false) {
-                            console.log("HIT - " + person_array[x].surname)
                             nodes.push({
                                 id: person_array[x]._id,
                                 label: person_array[x].surname,
@@ -61,11 +62,10 @@ const dataToArray = (person_array) => {
                         }
 
                         if (foundY === false) {
-                            console.log("HIT - " + person_array[y].surname)
                             nodes.push({
                                 id: person_array[y]._id,
                                 label: person_array[y].surname,
-                                size: 2,
+                                size: 1,
                                 x: Math.random() * person_array.length,
                                 y: Math.random() * person_array.length,
                                 color: '#008cc2'
@@ -78,7 +78,7 @@ const dataToArray = (person_array) => {
                             source: person_array[x]._id,
                             target: person_array[y]._id,
                             color: '#282c34',
-                            type: 'line', size: 1.5
+                            type: 'line', size: 1
 
                         })
                     }
@@ -95,9 +95,9 @@ const dataToArray = (person_array) => {
             },
             settings: {
                 minEdgeSize: 0.1,
-                maxEdgeSize: 2,
+                maxEdgeSize: 0.5,
                 minNodeSize: 1,
-                maxNodeSize: 8,
+                maxNodeSize: 7,
             }
         }
     );
@@ -122,25 +122,3 @@ const dataToArray = (person_array) => {
     // Ask sigma to draw it
     s.refresh();
 }
-
-// console.log(json, 'the json obj');
-// Initialise sigma:
-
-
-// Create a graph object
-// var graph = {
-//     nodes: [
-//         { id: "n0", label: "Samuel", x: 3, y: 2, size: 3, color: '#008cc2' },
-//         { id: "n1", label: "Gabe", x: 2, y: 1, size: 2, color: '#008cc2' },
-//         { id: "n2", label: "Samantha", x: 4, y: 2, size: 1, color: '#E57821' },
-//         { id: "n3", label: "Daniel", x: 3, y: 4, size: 4, color: '#E57821' }
-//     ],
-//     edges: [
-//         { id: "e0", source: "n0", target: "n1", color: '#282c34', type: 'line', size: 0.5 },
-//         { id: "e1", source: "n1", target: "n2", color: '#282c34', type: 'curve', size: 1 },
-//         { id: "e2", source: "n2", target: "n0", color: '#FF0000', type: 'line', size: 2 },
-//         { id: "e3", source: "n3", target: "n0", color: '#black', type: 'line', size: 1 }
-//     ]
-// }
-
-
