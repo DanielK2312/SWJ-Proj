@@ -22,7 +22,7 @@ var graph = {
         { id: "n0", label: "Samuel", x: 3, y: 2, size: 3, color: '#008cc2' },
         { id: "n1", label: "Gabe", x: 2, y: 1, size: 2, color: '#008cc2' },
         { id: "n2", label: "Samantha", x: 4, y: 2, size: 1, color: '#E57821' },
-        { id: "n3", label: "Daniel", x: 3, y: 4 1, size: 4, color: '#E57821' }
+        { id: "n3", label: "Daniel", x: 3, y: 4, size: 4, color: '#E57821' }
     ],
     edges: [
         { id: "e0", source: "n0", target: "n1", color: '#282c34', type: 'line', size: 0.5 },
@@ -31,7 +31,18 @@ var graph = {
         { id: "e3", source: "n3", target: "n0", color: '#black', type: 'line', size: 1 }
     ]
 }
-
+function setHoveredNode(node) {
+    if (node) {
+        state.hoveredNode = node;
+        state.hoveredNeighbors = new Set(graph.neighbors(node));
+    }
+    else {
+        state.hoveredNode = undefined;
+        state.hoveredNeighbors = undefined;
+    }
+    // Refresh rendering:
+    renderer.refresh();
+}
 // Load the graph in sigma
 s.graph.read(graph);
 // Ask sigma to draw it
