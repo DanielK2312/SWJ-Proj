@@ -110,30 +110,30 @@ let processPersonInfoArray = (personInfoArray) => {
     `;
   });
 
-  personInfoArray.forEach((element) => {
-    document.getElementById("dynamic-modals").innerHTML += `
-    <div class="modal fade bd-example-modal-md" id="${element._id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-md" role="document">
-        <div class="modal-content">
+  // personInfoArray.forEach((element) => {
+  //   document.getElementById("dynamic-modals").innerHTML += `
+  //   <div class="modal fade bd-example-modal-md" id="${element._id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  //     <div class="modal-dialog modal-md" role="document">
+  //       <div class="modal-content">
 
-          <div class="modal-header">
-            <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            </button>
-          </div>
+  //         <div class="modal-header">
+  //           <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
+  //           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  //           </button>
+  //         </div>
 
-          <div id="person-info-body" class="modal-body">
-          </div>
+  //         <div id="person-info-body" class="modal-body">
+  //         </div>
 
-          <div class="modal-footer">
-          <button id="dynamic-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+  //         <div class="modal-footer">
+  //         <button id="dynamic-close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  //         </div>
 
-        </div>
-      </div>
-    </div>
-    `;
-  });
+  //       </div>
+  //     </div>
+  //   </div>
+  //   `;
+  // });
 
   // clear global array so duplicates aren't made
   personInfo = [];
@@ -213,9 +213,14 @@ let processStringify = (jsonString) => {
   }
 };
 
-document.getElementById("test").addEventListener("click", (e) => {
+document.getElementById("search-members").addEventListener("click", (e) => {
   e.preventDefault();
   $("#person-modal").modal("show");
+});
+
+document.getElementById("close-person-modal").addEventListener("click", (e) => {
+  e.preventDefault();
+  $("#person-modal").modal("hide");
 });
 
 // event listeners
