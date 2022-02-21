@@ -55,6 +55,7 @@ app.use((0, express_mongo_sanitize_1.default)());
 // # - Serve Static Pages -#
 app.use('/admin', authGuard_1.default, express_1.default.static(path_1.default.join(__dirname, '/../../admin')));
 app.use('/', express_1.default.static(path_1.default.join(__dirname, '/../../frontend')));
+app.use('/favicon.ico', express_1.default.static(path_1.default.join(__dirname, '/../../admin/favicon.ico')));
 // API Routes
 (0, API_1.default)(app);
 app.listen(process.env.PORT || 3000, () => {

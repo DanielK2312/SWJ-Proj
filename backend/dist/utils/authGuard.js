@@ -12,7 +12,7 @@ const isLoggedIn = (req, res, next) => {
     }
     else {
         res.writeHead(302, {
-            Location: 'localhost:3000/admin/pages/login.html'
+            Location: '/admin/pages/login.html'
         });
         res.end();
     }
