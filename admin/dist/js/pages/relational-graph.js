@@ -78,7 +78,7 @@ const dataToArray = (person_array) => {
                             source: person_array[x]._id,
                             target: person_array[y]._id,
                             color: '#282c34',
-                            type: 'line', size: 1
+                            type: 'arrow', size: 1
 
                         })
                     }
@@ -94,9 +94,9 @@ const dataToArray = (person_array) => {
                 type: 'canvas'
             },
             settings: {
-                minEdgeSize: 0.1,
-                maxEdgeSize: 0.5,
-                minNodeSize: 1,
+                minEdgeSize: 0.2,
+                maxEdgeSize: 0.7,
+                minNodeSize: 2,
                 maxNodeSize: 7,
             }
         }
@@ -105,6 +105,7 @@ const dataToArray = (person_array) => {
         nodes,
         edges
     }
+
     function setHoveredNode(node) {
         if (node) {
             state.hoveredNode = node;
@@ -117,8 +118,17 @@ const dataToArray = (person_array) => {
         // Refresh rendering:
         renderer.refresh();
     }
+
     // Load the graph in sigma
     s.graph.read(graph);
+
+    // const config = {
+    //     edgeWeightInfluence: 0.05,
+    //     gravity: 2
+    // }
+
+    // s.startForceAtlas2(config)
+
     // Ask sigma to draw it
     s.refresh();
 }
