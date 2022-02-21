@@ -5,6 +5,8 @@
 
 # Node artifact files
 node_modules/
+__pycache__/
+.ddcache
 
 # Compiled Java class files
 *.class
