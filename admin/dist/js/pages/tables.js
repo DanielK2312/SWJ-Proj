@@ -60,7 +60,8 @@ $(document).ready(function () {
 function format(d) {
     // `d` is the original data object for the row
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<button class="btn" style="border:1px; border-style:solid, padx:5px;">Manage Member</button>' +
+        '<button class="btn" onclick="testy()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
+        '<button class="btn" onclick="testy()" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
         '<tr>' +
         '<td>Full name:</td>' +
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
@@ -117,8 +118,6 @@ function format(d) {
     // }
 
     //Attempt at showing the organizations
-    console.log("Here are the orgs for: " + d.firstname)
-    console.log(d.orgs)
     if (d.orgs.length >= 1) {
         memberInfo +=
             '<tr>' +
