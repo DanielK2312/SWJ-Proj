@@ -31,10 +31,31 @@ personRouter.post('/create', (req, res, next) => {
     }
 });
 
-personRouter.get('/drop', (req, res, next) => {
-    // Surname is the only required field to create a person.
-    mongoose.connection.db.dropCollection('people', (err, result) => { console.log(err) });
-    res.status(200).json({ status: 'success'});
+personRouter.post('/update', (req, res, next) => {
+    // ID is mongoDB _id field
+    // updates is a JSON like { surname: 'NewName' }
+    const { id, updates } = req.body;
+    const person = Person.findById(id);
+    person.updateOne(updates)
+        .then(result => {
+            res.status(200).json({ status: 'success', result});
+        })
+        .catch(err => {
+            res.status(500).json({ status: 'error', err })
+        });
+});
+
+personRouter.get('/delete', (req, res, next) => {
+    // ID is mongoDB _id field
+    const id = req.body;
+    const person = Person.findById(id);
+    person.deleteOne()
+        .then(result => {
+            res.status(200).json({ status: 'success', result});
+        })
+        .catch(err => {
+            res.status(500).json({ status: 'error', err })
+        });
 });
 
 
