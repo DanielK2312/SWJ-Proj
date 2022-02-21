@@ -1,4 +1,5 @@
 import express from 'express';
+import isLoggedIn from '../utils/authGuard';
 import Person from '../models/personModel';
 
 const personRouter = express.Router();
@@ -82,12 +83,12 @@ personRouter.get('/list', async (req, res, next) => {
 /**
  * Creates a person from the database.
  * @remarks
- * POST /api/v1/person/create
+ * POST /api/v1/person/create [SECURE ROUTE]
  *
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', (req, res, next) => {
+personRouter.post('/create', isLoggedIn, (req, res, next) => {
     // Surname is the only required field to create a person.
     if (req.body.surname) {
         const newPerson = new Person(req.body);
@@ -99,13 +100,13 @@ personRouter.post('/create', (req, res, next) => {
 /**
  * Updates a person from the database.
  * @remarks
- * POST /api/v1/person/update
+ * POST /api/v1/person/update [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @param req.body.updates - JSON of only updated fields
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.post('/update', (req, res, next) => {
+personRouter.post('/update', isLoggedIn, (req, res, next) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
     const { id, updates } = req.body;
@@ -122,12 +123,12 @@ personRouter.post('/update', (req, res, next) => {
 /**
  * Deletes a person from the database.
  * @remarks
- * GET /api/v1/person/delete
+ * GET /api/v1/person/delete [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.get('/delete', (req, res, next) => {
+personRouter.get('/delete', isLoggedIn, (req, res, next) => {
     const id = req.body;
     const person = Person.findById(id);
     person.deleteOne()

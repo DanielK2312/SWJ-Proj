@@ -31,17 +31,10 @@ authRouter.get('/', passport_1.default.authenticate('google'));
 authRouter.get('/error', (req, res) => res.send('Unknown Error'));
 authRouter.get('/redirect', passport_1.default.authenticate('google', { failureRedirect: '/auth/error' }), (req, res) => {
     // Store user in a cookie session that expires in 7 days.
-    req.session.user = req.user;
+    if (req.session) {
+        req.session.user = req.user;
+    }
     res.redirect('/admin');
-});
-authRouter.post('/check', (req, res) => {
-    if (req.session && req.session.user) {
-        res.status(200).json({ status: 'valid' });
-    }
-    else {
-        console.log('No session found.');
-        res.status(401).json({ status: 'invalid' });
-    }
 });
 exports.default = authRouter;
 //# sourceMappingURL=authRouter.js.map

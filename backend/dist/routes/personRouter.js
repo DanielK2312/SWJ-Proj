@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const authGuard_1 = __importDefault(require("../utils/authGuard"));
 const personModel_1 = __importDefault(require("../models/personModel"));
 const personRouter = express_1.default.Router();
 /**
@@ -89,12 +90,12 @@ personRouter.get('/list', (req, res, next) => __awaiter(void 0, void 0, void 0, 
 /**
  * Creates a person from the database.
  * @remarks
- * POST /api/v1/person/create
+ * POST /api/v1/person/create [SECURE ROUTE]
  *
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', (req, res, next) => {
+personRouter.post('/create', authGuard_1.default, (req, res, next) => {
     // Surname is the only required field to create a person.
     if (req.body.surname) {
         const newPerson = new personModel_1.default(req.body);
@@ -105,13 +106,13 @@ personRouter.post('/create', (req, res, next) => {
 /**
  * Updates a person from the database.
  * @remarks
- * POST /api/v1/person/update
+ * POST /api/v1/person/update [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @param req.body.updates - JSON of only updated fields
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.post('/update', (req, res, next) => {
+personRouter.post('/update', authGuard_1.default, (req, res, next) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
     const { id, updates } = req.body;
@@ -127,12 +128,12 @@ personRouter.post('/update', (req, res, next) => {
 /**
  * Deletes a person from the database.
  * @remarks
- * GET /api/v1/person/delete
+ * GET /api/v1/person/delete [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.get('/delete', (req, res, next) => {
+personRouter.get('/delete', authGuard_1.default, (req, res, next) => {
     const id = req.body;
     const person = personModel_1.default.findById(id);
     person.deleteOne()

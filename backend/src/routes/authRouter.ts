@@ -35,17 +35,11 @@ authRouter.get('/redirect',
     passport.authenticate('google', { failureRedirect: '/auth/error' }),
     (req, res) => {
         // Store user in a cookie session that expires in 7 days.
-        req.session!.user = req.user;
+        if (req.session) {
+            req.session.user = req.user;
+        }
         res.redirect('/admin');
     }
 );
-authRouter.post('/check', (req, res) => {
-    if (req.session && req.session.user) {
-        res.status(200).json({ status: 'valid' });
-    } else {
-        console.log('No session found.');
-        res.status(401).json({ status: 'invalid' });
-    }
-})
 
 export default authRouter;
