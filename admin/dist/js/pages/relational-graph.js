@@ -3,9 +3,9 @@ $(document).ready(function () {
 });
 
 // nodes = [{id = <ID>, surname = <SURNAME>}, ...]
-// nodes = [{source: <ID>, target: <ID>}, ...]
+// edges = [{source: <ID>, target: <ID>}, ...]
 let nodes = []
-let links = []
+let edges = []
 
 // Step 1: Get list of all persons from Database
 async function getData() {
@@ -49,23 +49,37 @@ const dataToArray = (person_array) => {
                         }
 
                         if (foundX === false) {
+                            console.log("HIT - " + person_array[x].surname)
                             nodes.push({
                                 id: person_array[x]._id,
-                                surname: person_array[x].surname
+                                label: person_array[x].surname,
+                                size: 2,
+                                x: Math.random() * person_array.length,
+                                y: Math.random() * person_array.length,
+                                color: '#008cc2'
                             });
                         }
 
                         if (foundY === false) {
+                            console.log("HIT - " + person_array[y].surname)
                             nodes.push({
                                 id: person_array[y]._id,
-                                surname: person_array[y].surname
+                                label: person_array[y].surname,
+                                size: 2,
+                                x: Math.random() * person_array.length,
+                                y: Math.random() * person_array.length,
+                                color: '#008cc2'
                             });
                         }
 
                         // Add new link
-                        links.push({
+                        edges.push({
+                            id: "e"+edges.length,
                             source: person_array[x]._id,
-                            target: person_array[y]._id
+                            target: person_array[y]._id,
+                            color: '#282c34',
+                            type: 'line', size: 1.5
+
                         })
                     }
                 }
@@ -73,55 +87,60 @@ const dataToArray = (person_array) => {
             }
         }
     }
-    console.log(nodes)
-    console.log(links)
+    var s = new sigma(
+        {
+            renderer: {
+                container: document.getElementById('sigma-container'),
+                type: 'canvas'
+            },
+            settings: {
+                minEdgeSize: 0.1,
+                maxEdgeSize: 2,
+                minNodeSize: 1,
+                maxNodeSize: 8,
+            }
+        }
+    );
+    var graph = {
+        nodes,
+        edges
+    }
+    function setHoveredNode(node) {
+        if (node) {
+            state.hoveredNode = node;
+            state.hoveredNeighbors = new Set(graph.neighbors(node));
+        }
+        else {
+            state.hoveredNode = undefined;
+            state.hoveredNeighbors = undefined;
+        }
+        // Refresh rendering:
+        renderer.refresh();
+    }
+    // Load the graph in sigma
+    s.graph.read(graph);
+    // Ask sigma to draw it
+    s.refresh();
 }
 
 // console.log(json, 'the json obj');
 // Initialise sigma:
-var s = new sigma(
-    {
-        renderer: {
-            container: document.getElementById('sigma-container'),
-            type: 'canvas'
-        },
-        settings: {
-            minEdgeSize: 0.1,
-            maxEdgeSize: 2,
-            minNodeSize: 1,
-            maxNodeSize: 8,
-        }
-    }
-);
+
 
 // Create a graph object
-var graph = {
-    nodes: [
-        { id: "n0", label: "Samuel", x: 3, y: 2, size: 3, color: '#008cc2' },
-        { id: "n1", label: "Gabe", x: 2, y: 1, size: 2, color: '#008cc2' },
-        { id: "n2", label: "Samantha", x: 4, y: 2, size: 1, color: '#E57821' },
-        { id: "n3", label: "Daniel", x: 3, y: 4, size: 4, color: '#E57821' }
-    ],
-    edges: [
-        { id: "e0", source: "n0", target: "n1", color: '#282c34', type: 'line', size: 0.5 },
-        { id: "e1", source: "n1", target: "n2", color: '#282c34', type: 'curve', size: 1 },
-        { id: "e2", source: "n2", target: "n0", color: '#FF0000', type: 'line', size: 2 },
-        { id: "e3", source: "n3", target: "n0", color: '#black', type: 'line', size: 1 }
-    ]
-}
-function setHoveredNode(node) {
-    if (node) {
-        state.hoveredNode = node;
-        state.hoveredNeighbors = new Set(graph.neighbors(node));
-    }
-    else {
-        state.hoveredNode = undefined;
-        state.hoveredNeighbors = undefined;
-    }
-    // Refresh rendering:
-    renderer.refresh();
-}
-// Load the graph in sigma
-s.graph.read(graph);
-// Ask sigma to draw it
-s.refresh();
+// var graph = {
+//     nodes: [
+//         { id: "n0", label: "Samuel", x: 3, y: 2, size: 3, color: '#008cc2' },
+//         { id: "n1", label: "Gabe", x: 2, y: 1, size: 2, color: '#008cc2' },
+//         { id: "n2", label: "Samantha", x: 4, y: 2, size: 1, color: '#E57821' },
+//         { id: "n3", label: "Daniel", x: 3, y: 4, size: 4, color: '#E57821' }
+//     ],
+//     edges: [
+//         { id: "e0", source: "n0", target: "n1", color: '#282c34', type: 'line', size: 0.5 },
+//         { id: "e1", source: "n1", target: "n2", color: '#282c34', type: 'curve', size: 1 },
+//         { id: "e2", source: "n2", target: "n0", color: '#FF0000', type: 'line', size: 2 },
+//         { id: "e3", source: "n3", target: "n0", color: '#black', type: 'line', size: 1 }
+//     ]
+// }
+
+
