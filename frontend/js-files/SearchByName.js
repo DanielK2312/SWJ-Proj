@@ -112,8 +112,6 @@ let processPersonInfoArray = (personInfoArray) => {
  * @param {array} personInfoArray global array filled from search by name results
  */
 let createDynamicModals = (personInfoArray) => {
-  console.log(personInfoArray);
-
   document.getElementById("dynamic-modals").innerHTML = "";
 
   personInfoArray.forEach((element) => {
@@ -139,42 +137,38 @@ let createDynamicModals = (personInfoArray) => {
 
   personInfoArray.forEach((element) => {
     let myModal = $(`#${element._id}`);
-    myModal.find(`#person-info-body${element._id}`).append(`
-    <p>Surname: ${element.surname}</p>
-    ${element.firstname === "" ? "" : `<p>Firstname: ${element.firstname}</p>`}
-    ${element.prefix === "" ? "" : `<p>Prefix: ${element.prefix}</p>`}
-    ${element.pen_name === "" ? "" : `<p>Pen Name: ${element.pen_name}</p>`}
-    ${element.dob === "" ? "" : `<p>Date of Birth: ${element.dob}</p>`}
-    ${element.dod === "" ? "" : `<p>Date of Death: ${element.dod}</p>`}
-    ${element.position === "" ? "" : `<p>Position: ${element.position}</p>`}
-    ${element.address === "" ? "" : `<p>Address: ${element.address}</p>`}
-    ${
-      element.neighborhood === ""
-        ? ""
-        : `<p>Neighborhood: ${element.neighborhood}</p>`
-    }
-    ${element.city === "" ? "" : `<p>City: ${element.city}</p>`}
-    ${
-      element.post_code === "" ? "" : `<p>Postal Code: ${element.post_code}</p>`
-    }
-    ${element.proposer === "" ? "" : `<p>Proposer: ${element.proposer}</p>`}
-    ${
-      element.orgs.length === 0 ? "" : `<p>Organization(s): ${element.orgs}</p>`
-    }
-    ${
-      element.periodicals === ""
-        ? ""
-        : `<p>Periodicals: ${element.periodicals}</p>`
-    }
-    ${element.sources === "" ? "" : `<p>Sources: ${element.sources}</p>`}
-    ${
-      element.date_range.length === 0
-        ? ""
-        : `<p>Date Range(s): ${element.date_range}</p>`
-    }
-    `);
-    // <p>Surname: ${element.surname}</p>
-    // ${element.firstname === "" ? "" : `<p>Firstname: ${element.firstname}</p>`}
+    myModal
+      .find(`#person-info-body${element._id}`)
+      .append(
+        `<p>Surname: ${element.surname}</p>`,
+        element.firstname === ""
+          ? ""
+          : `<p>First Name: ${element.firstname} </p>`,
+        element.prefix === "" ? "" : `<p>Prefix: ${element.prefix}</p>`,
+        element.pen_name === "" ? "" : `<p>Pen Name: ${element.pen_name}</p>`,
+        element.dob === "" ? "" : `<p>Date of Birth: ${element.dob}</p>`,
+        element.dod === "" ? "" : `<p>Date of Death: ${element.dod}</p>`,
+        element.position === "" ? "" : `<p>Position: ${element.position}</p>`,
+        element.address === "" ? "" : `<p>Address: ${element.address}</p>`,
+        element.neighborhood === ""
+          ? ""
+          : `<p>Neighborhood: ${element.neighborhood}</p>`,
+        element.city === "" ? "" : `<p>City: ${element.city}</p>`,
+        element.post_code === ""
+          ? ""
+          : `<p>Postal Code: ${element.post_code}</p>`,
+        element.proposer === "" ? "" : `<p>Proposer: ${element.proposer}</p>`,
+        element.orgs.length === 0
+          ? ""
+          : `<p>Organization(s): ${element.orgs}</p>`,
+        element.periodicals === ""
+          ? ""
+          : `<p>Periodicals: ${element.periodicals}</p>`,
+        element.sources === "" ? "" : `<p>Sources: ${element.sources}</p>`,
+        element.date_range.length === 0
+          ? ""
+          : `<p>Date Range(s): ${element.date_range}</p>`
+      );
   });
 };
 
