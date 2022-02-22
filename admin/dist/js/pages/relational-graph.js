@@ -55,8 +55,11 @@ const dataToArray = (person_array) => {
                                 id: person_array[x]._id,
                                 label: person_array[x].surname,
                                 size: 2,
-                                x: Math.random() * person_array.length,
-                                y: Math.random() * person_array.length,
+                                // For a Circle With Radius R r = R * sqrt(random()), theta = random() * 2 * PI 
+                                // x = centerX + r * cos(theta)
+                                // y = centerY + r * sin(theta)
+                                x: 1 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: 1 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
                                 color: '#008cc2'
                             });
                         }
@@ -66,18 +69,18 @@ const dataToArray = (person_array) => {
                                 id: person_array[y]._id,
                                 label: person_array[y].surname,
                                 size: 1,
-                                x: Math.random() * person_array.length,
-                                y: Math.random() * person_array.length,
+                                x: 1 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: 1 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
                                 color: '#008cc2'
                             });
                         }
 
                         // Add new link
                         edges.push({
-                            id: "e"+edges.length,
+                            id: "e" + edges.length,
                             source: person_array[x]._id,
                             target: person_array[y]._id,
-                            color: '#282c34',
+                            color: '#808080',
                             type: 'arrow', size: 1
 
                         })
@@ -96,8 +99,8 @@ const dataToArray = (person_array) => {
             settings: {
                 minEdgeSize: 0.2,
                 maxEdgeSize: 0.7,
-                minNodeSize: 2,
-                maxNodeSize: 7,
+                minNodeSize: 3,
+                maxNodeSize: 11,
             }
         }
     );
@@ -118,7 +121,16 @@ const dataToArray = (person_array) => {
         // Refresh rendering:
         renderer.refresh();
     }
+    s.bind('overNode', function (d) {
+        console.log("Inside the Hover Node method")
+        console.log("Over Node: " + s.node)
+        console.log(d)
+    })
 
+    s.bind('outNode', function (d) {
+        console.log("Out of the Node")
+
+    })
     // Load the graph in sigma
     s.graph.read(graph);
 
