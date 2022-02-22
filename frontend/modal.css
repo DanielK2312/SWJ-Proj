@@ -1,3 +1,11 @@
 #trigger-modal {
   display: none;
 }
+
+.modal-open {
+  overflow: auto;
+}
+
+.modal-close {
+  overflow: auto;
+}

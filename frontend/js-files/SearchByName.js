@@ -183,16 +183,20 @@ let manualDynamicModalTriggers = (array) => {
       .addEventListener("click", (e) => {
         e.preventDefault();
         $("#person-modal").modal("hide"); // hide main modal
-        $(`#${element._id}`).modal({ backdrop: "static", keyboard: false });
-        $(`#${element._id}`).modal("show"); // show person modal
+        setTimeout(function () {
+          $(`#${element._id}`).modal({ backdrop: "static", keyboard: false });
+          $(`#${element._id}`).modal("show"); // show person modal
+        }, 500);
       });
     document
       .getElementById(`dynamic-close${element._id}`)
       .addEventListener("click", (e) => {
         e.preventDefault();
         $(`#${element._id}`).modal("hide");
-        $("#person-modal").modal({ backdrop: "static", keyboard: false });
-        $("#person-modal").modal("show");
+        setTimeout(function () {
+          $("#person-modal").modal({ backdrop: "static", keyboard: false });
+          $("#person-modal").modal("show");
+        }, 500);
       });
   });
 };
