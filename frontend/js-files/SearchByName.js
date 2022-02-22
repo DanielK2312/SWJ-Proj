@@ -229,6 +229,7 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
+    document.getElementById("overlay").style.display = "flex";
     // VVVV - Add variable to end of this URL!!!!!!!!!
     var url =
       "https://swj-capstone-staging.herokuapp.com/api/v1/person/byname/" +
@@ -242,7 +243,12 @@ submitButton.addEventListener("click", (e) => {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("overlay").style.display = "none";
+
+        $("#person-modal").modal({ backdrop: "static", keyboard: false });
+        $("#person-modal").modal("show");
+
         // all data is loaded
         let jsonRes = xhr.responseText;
 
@@ -294,11 +300,11 @@ submitButton.addEventListener("click", (e) => {
 }); // end submit button event listener
 
 // manually open and close main search modal
-document.getElementById("search-members").addEventListener("click", (e) => {
-  e.preventDefault();
-  $("#person-modal").modal({ backdrop: "static", keyboard: false });
-  $("#person-modal").modal("show");
-});
+// document.getElementById("search-members").addEventListener("click", (e) => {
+//   e.preventDefault();
+//   $("#person-modal").modal({ backdrop: "static", keyboard: false });
+//   $("#person-modal").modal("show");
+// });
 
 document.getElementById("close-person-modal").addEventListener("click", (e) => {
   e.preventDefault();
