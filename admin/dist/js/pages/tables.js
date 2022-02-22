@@ -56,17 +56,21 @@ $(document).ready(function () {
 
 })
 
-/* Formatting function for row details - modify as you need */
+//Code that determines what is shown in the Dropdown
 function format(d) {
     // `d` is the original data object for the row
+    //shows the Edit and Delete Member buttons
+        //the buttons open 
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<button class="btn" onclick="testy()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
-        '<button class="btn" onclick="testy()" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
+        '<button id="editBtn" class="btn" onclick="editMember()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
+        '<button id="deleteBtn" class="btn" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
+        '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span><p>Some text in the Modal..</p></div></div>' +
         '<tr>' +
         '<td>Full name:</td>' +
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
         '</tr>';
 
+    //shows member Pen Name if applicable
     if (d.pen_name != '') {
         memberInfo +=
             '<tr>' +
@@ -75,6 +79,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Date of Birth if applicable
     if (d.dob != '') {
         memberInfo +=
             '<tr>' +
@@ -83,6 +88,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Date of Death if applicable
     if (d.dod != '') {
         memberInfo +=
             '<tr>' +
@@ -91,6 +97,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Position Held if applicable
     if (d.position != '') {
         memberInfo +=
             '<tr>' +
@@ -99,6 +106,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows avaliable pieces of member Address if applicable
     if (d.address != '') {
         memberInfo +=
             '<tr>' +
@@ -108,16 +116,7 @@ function format(d) {
             '</tr>';
     }
 
-    //Already shows before dropdown, but will leave here if we want it to show twice
-    // if (d.proposer != '') {
-    //     memberInfo +=
-    //         '<tr>' +
-    //         '<td>Proposer:</td>' +
-    //         '<td>' + d.proposer + '</td>' +
-    //         '</tr>';
-    // }
-
-    //Attempt at showing the organizations
+    //shows the Organizations if applicable
     if (d.orgs.length >= 1) {
         memberInfo +=
             '<tr>' +
@@ -134,6 +133,7 @@ function format(d) {
             '</td>' + '</tr>';
     }
 
+    //shows member Peridoicals if applicable
     if (d.periodicals != '') {
         memberInfo +=
             '<tr>' +
@@ -142,6 +142,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Sources of Info if applicable
     if (d.sources != '') {
         memberInfo +=
             '<tr>' +
@@ -150,6 +151,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows any other information if applicable
     if (d.other != '') {
         memberInfo +=
             '<tr>' +
@@ -159,6 +161,9 @@ function format(d) {
     }
 
     memberInfo += '</table>';
+
+    
+
     return memberInfo;
 }
 
