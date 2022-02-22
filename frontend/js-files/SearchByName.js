@@ -183,6 +183,7 @@ let manualDynamicModalTriggers = (array) => {
       .addEventListener("click", (e) => {
         e.preventDefault();
         $("#person-modal").modal("hide"); // hide main modal
+        $(`#${element._id}`).modal({ backdrop: "static", keyboard: false });
         $(`#${element._id}`).modal("show"); // show person modal
       });
     document
@@ -190,6 +191,7 @@ let manualDynamicModalTriggers = (array) => {
       .addEventListener("click", (e) => {
         e.preventDefault();
         $(`#${element._id}`).modal("hide");
+        $("#person-modal").modal({ backdrop: "static", keyboard: false });
         $("#person-modal").modal("show");
       });
   });
@@ -290,6 +292,7 @@ submitButton.addEventListener("click", (e) => {
 // manually open and close main search modal
 document.getElementById("search-members").addEventListener("click", (e) => {
   e.preventDefault();
+  $("#person-modal").modal({ backdrop: "static", keyboard: false });
   $("#person-modal").modal("show");
 });
 
@@ -298,7 +301,7 @@ document.getElementById("close-person-modal").addEventListener("click", (e) => {
   $("#person-modal").modal("hide");
 });
 
-// clear necessary values when the main serach modal is closed
+// clear necessary values when the main search modal is closed
 document.getElementById("close-person-modal").addEventListener("click", (e) => {
   e.preventDefault();
   let myModal = $("#person-modal");
