@@ -64,7 +64,38 @@ function format(d) {
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<button id="editBtn" class="btn" onclick="editMember()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
         '<button id="deleteBtn" class="btn" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
-        '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span><p>Some text in the Modal..</p></div></div>' +
+        //Modal information
+        '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span>' +
+            '<div class="flexbox-item flexbox-item-6">' +
+            '<select name="option" id="edit-dropdown" class="w3-select">' +
+              '<option value="" selected>Select Item to be Edited...</option>' +
+              '<option value="">Surname</option>' +
+              '<option value="">First Name</option>' +
+              '<option value="">Prefix//Title</option>' +
+              '<option value="">Pen Name</option>' +
+              '<option value="">DOB</option>' +
+              '<option value="">DOD</option>' +
+              '<option value="">Leadership Position</option>' +
+              '<option value="">Street Address</option>' +
+              '<option value="">Neighborhood</option>' +
+              '<option value="">City</option>' +
+              '<option value="">Post Code</option>' +
+              '<option value="">Proposer</option>' +
+              '<option value="">Org1</option>' +
+              '<option value="">Org2</option>' +
+              '<option value="">Org3</option>' +
+              '<option value="">Org4</option>' +
+              '<option value="">Org5</option>' +
+              '<option value="">Periodicals</option>' +
+              '<option value="">Source of Info</option>' +
+              '<option value="">Other</option>' +
+              '<option value="">Joined</option>' +
+            '</select>' +
+          '</div>' +
+            '</div>' +
+        '</div>' +
+
+        //shows Member's full name
         '<tr>' +
         '<td>Full name:</td>' +
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
@@ -103,6 +134,15 @@ function format(d) {
             '<tr>' +
             '<td>Position Held:</td>' +
             '<td>' + d.position + '</td>' +
+            '</tr>';
+    }
+
+    //shows member Joined info if applicable
+    if (d.other != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Joined:</td>' +
+            '<td>' + d.joined + '</td>' +
             '</tr>';
     }
 
