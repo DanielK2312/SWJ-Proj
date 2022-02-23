@@ -60,7 +60,7 @@ const dataToArray = (person_array) => {
                                 // y = centerY + r * sin(theta)
                                 x: 1 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
                                 y: 1 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
-                                color: '#008cc2'
+                                color: '#F28C28'
                             });
                         }
 
@@ -71,7 +71,7 @@ const dataToArray = (person_array) => {
                                 size: 1,
                                 x: 1 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
                                 y: 1 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
-                                color: '#008cc2'
+                                color: '#F28C28'
                             });
                         }
 
@@ -81,7 +81,9 @@ const dataToArray = (person_array) => {
                             source: person_array[x]._id,
                             target: person_array[y]._id,
                             color: '#808080',
-                            type: 'arrow', size: 1
+                            type: 'arrow',
+                            size: 1,
+                            // label: "Proposed By"
 
                         })
                     }
@@ -90,6 +92,7 @@ const dataToArray = (person_array) => {
             }
         }
     }
+
     var s = new sigma(
         {
             renderer: {
@@ -101,6 +104,7 @@ const dataToArray = (person_array) => {
                 maxEdgeSize: 0.7,
                 minNodeSize: 3,
                 maxNodeSize: 11,
+                enableEdgeHovering: true,
             }
         }
     );
@@ -109,38 +113,41 @@ const dataToArray = (person_array) => {
         edges
     }
 
-    function setHoveredNode(node) {
-        if (node) {
-            state.hoveredNode = node;
-            state.hoveredNeighbors = new Set(graph.neighbors(node));
-        }
-        else {
-            state.hoveredNode = undefined;
-            state.hoveredNeighbors = undefined;
-        }
-        // Refresh rendering:
-        renderer.refresh();
-    }
+    s.graph.read(graph);
+    s.refresh();
+
     s.bind('overNode', function (d) {
         console.log("Inside the Hover Node method")
-        console.log("Over Node: " + s.node)
-        console.log(d)
+        console.log('over node: ' + d['data']['node']['label'])
+        console.log(d['target'])
+
     })
 
     s.bind('outNode', function (d) {
-        console.log("Out of the Node")
+        console.log("off of node " + d['data']['node']['label'])
 
     })
-    // Load the graph in sigma
-    s.graph.read(graph);
 
-    // const config = {
-    //     edgeWeightInfluence: 0.05,
-    //     gravity: 2
-    // }
+    s.bind('overEdge', function (d) {
+        console.log("Over Edge")
+        console.log(d)
+    })
+    // var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
 
-    // s.startForceAtlas2(config)
+    s.bind('clickNode',
+        function (e) {
+            var nodeId = e.data.node.id;
+            s.graph.adjacentEdges(nodeId).forEach(
+                function (ee) {
+                    if (ee.color === '#2ecc71' && ee.source === nodeId) {
+                        ee.color = s.settings.defaultNodeColor;
+                    }
+                    else if (ee.source === nodeId) {
+                        ee.color = '#2ecc71';
+                    }
+                }
+            );
+            s.refresh();
+        });
 
-    // Ask sigma to draw it
-    s.refresh();
 }
