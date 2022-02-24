@@ -58,9 +58,9 @@ const dataToArray = (person_array) => {
                                 // For a Circle With Radius R r = R * sqrt(random()), theta = random() * 2 * PI 
                                 // x = centerX + r * cos(theta)
                                 // y = centerY + r * sin(theta)
-                                x: 1 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
-                                y: 1 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
-                                color: '#F28C28'
+                                x: (Math.random() * 2000) + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: (Math.random() * 200) + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
+                                color: '#007bff'
                             });
                         }
 
@@ -69,9 +69,9 @@ const dataToArray = (person_array) => {
                                 id: person_array[y]._id,
                                 label: person_array[y].surname,
                                 size: 1,
-                                x: 1 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
-                                y: 1 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
-                                color: '#F28C28'
+                                x: (Math.random() * 2000) + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: (Math.random() * 200) + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
+                                color: '#007bff'
                             });
                         }
 
@@ -119,7 +119,7 @@ const dataToArray = (person_array) => {
     s.bind('overNode', function (d) {
         console.log("Inside the Hover Node method")
         console.log('over node: ' + d['data']['node']['label'])
-        console.log(d['target'])
+        console.log(d)
 
     })
 
@@ -134,20 +134,19 @@ const dataToArray = (person_array) => {
     })
     // var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
 
-    s.bind('clickNode',
-        function (e) {
-            var nodeId = e.data.node.id;
-            s.graph.adjacentEdges(nodeId).forEach(
-                function (ee) {
-                    if (ee.color === '#2ecc71' && ee.source === nodeId) {
-                        ee.color = s.settings.defaultNodeColor;
-                    }
-                    else if (ee.source === nodeId) {
-                        ee.color = '#2ecc71';
-                    }
-                }
-            );
-            s.refresh();
-        });
+    // s.bind('clickNode', function (e) {
+    //     var nodeId = e.data.node.id;
+    //     s.graph.adjacentEdges(nodeId).forEach(
+    //         function (ee) {
+    //             if (ee.color === '#2ecc71' && ee.source === nodeId) {
+    //                 ee.color = s.settings.defaultNodeColor;
+    //             }
+    //             else if (ee.source === nodeId) {
+    //                 ee.color = '#2ecc71';
+    //             }
+    //         }
+    //     );
+    //     s.refresh();
+    // });
 
 }
