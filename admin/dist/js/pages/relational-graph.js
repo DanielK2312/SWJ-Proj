@@ -92,6 +92,16 @@ const dataToArray = (person_array) => {
             }
         }
     }
+    sigma.classes.graph.addMethod('neighbors', function (nodeId) {
+        var k,
+            neighbors = {},
+            index = this.allNeighborsIndex[nodeId] || {};
+
+        for (k in index)
+            neighbors[k] = this.nodesIndex[k];
+
+        return neighbors;
+    });
 
     var s = new sigma(
         {
@@ -116,37 +126,41 @@ const dataToArray = (person_array) => {
     s.graph.read(graph);
     s.refresh();
 
-    s.bind('overNode', function (d) {
-        console.log("Inside the Hover Node method")
-        console.log('over node: ' + d['data']['node']['label'])
-        console.log(d)
 
-    })
+    s.bind('overNode', function (e) {
+        var nodeId = e.data.node.id,
+            toKeep = s.graph.neighbors(nodeId);
+        toKeep[nodeId] = e.data.node;
 
-    s.bind('outNode', function (d) {
-        console.log("off of node " + d['data']['node']['label'])
+        s.graph.nodes().forEach(function (n) {
+            if (toKeep[n.id])
+                n.color = '#007bff';
+            else
+                n.color = '#808080';
+        });
 
-    })
+        s.graph.edges().forEach(function (e) {
+            if (toKeep[e.source] && toKeep[e.target])
+                e.color = '#007bff';
+            else
+                e.color = '#808080';
+        });
 
-    s.bind('overEdge', function (d) {
-        console.log("Over Edge")
-        console.log(d)
-    })
-    // var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+        //Refresh graph to update colors
+        s.refresh();
+    });
 
-    // s.bind('clickNode', function (e) {
-    //     var nodeId = e.data.node.id;
-    //     s.graph.adjacentEdges(nodeId).forEach(
-    //         function (ee) {
-    //             if (ee.color === '#2ecc71' && ee.source === nodeId) {
-    //                 ee.color = s.settings.defaultNodeColor;
-    //             }
-    //             else if (ee.source === nodeId) {
-    //                 ee.color = '#2ecc71';
-    //             }
-    //         }
-    //     );
-    //     s.refresh();
-    // });
+    s.bind('outNode', function (e) {
 
+        s.graph.nodes().forEach(function (n) {
+            n.color = '#007bff';
+        });
+
+        s.graph.edges().forEach(function (e) {
+            e.color = '808080';
+        });
+
+        //Refresh graph to update colors
+        s.refresh();
+    });
 }
