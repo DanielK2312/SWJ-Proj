@@ -92,6 +92,9 @@ const dataToArray = (person_array) => {
             }
         }
     }
+
+    // Add in a neighbors method to the sigma graphing tool. 
+    // Allows us to receieve a list of all the nodes that neighbor a node. 
     sigma.classes.graph.addMethod('neighbors', function (nodeId) {
         var k,
             neighbors = {},
@@ -103,6 +106,7 @@ const dataToArray = (person_array) => {
         return neighbors;
     });
 
+    // Create our Sigma instance with the settings that we want for Node Size and Edge Size.
     var s = new sigma(
         {
             renderer: {
@@ -114,24 +118,31 @@ const dataToArray = (person_array) => {
                 maxEdgeSize: 0.7,
                 minNodeSize: 3,
                 maxNodeSize: 11,
-                enableEdgeHovering: true,
+                enableEdgeHovering: false,
             }
         }
     );
+
+    // Add in the lovely Nodes and Edges found earlier to a graph variable. 
     var graph = {
         nodes,
         edges
     }
 
+    // Let Sigma read those lovely nodes and then refresh our canvas so they get drawn on to it. 
     s.graph.read(graph);
     s.refresh();
 
-
+    // Add eventlistner for when we hover over a node. 
+    // When we hover over a node we want to see all the adjacent nodes and edges
+    // So we use our handy neighbors method we made earlier to retrieve the neighboring nodes!
+    // Then we set the color scheme to make them POP! 
     s.bind('overNode', function (e) {
         var nodeId = e.data.node.id,
             toKeep = s.graph.neighbors(nodeId);
         toKeep[nodeId] = e.data.node;
 
+        // If the Nodes are neighbors make them blue! Otherwise make em grey!
         s.graph.nodes().forEach(function (n) {
             if (toKeep[n.id])
                 n.color = '#007bff';
@@ -139,6 +150,7 @@ const dataToArray = (person_array) => {
                 n.color = '#808080';
         });
 
+        // Do the same thing we did to our nodes for our edges!
         s.graph.edges().forEach(function (e) {
             if (toKeep[e.source] && toKeep[e.target])
                 e.color = '#007bff';
@@ -150,12 +162,16 @@ const dataToArray = (person_array) => {
         s.refresh();
     });
 
+    // Create an Event listner for when we leave a node. 
+    // When we want all nodes and edges to return to their original color scheme!
     s.bind('outNode', function (e) {
 
+        // Go through all nodes and make em Blue!
         s.graph.nodes().forEach(function (n) {
             n.color = '#007bff';
         });
 
+        // Go through all edges and make them grey!
         s.graph.edges().forEach(function (e) {
             e.color = '808080';
         });
