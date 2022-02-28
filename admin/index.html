@@ -117,9 +117,35 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
-      <section class="content">
-        
+      <section class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+          <div id="member-count" class="info-box">
+            <span class="info-box-icon bg-success"><i class="fas fa-users"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Total SWJ Members</span>
+              <span id="count-number" class="info-box-number">00</span>
+            </div>
+            <div id="loading" class="overlay dark">
+              <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+          <div id="user-count" class="info-box">
+            <span class="info-box-icon bg-info"><i class="fas fa-user-circle"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Users Visited</span>
+              <span id="user-number" class="info-box-number">00</span>
+            </div>
+            <div id="loading2" class="overlay dark">
+              <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+            </div>
+          </div>
+        </div>
       </section>
+      <div class="container">
+        <div class="map">Alternative content</div>
+      </div>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
