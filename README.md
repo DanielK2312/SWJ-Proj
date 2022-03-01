@@ -44,12 +44,18 @@ Project homepage (public): [Team 5 Webpage](https://cps491s22-team5.bitbucket.io
 | 24/01/2022 |  1.1          | Design Homepage to Clients Specifications   |
 | 31/01/2022 |  1.2          | Implement base Admin page   |
 | 07/01/2022 |  1.3          | Add additional features to homepage and admin page   |
-| 14/01/2022 |  1.0          | Formatted the Home page |
-| 17/01/2022 |  1.1          | Created an admin page |
-| 24/01/2022 |  1.2          | Added dropdown to admin page |
-| 25/01/2022 |  1.3          | Move to GitHub and added information to dropdown |
-| 26/01/2022 |  1.4          | Edit/ delete memeber button |
-| 01/02/2022 |  1.5          | Fixed Merge Conflicts |
+| 14/01/2022 |  1.3          | Formatted the Home page |
+| 17/01/2022 |  1.4          | Created an admin page |
+| 24/01/2022 |  1.4          | Added dropdown to admin page |
+| 25/01/2022 |  1.5          | Move to GitHub and added information to dropdown |
+| 26/01/2022 |  1.5          | Edit/ delete memeber button |
+| 01/02/2022 |  1.6          | Fixed Merge Conflicts |
+| 10/02/2022 |  1.6          | implemented basics for APIs |
+| 14/02/2022 |  1.6          | implemented API for Searching for Members |
+| 18/02/2022 |  1.6          | Can search for members |
+| 21/02/2022 |  1.6          | Created Nodes for linking members |
+| 26/02/2022 |  1.6          | Added in Social Realtion Graph |
+| 28/02/2022 |  1.6          | Added in Statisitics to Admin Dashboard |
 
 # Overview
 
@@ -307,23 +313,18 @@ a database and relays the quiered information from the database back to the fron
 _(Start from Sprint 1, keep updating)_
 
 ## Use-Case Realization
-<<<<<<< HEAD
-In order to search for various members through year, name, or leadership position the user simply has to access the site. They are able to access the website by using the correct link. Admins have an addional use-case in that, with the proper qualification, they can access the admin page. After having said qualifications, they can add members, edit members, view informaiton on members, and add a photo.
-=======
 Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page. In the Admin page, users are able to see all the information in the database, see other various statistics, and edit or delete members.
->>>>>>> frontend
 
 ## Database
 
 We are using MongoDB to store our data that is converted from an Excelsheet.  
 Then we are using APIs and javascript to access the information stored in the Database before displaying it to the users.  
-**GABE EDIT THIS**
+
 
 ## User Interface
 ![Homepage](https://i.imgur.com/F20aLGR.jpg)
 
-For the UI we are using CSS and HTML to style the webpage and recieve user input.
-
+For the UI we are using CSS and HTML to style the webpage and recieve user input.  
 # Implementation
 
 For our implementation our team is using HTML, Javascript, and CSS to develop our project.   
@@ -343,7 +344,7 @@ Specify the development approach of your team, including programming languages, 
 Was able to create a website that scales with different window sizes while also having all the information needed. Includes tabs that take the user to different links in order to see Contributors and References. Includes a dropdown for years.
 
 ## Admin Page
-Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information. Before the dropdown is clicked, the information displayed is Date Range (years as member), Surname, First Name, Proposer, City, and the date that the member Joined the club. After the dropdown is clicked additional information on the member's Full Name, Pen Name, date they where Born, date they Died, Address, Other Organizations, Periodicals they wrote, and any Additional Info. There's also a section on where this information was gained in Source of Info.
+Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information.
 
 # Technology
 
@@ -354,7 +355,7 @@ This is an ongoing project that we will be taking over from previous students in
 
 ## Deployment
 
-Our System will be deployed to the cloud based application platform Heroku. Which allows us to remotly run and operate our application.
+Our System will be deployed to the cloud based application platform Heroku. Which allows us to remotly run and operate our application. 
 
 
 # Impacts
@@ -373,7 +374,7 @@ Our Team has Opted for longer sprints to allow ample time for trickier tasks tha
 
 ### Sprint 0
 
-Duration: 01/10/2022-01/16/2022
+Duration: 10/01/2022-16/01/2022
 
 #### Completed Tasks: 
 
@@ -404,10 +405,10 @@ Duration: 17/01/2022-01/03/2022
 
 #### Contributions: 
 
-1.  Daniel Kosmin,   ~20 commits, ~35 hours, contributed in Frontend development with the main homepage
-2.  Samuel Miller,   ~13 commits, ~25 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
-3.  Samantha Adrian, ~14 commits, ~25 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
-4.  Gabriel Hoban,   ~20 commits, ~35 hours, contributed in Developing the Admin Page and Managing the Database
+1.  Daniel Kosmin,   ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller,   ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban,   ~30 commits, ~35 hours, contributed in Developing the Admin Page and Managing the Database
 
 #### Sprint Retrospection:
 
@@ -415,7 +416,7 @@ Duration: 17/01/2022-01/03/2022
 | ------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------: |
 | We were able to meet/exceed the client sexpectations on what she wanted done.     | There was idile time when waiting for other parts of the project to be finished.                           |      Make sure during meetings we are asking for help with struggle areas.|
 | Everyones efforts were visable on the project.                                    | Some miss-coumunication with ideas about direction of project.                                               |       Add more detail to the trello board to lessen confusion.            |
-|                |                                                                                                            |                                                                           |
+| We got into a good rhythm near the end and were able to make substancial progress |                                                                                                            |                                                                           |
 
 ### Sprint x
 
@@ -465,7 +466,10 @@ At the Admin Homepage you can view the database of members and add new members.
 ![Admin Tables](https://i.imgur.com/5eBzPbT.png)
 Create Member(Below)
 ![Admin Add Member](https://i.imgur.com/oxOtbZq.png)
-
+View Social Graph of Members
+![Relation Graph](https://i.imgur.com/O1E7u7s.png)
+Add in information about Members  
+![Edit Button](https://i.imgur.com/jbgyOVX.png)
 (Start from Sprint 1, keep updating)
 
 # Acknowledgments 
