@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # god_mode.sh
 # Author: Gabe Hoban (1/17/22)
 # 
