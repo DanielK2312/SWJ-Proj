@@ -307,7 +307,7 @@ a database and relays the quiered information from the database back to the fron
 _(Start from Sprint 1, keep updating)_
 
 ## Use-Case Realization
-Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page.
+Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page. In the Admin page, users are able to see all the information in the database, see other various statistics, and edit or delete members.
 
 ## Database
 
@@ -363,7 +363,7 @@ These technologies have also been used so far in the projects development and ar
 Trello Board Overview
 (Update here) 
 ![Spring 2022 Timeline on Trello](https://i.imgur.com/G1M94t0.png)
-Our Team has Opted for longer sprint to allow ample time for trickier tasks that will need more time to complete.  
+Our Team has Opted for longer sprints to allow ample time for trickier tasks that will need more time to complete.  
 ## Scrum process
 
 ### Sprint 0

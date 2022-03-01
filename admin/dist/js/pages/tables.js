@@ -1,3 +1,6 @@
+//global variable
+let currentID = "";
+
 $(document).ready(function () {
     var url = "https://swj-capstone-staging.herokuapp.com/api/v1/person/list";
 
@@ -11,7 +14,8 @@ $(document).ready(function () {
         if (xhr.readyState === 4) {
             const data = JSON.parse(xhr.responseText);
             console.log(data[0])
-            var table = $("#main-table").DataTable(
+            //Table Logic
+            let table = $("#main-table").DataTable(
                 {
                     data: data,
                     columns: [
@@ -34,9 +38,11 @@ $(document).ready(function () {
                     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
 
+            //Child Dropdown Logic
             $('#main-table tbody').on('click', 'td.dt-control', function () {
-                var tr = $(this).closest('tr');
-                var row = $('#main-table').DataTable().row(tr);
+                let tr = $(this).closest('tr');
+                let row = $('#main-table').DataTable().row(tr);
+                let currentID = row.data()._id;
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
@@ -47,6 +53,84 @@ $(document).ready(function () {
                     // Open this row
                     row.child(format(row.data())).show();
                     tr.addClass('shown');
+
+                    //Logic to Handle Edit Member Button
+                    //variables used
+                    let editDropdown = document.getElementById("edit-dropdown");
+                    let editInput = document.getElementById("new-edit");
+                    let editSubmit = document.getElementById("submit-edit");
+                    let editDropValue = "";
+                    let editInputValue = "";
+                    let memberID = currentID;
+                    //Column names for Database
+                    let db_col_min = [
+                        null,
+                        'surname',
+                        'firstname',
+                        'prefix',
+                        'pen_name',
+                        'dob',
+                        'dod',
+                        'position',
+                        'address',
+                        'neighborhood',
+                        'city',
+                        'post_code',
+                        'proposer',
+                        'orgs',
+                        'periodicals',
+                        'sources',
+                        'other',
+                        'joined'
+                    ]
+
+                    //grab selected Section to be Edited
+                    editDropdown.addEventListener("change", (e) => {
+                        e.preventDefault();
+                        editDropValue = db_col_min[editDropdown.selectedIndex];
+                    });
+
+                    //grab user Input
+                    editInput.addEventListener("input", (e) => {
+                        e.preventDefault();
+                        editInputValue = editInput.value;
+                    });
+
+                    //set up the update data
+                    var update = {
+                        'id': memberID,
+                        'field': editDropValue,
+                        'value': editInputValue
+                    };
+
+                    //Submit button
+                    editSubmit.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        //Logic to Update person
+                        var urlEdit = "https://swj-capstone-staging.herokuapp.com/api/v1/person/update";
+
+                        var xhrEdit = new XMLHttpRequest();
+                        xhrEdit.open("POST", urlEdit);
+
+                        xhrEdit.setRequestHeader("Accept", "application/json");
+                        xhrEdit.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                        xhrEdit.onreadystatechange = function () {
+                            var formBody = [];
+                            if (xhrEdit.readyState === 4) {
+                                //Update Person
+                                console.log(editDropValue + ": " + editInputValue + ": " + memberID);
+                                for (var property in update) {
+                                    var encodedKey = encodeURIComponent(property);
+                                    var encodedValue = encodeURIComponent(details[property]);
+                                    formBody.push(encodedKey + "=" + encodedValue);
+                                }
+                                formBody = formBody.join("&");
+                            }
+                        };
+
+                        xhrEdit.data(formBody);
+                    });
                 }
             });
 
@@ -56,17 +140,54 @@ $(document).ready(function () {
 
 })
 
-/* Formatting function for row details - modify as you need */
+//Code that determines what is shown in the Dropdown
 function format(d) {
     // `d` is the original data object for the row
+    //shows the Edit and Delete Member buttons and any avaliable information regarding the member
     let memberInfo = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<button class="btn" onclick="testy()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
-        '<button class="btn" onclick="testy()" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
+        '<button id="editBtn" class="btn" onclick="editMember()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
+        '<button id="deleteBtn" class="btn" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
+        //Edit Member Modal information
+        '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span>' +
+            '<div class="flexbox-item flexbox-item-6">' +
+                '<select name="option" id="edit-dropdown" class="w3-select">' +
+                    '<option value="" selected>Select to be Edited...</option>' +
+                    '<option value="">Surname</option>' +
+                    '<option value="">First Name</option>' +
+                    '<option value="">Prefix/Title</option>' +
+                    '<option value="">Pen Name</option>' +
+                    '<option value="">DOB</option>' +
+                    '<option value="">DOD</option>' +
+                    '<option value="">Leadership Position</option>' +
+                    '<option value="">Street Address</option>' +
+                    '<option value="">Neighborhood</option>' +
+                    '<option value="">City</option>' +
+                    '<option value="">Post Code</option>' +
+                    '<option value="">Proposer</option>' +
+                    '<option value="">Org1</option>' +
+                    '<option value="">Org2</option>' +
+                    '<option value="">Org3</option>' +
+                    '<option value="">Org4</option>' +
+                    '<option value="">Org5</option>' +
+                    '<option value="">Periodicals</option>' +
+                    '<option value="">Source of Info</option>' +
+                    '<option value="">Other</option>' +
+                    '<option value="">Joined</option>' +
+                '</select>' +
+                '<form class="w3-container">' +
+                    '<input id="new-edit" class="w3-input w3-border" type="text" placeholder="New Edit...">' +
+                '</form>' +
+                '<button id="submit-edit" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Submit</button>' +
+            '</div>' +
+        '</div></div>' +
+
+        //shows Member's full name
         '<tr>' +
         '<td>Full name:</td>' +
         '<td>' + d.prefix + " " + d.firstname + " " + d.surname + '</td>' +
         '</tr>';
 
+    //shows member Pen Name if applicable
     if (d.pen_name != '') {
         memberInfo +=
             '<tr>' +
@@ -75,6 +196,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Date of Birth if applicable
     if (d.dob != '') {
         memberInfo +=
             '<tr>' +
@@ -83,6 +205,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Date of Death if applicable
     if (d.dod != '') {
         memberInfo +=
             '<tr>' +
@@ -91,6 +214,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Position Held if applicable
     if (d.position != '') {
         memberInfo +=
             '<tr>' +
@@ -99,6 +223,16 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Joined info if applicable
+    if (d.other != '') {
+        memberInfo +=
+            '<tr>' +
+            '<td>Joined:</td>' +
+            '<td>' + d.joined + '</td>' +
+            '</tr>';
+    }
+
+    //shows avaliable pieces of member Address if applicable
     if (d.address != '') {
         memberInfo +=
             '<tr>' +
@@ -108,16 +242,7 @@ function format(d) {
             '</tr>';
     }
 
-    //Already shows before dropdown, but will leave here if we want it to show twice
-    // if (d.proposer != '') {
-    //     memberInfo +=
-    //         '<tr>' +
-    //         '<td>Proposer:</td>' +
-    //         '<td>' + d.proposer + '</td>' +
-    //         '</tr>';
-    // }
-
-    //Attempt at showing the organizations
+    //shows the Organizations if applicable
     if (d.orgs.length >= 1) {
         memberInfo +=
             '<tr>' +
@@ -134,6 +259,7 @@ function format(d) {
             '</td>' + '</tr>';
     }
 
+    //shows member Peridoicals if applicable
     if (d.periodicals != '') {
         memberInfo +=
             '<tr>' +
@@ -142,6 +268,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows member Sources of Info if applicable
     if (d.sources != '') {
         memberInfo +=
             '<tr>' +
@@ -150,6 +277,7 @@ function format(d) {
             '</tr>';
     }
 
+    //shows any other information if applicable
     if (d.other != '') {
         memberInfo +=
             '<tr>' +
@@ -159,6 +287,23 @@ function format(d) {
     }
 
     memberInfo += '</table>';
+
     return memberInfo;
 }
+
+// var updates = {
+//     'id': '6216b5b271f1d1124c636c99',
+//     'field': 'dod',
+//     'value': '02/25/2022'
+// };
+
+// var formBody = [];
+// for (var property in updates) {
+//   var encodedKey = encodeURIComponent(property);
+//   var encodedValue = encodeURIComponent(details[property]);
+//   formBody.push(encodedKey + "=" + encodedValue);
+// }
+// formBody = formBody.join("&");
+
+// xhr.data(formbody)
 

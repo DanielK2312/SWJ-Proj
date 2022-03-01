@@ -60,6 +60,12 @@
                 <p>Dashboard</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="pages/relational-graph.html" class="nav-link">
+                <i class="far fa-chart-bar nav-icon"></i>
+                <p>Relational Graph</p>
+              </a>
+            </li>
             <li class="nav-item menu-open">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
@@ -111,9 +117,60 @@
       <!-- /.content-header -->
 
       <!-- Main content -->
-      <section class="content">
-        
+      <section class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+          <div id="member-count" class="info-box">
+            <span class="info-box-icon bg-success"><i class="fas fa-users"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Total SWJ Members</span>
+              <span id="count-number" class="info-box-number">00</span>
+            </div>
+            <div id="loading" class="overlay dark">
+              <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+          <div id="user-count" class="info-box">
+            <span class="info-box-icon bg-info"><i class="fas fa-user-circle"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Users Visited</span>
+              <span id="user-number" class="info-box-number">00</span>
+            </div>
+            <div id="loading2" class="overlay dark">
+              <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+            </div>
+          </div>
+        </div>
       </section>
+       <!-- MAP PANE -->
+       <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">World Map</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <div class="d-md-flex">
+            <div class="p-1 flex-fill" style="overflow: hidden">
+              <!-- Map will be created here -->
+              <div id="world-map-markers" style="height: 325px; overflow: hidden">
+                <div class="map"></div>
+              </div>
+            </div>
+          </div><!-- /.d-md-flex -->
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -151,7 +208,7 @@
   <script src="/admin/plugins/jquery-mousewheel/jquery.mousewheel.js" type="text/javascript"></script>
   <script src="/admin/plugins/raphael/raphael.min.js" type="text/javascript"></script>
   <script src="/admin/plugins/jquery-mapael/jquery.mapael.min.js" type="text/javascript"></script>
-  <script src="/admin/plugins/jquery-mapael/maps/usa_states.min.js" type="text/javascript"></script>
+  <script src="/admin/plugins/jquery-mapael/maps/world_countries.min.js" type="text/javascript"></script>
   <!-- ChartJS -->
   <script src="/admin/plugins/chart.js/Chart.min.js" type="text/javascript"></script>
 

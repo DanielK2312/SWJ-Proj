@@ -1,79 +1,36 @@
 $(document).ready(function () {
-    getData()
-});
+    var url = "https://swj-capstone-staging.herokuapp.com/api/v1/person/list";
 
-// nodes = [{id = <ID>, surname = <SURNAME>}, ...]
-// nodes = [{source: <ID>, target: <ID>}, ...]
-let nodes = []
-let links = []
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
 
-// Step 1: Get list of all persons from Database
-async function getData() {
-    // Default options are marked with *
-    fetch("/api/v1/person/list", { method: 'GET' })
-        .then(data => data.json())
-        .then(json => {
-            dataToArray(json);
-        })
-}
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-// Step 2: Create a relational 2D-array
-const dataToArray = (person_array) => {
-    for (let x = 0; x < person_array.length; x++) {
-        for (let y = 0; y < person_array.length; y++) {
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            const data = JSON.parse(xhr.responseText);
+            console.log(data[0])
+            //Handling member-count info box
+            document.getElementById("count-number").innerText = data.length;
+            document.getElementById("loading").style.display = "none";
 
-            // Don't compare the same index
-            if (person_array[x].surname !== person_array[y].surname) {
-                // Get main person
-                const main_surname = person_array[x].surname;
-                let comp_proposer = person_array[y].proposer;
+            //Handling user-count info box
+                //edit here after setting up domain
+            document.getElementById("loading2").style.display = "none";
 
-                const comp_array = comp_proposer.split(" ");
-                if (comp_array[0] !== "") {
-                    comp_proposer = comp_array[comp_array.length - 1];
-
-                    if (comp_proposer.toLowerCase() === main_surname.toLowerCase()) {
-                        // Bingo, person_surname proposed other surname
-
-                        let foundX = false;
-                        let foundY = false;
-                        // Add both surnames as nodes
-                        for (let j = 0; j < nodes.length; j++) {
-                            if (person_array[x]._id === nodes[j].id) {
-                                foundX = true;
-                            }
-
-                            if (person_array[y]._id === nodes[j].id) {
-                                foundY = true;
-                            }
-                        }
-
-                        if (foundX === false) {
-                            nodes.push({
-                                id: person_array[x]._id,
-                                surname: person_array[x].surname
-                            });
-                        }
-
-                        if (foundY === false) {
-                            nodes.push({
-                                id: person_array[y]._id,
-                                surname: person_array[y].surname
-                            });
-                        }
-
-                        // Add new link
-                        links.push({
-                            source: person_array[x]._id,
-                            target: person_array[y]._id
-                        })
-                    }
+            //map logic
+            $('#world-map-markers').mapael({
+                map: {
+                  name: 'world_countries',
+                  zoom: {
+                    enabled: true,
+                    maxLevel: 10
+                  }
                 }
-
-            }
+              })
         }
-    }
-    console.log(nodes)
-    console.log(links)
-}
+    };
+    xhr.send()
+})
 
