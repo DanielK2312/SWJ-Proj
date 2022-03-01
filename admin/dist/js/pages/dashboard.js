@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var url = "https://swj-capstone-staging.herokuapp.com/api/v1/person/list";
+    var url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
