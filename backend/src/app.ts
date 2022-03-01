@@ -38,6 +38,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 // # - Security Middleware -#
+app.use(helmet())
 const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
 const options: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(options));
