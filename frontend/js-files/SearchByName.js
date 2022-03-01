@@ -5,6 +5,8 @@
 // variable
 let inputName = document.getElementById("search-name");
 let submitButton = document.getElementById("search-members");
+let numNamesEntered = 0; // 1 == first (or last) name, 2 == first and last name
+let url = "";
 // local variables to store name value
 let inputNameValue = "";
 let firstName = "";
@@ -204,16 +206,25 @@ let manualDynamicModalTriggers = (array) => {
 // event listeners
 /**
  * Checks for name value inputted and splits the name into first and last into seperate variables
+ * Need to account for (first name, last name), (last name, first name), (first name), (last name), (empty)
  */
 inputName.addEventListener("input", (e) => {
   e.preventDefault();
 
   inputNameValue = inputName.value;
   let split = inputNameValue.split(" ");
-
-  // split input into first and last name
-  firstName = split[0];
-  lastName = split[1];
+  if (split.length === 2) {
+    // if first and last name are entered, assign each to variable
+    numNamesEntered = 2;
+    firstName = split[0];
+    lastName = split[1];
+  } else if (split.length === 1) {
+    // if just last name entered, assign to variable
+    numNamesEntered = 1;
+    lastName = inputNameValue;
+  } else {
+    numNamesEntered = 0;
+  }
 });
 
 /**
@@ -230,13 +241,19 @@ submitButton.addEventListener("click", (e) => {
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
     document.getElementById("overlay").style.display = "flex";
-    // VVVV - Add variable to end of this URL!!!!!!!!!
-    var url =
-      "https://swj-capstone-staging.herokuapp.com/api/v1/person/byname/" +
-      inputNameValue;
-    // NOTICE ME!!!
 
-    var xhr = new XMLHttpRequest();
+    // decide if first name and last name, or just last name was entered
+    if (numNamesEntered === 2) {
+      url =
+        "https://swj-capstone-staging.herokuapp.com/api/v1/person/byname/" +
+        lastName;
+    } else if (numNamesEntered === 1) {
+      url =
+        "https://swj-capstone-staging.herokuapp.com/api/v1/person/byname/" +
+        inputNameValue;
+    } // #TODO add error handling for 0 names entered
+
+    let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
 
     xhr.setRequestHeader("Accept", "application/json");
