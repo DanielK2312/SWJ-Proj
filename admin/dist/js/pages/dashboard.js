@@ -18,14 +18,19 @@ $(document).ready(function () {
             //Handling user-count info box
                 //edit here after setting up domain
             document.getElementById("loading2").style.display = "none";
+
+            //map logic
+            $('#world-map-markers').mapael({
+                map: {
+                  name: 'world_countries',
+                  zoom: {
+                    enabled: true,
+                    maxLevel: 10
+                  }
+                }
+              })
         }
     };
     xhr.send()
 })
-
-$(".container").mapael({
-    map : {
-        name : "world_countries"
-    }
-});
 
