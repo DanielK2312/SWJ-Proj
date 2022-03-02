@@ -270,6 +270,7 @@ submitButton.addEventListener("click", (e) => {
 
         // process string received from xhr response into object
         jsonRes = JSON.parse(jsonRes);
+        console.log(typeof jsonRes);
 
         // takes in xhr response, returns array of objects to process
         processXhrResponse(jsonRes);

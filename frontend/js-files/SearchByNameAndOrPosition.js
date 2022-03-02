@@ -8,6 +8,7 @@ let yearDropdown = document.getElementById("year-dropdown");
 // local variables to store year nad position values
 let leadershipValue = "";
 let yearValue = "";
+let combinedLeadershipYear = [];
 
 // functions
 
@@ -135,6 +136,99 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
-    // console.log("success4");
+    document.getElementById("overlay").style.display = "flex";
+
+    url =
+      "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
+      leadershipValue;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // get rid of spinner
+        // document.getElementById("overlay").style.display = "none";
+
+        // display main modal window
+        // $("#person-modal").modal({ backdrop: "static", keyboard: false });
+        // $("#person-modal").modal("show");
+
+        // all data is loaded
+        let jsonRes = xhr.responseText;
+
+        // process string received from xhr response into object
+        jsonRes = JSON.parse(jsonRes);
+        jsonRes.forEach((element) => {
+          combinedLeadershipYear.push(element);
+        });
+      }
+    };
+    xhr.send();
+
+    url2 =
+      "https://swj-capstone.herokuapp.com/api/v1/person/bydate/" + yearValue;
+
+    let xhr2 = new XMLHttpRequest();
+    xhr2.open("GET", url2);
+
+    xhr2.setRequestHeader("Accept", "application/json");
+    xhr2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr2.onreadystatechange = function () {
+      if (xhr2.readyState === 4 && xhr2.status === 200) {
+        // get rid of spinner
+        document.getElementById("overlay").style.display = "none";
+
+        // display main modal window
+        $("#person-modal").modal({ backdrop: "static", keyboard: false });
+        $("#person-modal").modal("show");
+
+        // all data is loaded
+        let jsonRes2 = xhr2.responseText;
+
+        // process string received from xhr response into object
+        jsonRes2 = JSON.parse(jsonRes2);
+        jsonRes2.forEach((element) => {
+          combinedLeadershipYear.push(element);
+        });
+        console.log(combinedLeadershipYear);
+
+        // #TODO doesn't work correctly
+        // remove any individuals that are not part of the searched position
+        combinedLeadershipYear.forEach((element, index, object) => {
+          // look for leadership position in global array
+          if (!(element.position.indexOf(leadershipValue) > -1)) {
+            object.splice(index, 1);
+          }
+        });
+
+        console.log(combinedLeadershipYear);
+
+        // remove any individuals not part of the year range
+        combinedLeadershipYear.forEach((element, index, object) => {
+          element.date_range.forEach((element) => {
+            if (!(element === yearValue)) {
+              object.splice(index, 1);
+            }
+          });
+        });
+
+        console.log(combinedLeadershipYear);
+
+        // takes in xhr response, returns array of objects to process
+        processXhrResponse(combinedLeadershipYear);
+        // loops through array of objects and creates a button for each of them on the main modal window
+        processPersonInfoArray(personInfo);
+        // creates dynamic modal window for each individual with a button created above
+        createDynamicModals(personInfo);
+        // handles manual triggers for each modal window
+        manualDynamicModalTriggers(personInfo);
+      }
+    };
+    xhr2.send();
   }
 });
