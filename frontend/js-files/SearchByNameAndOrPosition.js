@@ -255,3 +255,9 @@ submitButton.addEventListener("click", (e) => {
     xhr2.send();
   }
 });
+
+// clear local values when modal window closes
+document.getElementById("close-person-modal").addEventListener("click", (e) => {
+  e.preventDefault();
+  clearLocal();
+});
