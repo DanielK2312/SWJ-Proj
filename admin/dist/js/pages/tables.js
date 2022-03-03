@@ -3,6 +3,8 @@ let currentID = "";
 
 $(document).ready(function () {
     var url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
+    // var url = "http://localhost:3000/api/v1/person/list";
+
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -13,7 +15,7 @@ $(document).ready(function () {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             const data = JSON.parse(xhr.responseText);
-            console.log(data[0])
+            // console.log(data[0])
             //Table Logic
             let table = $("#main-table").DataTable(
                 {
@@ -106,31 +108,39 @@ $(document).ready(function () {
                     //Submit button
                     editSubmit.addEventListener("click", (e) => {
                         e.preventDefault();
+                        // var formBody = [];
                         //Logic to Update person
+                        console.log("Made it to line 110 in tablejs")
                         var urlEdit = "https://swj-capstone.herokuapp.com/api/v1/person/update";
+                        // var urlEdit = "http://localhost:3000/api/v1/person/update";
+
 
                         var xhrEdit = new XMLHttpRequest();
                         xhrEdit.open("POST", urlEdit);
+                        var tosend = {
+                            id: memberID,
+                            updates: {
+                                editDropValue: editInputValue
+                            }
+                        }
 
                         xhrEdit.setRequestHeader("Accept", "application/json");
-                        xhrEdit.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhrEdit.setRequestHeader("Content-Type", "application/json");
 
                         xhrEdit.onreadystatechange = function () {
-                            var formBody = [];
+                            // var formBody = [];
                             if (xhrEdit.readyState === 4) {
                                 //Update Person
                                 console.log(editDropValue + ": " + editInputValue + ": " + memberID);
-                                for (var property in update) {
-                                    var encodedKey = encodeURIComponent(property);
-                                    var encodedValue = encodeURIComponent(details[property]);
-                                    formBody.push(encodedKey + "=" + encodedValue);
-                                }
-                                formBody = formBody.join("&");
-                            }
-                        };
 
-                        xhrEdit.data(formBody);
+
+                            }
+                            // xhrEdit.data([formBody]);
+
+                        };
+                        xhrEdit.send(JSON.stringify(tosend))
                     });
+
                 }
             });
 
@@ -149,36 +159,36 @@ function format(d) {
         '<button id="deleteBtn" class="btn" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
         //Edit Member Modal information
         '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span>' +
-            '<div class="flexbox-item flexbox-item-6">' +
-                '<select name="option" id="edit-dropdown" class="w3-select">' +
-                    '<option value="" selected>Select to be Edited...</option>' +
-                    '<option value="">Surname</option>' +
-                    '<option value="">First Name</option>' +
-                    '<option value="">Prefix/Title</option>' +
-                    '<option value="">Pen Name</option>' +
-                    '<option value="">DOB</option>' +
-                    '<option value="">DOD</option>' +
-                    '<option value="">Leadership Position</option>' +
-                    '<option value="">Street Address</option>' +
-                    '<option value="">Neighborhood</option>' +
-                    '<option value="">City</option>' +
-                    '<option value="">Post Code</option>' +
-                    '<option value="">Proposer</option>' +
-                    '<option value="">Org1</option>' +
-                    '<option value="">Org2</option>' +
-                    '<option value="">Org3</option>' +
-                    '<option value="">Org4</option>' +
-                    '<option value="">Org5</option>' +
-                    '<option value="">Periodicals</option>' +
-                    '<option value="">Source of Info</option>' +
-                    '<option value="">Other</option>' +
-                    '<option value="">Joined</option>' +
-                '</select>' +
-                '<form class="w3-container">' +
-                    '<input id="new-edit" class="w3-input w3-border" type="text" placeholder="New Edit...">' +
-                '</form>' +
-                '<button id="submit-edit" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Submit</button>' +
-            '</div>' +
+        '<div class="flexbox-item flexbox-item-6">' +
+        '<select name="option" id="edit-dropdown" class="w3-select">' +
+        '<option value="" selected>Select to be Edited...</option>' +
+        '<option value="">Surname</option>' +
+        '<option value="">First Name</option>' +
+        '<option value="">Prefix/Title</option>' +
+        '<option value="">Pen Name</option>' +
+        '<option value="">DOB</option>' +
+        '<option value="">DOD</option>' +
+        '<option value="">Leadership Position</option>' +
+        '<option value="">Street Address</option>' +
+        '<option value="">Neighborhood</option>' +
+        '<option value="">City</option>' +
+        '<option value="">Post Code</option>' +
+        '<option value="">Proposer</option>' +
+        '<option value="">Org1</option>' +
+        '<option value="">Org2</option>' +
+        '<option value="">Org3</option>' +
+        '<option value="">Org4</option>' +
+        '<option value="">Org5</option>' +
+        '<option value="">Periodicals</option>' +
+        '<option value="">Source of Info</option>' +
+        '<option value="">Other</option>' +
+        '<option value="">Joined</option>' +
+        '</select>' +
+        '<form class="w3-container">' +
+        '<input id="new-edit" class="w3-input w3-border" type="text" placeholder="New Edit...">' +
+        '</form>' +
+        '<button id="submit-edit" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Submit</button>' +
+        '</div>' +
         '</div></div>' +
 
         //shows Member's full name
@@ -252,8 +262,8 @@ function format(d) {
                 d.orgs[i];
             if (i != d.orgs.length - 1) {
                 memberInfo += "," + '<br>';
-            }                
-            
+            }
+
         }
         memberInfo +=
             '</td>' + '</tr>';

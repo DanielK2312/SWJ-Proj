@@ -14,12 +14,12 @@ const personRouter = express.Router();
 personRouter.get('/byname/:surname', async (req, res, next) => {
     if (req.params.surname) {
         Person.find({ "surname": { "$regex": req.params.surname, "$options": "i" } })
-        .then((result) => {
-            res.status(200).json(result);
-        })
-        .catch((err) => {
-            res.status(500).json({ err });
-        });
+            .then((result) => {
+                res.status(200).json(result);
+            })
+            .catch((err) => {
+                res.status(500).json({ err });
+            });
     }
 });
 
@@ -30,15 +30,15 @@ personRouter.get('/byname/:surname', async (req, res, next) => {
  *
  * @returns <JSON> { Person[] }
  */
- personRouter.get('/byposition/:position', async (req, res, next) => {
+personRouter.get('/byposition/:position', async (req, res, next) => {
     if (req.params.position) {
         Person.find({ "position": { "$regex": req.params.position, "$options": "i" } })
-        .then((result) => {
-            res.status(200).json(result);
-        })
-        .catch((err) => {
-            res.status(500).json({ err });
-        });
+            .then((result) => {
+                res.status(200).json(result);
+            })
+            .catch((err) => {
+                res.status(500).json({ err });
+            });
     }
 });
 
@@ -49,15 +49,15 @@ personRouter.get('/byname/:surname', async (req, res, next) => {
  *
  * @returns <JSON> { Person[] }
  */
- personRouter.get('/bydate/:date_range', async (req, res, next) => {
+personRouter.get('/bydate/:date_range', async (req, res, next) => {
     if (req.params.date_range) {
         Person.find({ "date_range": req.params.date_range })
-        .then((result) => {
-            res.status(200).json(result);
-        })
-        .catch((err) => {
-            res.status(500).json({ err });
-        });
+            .then((result) => {
+                res.status(200).json(result);
+            })
+            .catch((err) => {
+                res.status(500).json({ err });
+            });
     }
 });
 
@@ -109,11 +109,14 @@ personRouter.post('/create', isLoggedIn, (req, res, next) => {
 personRouter.post('/update', isLoggedIn, (req, res, next) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
+    console.log("Made it here in personRoute")
     const { id, updates } = req.body;
     const person = Person.findById(id);
     person.updateOne(updates)
         .then(result => {
             res.status(200).json({ status: 'success', result });
+            console.log("Made it to line 118 in personRouter.ts line 118\n")
+            console.log(result)
         })
         .catch(err => {
             res.status(500).json({ status: 'error', err })
