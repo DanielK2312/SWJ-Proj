@@ -9,6 +9,8 @@ let yearDropdown = document.getElementById("year-dropdown");
 let leadershipValue = "";
 let yearValue = "";
 let combinedLeadershipYear = [];
+let validLeadershipIndexes = [];
+let processedArr = [];
 
 // functions
 
@@ -195,19 +197,8 @@ submitButton.addEventListener("click", (e) => {
         jsonRes2.forEach((element) => {
           combinedLeadershipYear.push(element);
         });
-        console.log(combinedLeadershipYear);
 
-        // #TODO doesn't work correctly
-        // remove any individuals that are not part of the searched position
-        combinedLeadershipYear.forEach((element, index, object) => {
-          // look for leadership position in global array
-          if (!(element.position.indexOf(leadershipValue) > -1)) {
-            object.splice(index, 1);
-          }
-        });
-
-        console.log(combinedLeadershipYear);
-
+        // #TODO doesn't work
         // remove any individuals not part of the year range
         combinedLeadershipYear.forEach((element, index, object) => {
           element.date_range.forEach((element) => {
@@ -217,10 +208,23 @@ submitButton.addEventListener("click", (e) => {
           });
         });
 
-        console.log(combinedLeadershipYear);
+        // find matches for position being searched for and save in a seperate array
+        combinedLeadershipYear.forEach((element, index) => {
+          if (element.position.includes(leadershipValue)) {
+            validLeadershipIndexes.push(index);
+          }
+        });
+
+        // loop through indexes that have the valid leadership position and push them to the final processed array
+        validLeadershipIndexes.forEach((element) => {
+          processedArr.push(combinedLeadershipYear[element]);
+        });
+
+        console.log(typeof combinedLeadershipYear);
+        console.log(typeof processedArr);
 
         // takes in xhr response, returns array of objects to process
-        processXhrResponse(combinedLeadershipYear);
+        processXhrResponse(processedArr);
         // loops through array of objects and creates a button for each of them on the main modal window
         processPersonInfoArray(personInfo);
         // creates dynamic modal window for each individual with a button created above
