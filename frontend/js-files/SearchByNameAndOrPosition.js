@@ -8,11 +8,29 @@ let yearDropdown = document.getElementById("year-dropdown");
 // local variables to store year nad position values
 let leadershipValue = "";
 let yearValue = "";
+
+// variables for searching by leadership position and year
+// inital combined array
 let combinedLeadershipYear = [];
+// indexes valid for date range
+let validDates = [];
+// inital filtered array after finding elements with valid date range
+let processedDate = [];
+// filtered array containing elements with matching leadership value
 let validLeadershipIndexes = [];
+// final array ready to be run through functions
 let processedArr = [];
 
 // functions
+let clearLocal = () => {
+  combinedLeadershipYear = [];
+  validDates = [];
+  processedDate = [];
+  validLeadershipIndexes = [];
+  processedArr = [];
+  leadershipValue = "";
+  yearValue = "";
+};
 
 // event listeners
 /**
@@ -152,13 +170,6 @@ submitButton.addEventListener("click", (e) => {
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        // get rid of spinner
-        // document.getElementById("overlay").style.display = "none";
-
-        // display main modal window
-        // $("#person-modal").modal({ backdrop: "static", keyboard: false });
-        // $("#person-modal").modal("show");
-
         // all data is loaded
         let jsonRes = xhr.responseText;
 
@@ -198,18 +209,22 @@ submitButton.addEventListener("click", (e) => {
           combinedLeadershipYear.push(element);
         });
 
-        // #TODO doesn't work
-        // remove any individuals not part of the year range
-        combinedLeadershipYear.forEach((element, index, object) => {
+        // find elements with matching year range and push them to an array to keep track of the indexes
+        combinedLeadershipYear.forEach((element, index) => {
           element.date_range.forEach((element) => {
-            if (!(element === yearValue)) {
-              object.splice(index, 1);
+            if (element == yearValue) {
+              validDates.push(index);
             }
           });
         });
 
+        // loop through indexes that have valid date and push them to a processed array
+        validDates.forEach((element) => {
+          processedDate.push(combinedLeadershipYear[element]);
+        });
+
         // find matches for position being searched for and save in a seperate array
-        combinedLeadershipYear.forEach((element, index) => {
+        processedDate.forEach((element, index) => {
           if (element.position.includes(leadershipValue)) {
             validLeadershipIndexes.push(index);
           }
@@ -217,14 +232,18 @@ submitButton.addEventListener("click", (e) => {
 
         // loop through indexes that have the valid leadership position and push them to the final processed array
         validLeadershipIndexes.forEach((element) => {
-          processedArr.push(combinedLeadershipYear[element]);
+          processedArr.push(processedDate[element]);
         });
 
-        console.log(typeof combinedLeadershipYear);
-        console.log(typeof processedArr);
+        const seen = new Set();
+        const filteredArr = processedArr.filter((el) => {
+          const duplicate = seen.has(el.id);
+          seen.add(el.id);
+          return !duplicate;
+        });
 
         // takes in xhr response, returns array of objects to process
-        processXhrResponse(processedArr);
+        processXhrResponse(filteredArr);
         // loops through array of objects and creates a button for each of them on the main modal window
         processPersonInfoArray(personInfo);
         // creates dynamic modal window for each individual with a button created above
