@@ -2,7 +2,7 @@
 let currentID = "";
 
 $(document).ready(function () {
-    var url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
+    var url = "https://swj1894.org/api/v1/person/list";
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -107,7 +107,7 @@ $(document).ready(function () {
                     editSubmit.addEventListener("click", (e) => {
                         e.preventDefault();
                         //Logic to Update person
-                        var urlEdit = "https://swj-capstone.herokuapp.com/api/v1/person/update";
+                        var urlEdit = "https://swj1894.org/api/v1/person/update";
 
                         var xhrEdit = new XMLHttpRequest();
                         xhrEdit.open("POST", urlEdit);
