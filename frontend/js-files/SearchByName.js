@@ -25,13 +25,20 @@ let autoClose = () => {
 };
 
 /**
+ * reset dropdown values to default value
+ */
+let clearDropdowns = () => {
+  $("select").each(function () {
+    this.selectedIndex = 0;
+  });
+};
+
+/**
  * function resets values to default for person search submission
  */
 let clearValue = () => {
   inputName.value = "";
-  leadershipPosition.options[leadershipPosition.selectedIndex].text =
-    "Select Leadership Position...";
-  yearDropdown.options[yearDropdown.selectedIndex].text = "Select Year...";
+  clearDropdowns();
 };
 
 // reset default input values if page is refreshed

@@ -5,7 +5,7 @@
 // variables
 let leadershipPosition = document.getElementById("leadership-dropdown");
 let yearDropdown = document.getElementById("year-dropdown");
-// local variables to store year nad position values
+// local variables to store year and position values
 let leadershipValue = "";
 let yearValue = "";
 
@@ -32,23 +32,29 @@ let clearLocal = () => {
   yearValue = "";
 };
 
-// event listeners
 /**
- * extract selected leadership value and assign to local variable
+ * retrieve year value selected
  */
-leadershipPosition.addEventListener("change", (e) => {
-  e.preventDefault();
-  leadershipValue =
-    leadershipPosition.options[leadershipPosition.selectedIndex].text;
-});
+let setYear = () => {
+  yearValue = yearDropdown.options[yearDropdown.selectedIndex].text;
+};
 
 /**
- * extract selected year value and assign to local variable
+ * retrieve position value selected
  */
-yearDropdown.addEventListener("change", (e) => {
-  e.preventDefault();
+let setPosition = () => {
+  leadershipValue =
+    leadershipPosition.options[leadershipPosition.selectedIndex].text;
+};
+
+/**
+ * retrieve year and position values selected
+ */
+let setYearAndPosition = () => {
+  leadershipValue =
+    leadershipPosition.options[leadershipPosition.selectedIndex].text;
   yearValue = yearDropdown.options[yearDropdown.selectedIndex].text;
-});
+};
 
 // main event listener
 submitButton.addEventListener("click", (e) => {
@@ -61,6 +67,9 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
+    // get value of leadership position
+    setPosition();
+
     document.getElementById("overlay").style.display = "flex";
 
     url =
@@ -109,6 +118,9 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
+    // get value of year
+    setYear();
+
     document.getElementById("overlay").style.display = "flex";
 
     url =
@@ -156,6 +168,9 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
   ) {
+    // get value of leadership position and year
+    setYearAndPosition();
+
     document.getElementById("overlay").style.display = "flex";
 
     url =
@@ -181,6 +196,8 @@ submitButton.addEventListener("click", (e) => {
       }
     };
     xhr.send();
+
+    console.log(yearValue);
 
     url2 =
       "https://swj-capstone.herokuapp.com/api/v1/person/bydate/" + yearValue;
@@ -235,6 +252,7 @@ submitButton.addEventListener("click", (e) => {
           processedArr.push(processedDate[element]);
         });
 
+        // get rid of any duplicate ids from list
         const seen = new Set();
         const filteredArr = processedArr.filter((el) => {
           const duplicate = seen.has(el.id);
@@ -250,6 +268,12 @@ submitButton.addEventListener("click", (e) => {
         createDynamicModals(personInfo);
         // handles manual triggers for each modal window
         manualDynamicModalTriggers(personInfo);
+
+        console.log(combinedLeadershipYear);
+        console.log(validDates);
+        console.log(processedDate);
+        console.log(validLeadershipIndexes);
+        console.log(processedArr);
       }
     };
     xhr2.send();
@@ -260,4 +284,5 @@ submitButton.addEventListener("click", (e) => {
 document.getElementById("close-person-modal").addEventListener("click", (e) => {
   e.preventDefault();
   clearLocal();
+  clearDropdowns();
 });
