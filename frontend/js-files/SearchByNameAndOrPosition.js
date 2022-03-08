@@ -197,8 +197,6 @@ submitButton.addEventListener("click", (e) => {
     };
     xhr.send();
 
-    console.log(yearValue);
-
     url2 =
       "https://swj-capstone.herokuapp.com/api/v1/person/bydate/" + yearValue;
 
@@ -268,12 +266,6 @@ submitButton.addEventListener("click", (e) => {
         createDynamicModals(personInfo);
         // handles manual triggers for each modal window
         manualDynamicModalTriggers(personInfo);
-
-        console.log(combinedLeadershipYear);
-        console.log(validDates);
-        console.log(processedDate);
-        console.log(validLeadershipIndexes);
-        console.log(processedArr);
       }
     };
     xhr2.send();
