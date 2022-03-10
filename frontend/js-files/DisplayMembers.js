@@ -1,16 +1,70 @@
 let holdA = [];
 let holdB = [];
+let holdC = [];
+let holdD = [];
+let holdE = [];
+let holdF = [];
+let holdG = [];
+let holdH = [];
+let holdI = [];
+let holdJ = [];
+let holdK = [];
+let holdL = [];
+let holdM = [];
+let holdN = [];
+let holdO = [];
+let holdP = [];
+let holdQ = [];
+let holdR = [];
+let holdS = [];
+let holdT = [];
+let holdU = [];
+let holdV = [];
+let holdW = [];
+let holdX = [];
+let holdY = [];
+let holdZ = [];
 
 // functions
 let allocateNames = (jsonRes) => {
   jsonRes.forEach((element) => {
     switch (element.surname[0]) {
       case "A":
-        holdA.push(element);
-
+        if (element.firstname === "") {
+          console.log("here");
+          holdA.push(element.surname);
+        } else {
+          let name = element.surname + ", " + element.firstname;
+          holdA.push(name);
+        }
       case "B":
-        holdB.push(element);
-
+        if (element.firstname === "") {
+          holdB.push(element.surname);
+        } else {
+          let name = element.surname + ", " + element.firstname;
+          holdB.push(name);
+        }
+      case "C":
+        if (element.firstname === "") {
+          holdC.push(element.surname);
+        } else {
+          let name = element.surname + ", " + element.firstname;
+          holdC.push(name);
+        }
+      case "D":
+        if (element.firstname === "") {
+          holdD.push(element.surname);
+        } else {
+          let name = element.surname + ", " + element.firstname;
+          holdD.push(name);
+        }
+      case "E":
+        if (element.firstname === "") {
+          holdE.push(element.surname);
+        } else {
+          let name = element.surname + ", " + element.firstname;
+          holdE.push(name);
+        }
       default:
         break;
     }
@@ -35,7 +89,6 @@ window.addEventListener("load", () => {
       jsonRes = JSON.parse(jsonRes);
 
       allocateNames(jsonRes);
-      console.log(holdA);
     }
   };
   xhr.send();
