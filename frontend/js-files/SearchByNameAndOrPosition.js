@@ -22,6 +22,9 @@ let validLeadershipIndexes = [];
 let processedArr = [];
 
 // functions
+/**
+ * clear all local saved variables whenever modal window is closed
+ */
 let clearLocal = () => {
   combinedLeadershipYear = [];
   validDates = [];
@@ -72,9 +75,16 @@ submitButton.addEventListener("click", (e) => {
 
     document.getElementById("overlay").style.display = "flex";
 
-    url =
-      "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
-      leadershipValue;
+    // take care of council member due to data inconsistency
+    if (leadershipValue === "Council Member") {
+      url =
+        "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
+        "Councilmember";
+    } else {
+      url =
+        "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
+        leadershipValue;
+    }
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -188,7 +198,7 @@ submitButton.addEventListener("click", (e) => {
         // all data is loaded
         let jsonRes = xhr.responseText;
 
-        // process string received from xhr response into object
+        // push string received from xhr response into object
         jsonRes = JSON.parse(jsonRes);
         jsonRes.forEach((element) => {
           combinedLeadershipYear.push(element);
@@ -240,7 +250,15 @@ submitButton.addEventListener("click", (e) => {
 
         // find matches for position being searched for and save in a seperate array
         processedDate.forEach((element, index) => {
-          if (element.position.includes(leadershipValue)) {
+          // need to take care of council member case since data input was inconsistent
+          if (leadershipValue === "Council Member") {
+            if (
+              element.position.includes("Councilmember") ||
+              element.position.includes("Concilmember")
+            ) {
+              validLeadershipIndexes.push(index);
+            }
+          } else if (element.position.includes(leadershipValue)) {
             validLeadershipIndexes.push(index);
           }
         });

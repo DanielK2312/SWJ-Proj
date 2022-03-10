@@ -1,1 +1,0 @@
-let councilMember = ["Councilmember", "Concilmember"];
