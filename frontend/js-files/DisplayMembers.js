@@ -224,9 +224,12 @@ let allocateNames = (jsonRes) => {
  */
 let createDynamicLinks = (list, firstLetter) => {
   list.forEach((element) => {
+    // document.getElementById(
+    //   firstLetter
+    // ).innerHTML += `<a href="url">${element}</a><br>`;
     document.getElementById(
       firstLetter
-    ).innerHTML += `<a href="url">${element}</a><br>`;
+    ).innerHTML += `<button id="${element}" href="url">${element}</button><br>`;
   });
 };
 
