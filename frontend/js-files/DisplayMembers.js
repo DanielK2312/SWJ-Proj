@@ -1,3 +1,4 @@
+// Local Variables
 let holdA = [];
 let holdB = [];
 let holdC = [];
@@ -28,45 +29,190 @@ let holdZ = [];
 // functions
 let allocateNames = (jsonRes) => {
   jsonRes.forEach((element) => {
-    switch (element.surname[0]) {
-      case "A":
-        if (element.firstname === "") {
-          console.log("here");
-          holdA.push(element.surname);
-        } else {
-          let name = element.surname + ", " + element.firstname;
-          holdA.push(name);
-        }
-      case "B":
-        if (element.firstname === "") {
-          holdB.push(element.surname);
-        } else {
-          let name = element.surname + ", " + element.firstname;
-          holdB.push(name);
-        }
-      case "C":
-        if (element.firstname === "") {
-          holdC.push(element.surname);
-        } else {
-          let name = element.surname + ", " + element.firstname;
-          holdC.push(name);
-        }
-      case "D":
-        if (element.firstname === "") {
-          holdD.push(element.surname);
-        } else {
-          let name = element.surname + ", " + element.firstname;
-          holdD.push(name);
-        }
-      case "E":
-        if (element.firstname === "") {
-          holdE.push(element.surname);
-        } else {
-          let name = element.surname + ", " + element.firstname;
-          holdE.push(name);
-        }
-      default:
-        break;
+    let surname = element.surname[0];
+    let firstName = element.firstname;
+    if (surname === "A") {
+      if (firstName === "") {
+        holdA.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdA.push(name);
+      }
+    } else if (surname === "B") {
+      if (firstName === "") {
+        holdB.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdB.push(name);
+      }
+    } else if (surname === "C") {
+      if (firstName === "") {
+        holdC.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdC.push(name);
+      }
+    } else if (surname === "D") {
+      if (firstName === "") {
+        holdD.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdD.push(name);
+      }
+    } else if (surname === "E") {
+      if (firstName === "") {
+        holdE.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdE.push(name);
+      }
+    } else if (surname === "F") {
+      if (firstName === "") {
+        holdF.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdF.push(name);
+      }
+    } else if (surname === "G") {
+      if (firstName === "") {
+        holdG.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdG.push(name);
+      }
+    } else if (surname === "H") {
+      if (firstName === "") {
+        holdH.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdH.push(name);
+      }
+    } else if (surname === "I") {
+      if (firstName === "") {
+        holdI.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdI.push(name);
+      }
+    } else if (surname === "J") {
+      if (firstName === "") {
+        holdJ.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdJ.push(name);
+      }
+    } else if (surname === "K") {
+      if (firstName === "") {
+        holdK.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdK.push(name);
+      }
+    } else if (surname === "L") {
+      if (firstName === "") {
+        holdL.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdL.push(name);
+      }
+    } else if (surname === "M") {
+      if (firstName === "") {
+        holdM.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdM.push(name);
+      }
+    } else if (surname === "N") {
+      if (firstName === "") {
+        holdN.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdN.push(name);
+      }
+    } else if (surname === "O") {
+      if (firstName === "") {
+        holdO.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdO.push(name);
+      }
+    } else if (surname === "P") {
+      if (firstName === "") {
+        holdP.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdP.push(name);
+      }
+    } else if (surname === "Q") {
+      if (firstName === "") {
+        holdQ.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdQ.push(name);
+      }
+    } else if (surname === "R") {
+      if (firstName === "") {
+        holdR.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdR.push(name);
+      }
+    } else if (surname === "S") {
+      if (firstName === "") {
+        holdS.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdS.push(name);
+      }
+    } else if (surname === "T") {
+      if (firstName === "") {
+        holdT.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdT.push(name);
+      }
+    } else if (surname === "U") {
+      if (firstName === "") {
+        holdU.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdU.push(name);
+      }
+    } else if (surname === "V") {
+      if (firstName === "") {
+        holdV.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdV.push(name);
+      }
+    } else if (surname === "W") {
+      if (firstName === "") {
+        holdW.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdW.push(name);
+      }
+    } else if (surname === "X") {
+      if (firstName === "") {
+        holdX.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdX.push(name);
+      }
+    } else if (surname === "Y") {
+      if (firstName === "") {
+        holdY.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdY.push(name);
+      }
+    } else if (surname === "Z") {
+      if (firstName === "") {
+        holdZ.push(element.surname);
+      } else {
+        let name = element.surname + ", " + element.firstname;
+        holdZ.push(name);
+      }
     }
   });
 };
