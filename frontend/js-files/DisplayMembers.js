@@ -217,6 +217,19 @@ let allocateNames = (jsonRes) => {
   });
 };
 
+/**
+ * function takes in list of a certain last name and first letter of last name and dynamically lists out all of the members
+ * @param {List} list
+ * @param {String} firstLetter
+ */
+let createDynamicLinks = (list, firstLetter) => {
+  list.forEach((element) => {
+    document.getElementById(
+      firstLetter
+    ).innerHTML += `<a href="url">${element}</a><br>`;
+  });
+};
+
 window.addEventListener("load", () => {
   url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
 
@@ -235,6 +248,32 @@ window.addEventListener("load", () => {
       jsonRes = JSON.parse(jsonRes);
 
       allocateNames(jsonRes);
+      createDynamicLinks(holdA, "a");
+      createDynamicLinks(holdB, "b");
+      createDynamicLinks(holdC, "c");
+      createDynamicLinks(holdD, "d");
+      createDynamicLinks(holdE, "e");
+      createDynamicLinks(holdF, "f");
+      createDynamicLinks(holdG, "g");
+      createDynamicLinks(holdH, "h");
+      createDynamicLinks(holdI, "i");
+      createDynamicLinks(holdJ, "j");
+      createDynamicLinks(holdK, "k");
+      createDynamicLinks(holdL, "l");
+      createDynamicLinks(holdM, "m");
+      createDynamicLinks(holdN, "n");
+      createDynamicLinks(holdO, "o");
+      createDynamicLinks(holdP, "p");
+      createDynamicLinks(holdQ, "q");
+      createDynamicLinks(holdR, "r");
+      createDynamicLinks(holdS, "s");
+      createDynamicLinks(holdT, "t");
+      createDynamicLinks(holdU, "u");
+      createDynamicLinks(holdV, "v");
+      createDynamicLinks(holdW, "w");
+      createDynamicLinks(holdX, "x");
+      createDynamicLinks(holdY, "y");
+      createDynamicLinks(holdZ, "z");
     }
   };
   xhr.send();
