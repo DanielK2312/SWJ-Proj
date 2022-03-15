@@ -462,32 +462,16 @@ let createModal = (surname, id) => {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       let jsonRes = xhr.responseText;
-      console.log(jsonRes);
+      let current = {};
+      jsonRes = JSON.parse(jsonRes);
 
+      // find id of person we are currently searching for
       jsonRes.forEach((element) => {
         if (element._id == id) {
-          let x = element;
-          console.log(x);
+          current = element;
         }
       });
     }
-    //   // display main modal window
-    //   $("#person-modal").modal({ backdrop: "static", keyboard: false });
-    //   $("#person-modal").modal("show");
-    //   // all data is loaded
-    //   let jsonRes = xhr.responseText;
-    //   // process string received from xhr response into object
-    //   jsonRes = JSON.parse(jsonRes);
-    //   console.log(typeof jsonRes);
-    //   // takes in xhr response, returns array of objects to process
-    //   processXhrResponse(jsonRes);
-    //   // loops through array of objects and creates a button for each of them on the main modal window
-    //   processPersonInfoArray(personInfo);
-    //   // creates dynamic modal window for each individual with a button created above
-    //   createDynamicModals(personInfo);
-    //   // handles manual triggers for each modal window
-    //   manualDynamicModalTriggers(personInfo);
-    // }
   };
   xhr.send();
 };
