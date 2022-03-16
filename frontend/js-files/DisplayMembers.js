@@ -25,6 +25,7 @@ let holdW = [];
 let holdX = [];
 let holdY = [];
 let holdZ = [];
+let personInfo = [];
 
 // functions
 let allocateNames = (jsonRes) => {
@@ -35,6 +36,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdA.push(obj);
@@ -50,6 +52,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdB.push(obj);
@@ -65,6 +68,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdC.push(obj);
@@ -80,6 +84,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdD.push(obj);
@@ -95,6 +100,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdE.push(obj);
@@ -110,6 +116,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdF.push(obj);
@@ -125,6 +132,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdG.push(obj);
@@ -140,6 +148,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdH.push(obj);
@@ -155,6 +164,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdI.push(obj);
@@ -170,6 +180,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdJ.push(obj);
@@ -185,6 +196,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdK.push(obj);
@@ -200,6 +212,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdL.push(obj);
@@ -215,6 +228,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdM.push(obj);
@@ -230,6 +244,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdN.push(obj);
@@ -245,6 +260,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdO.push(obj);
@@ -260,6 +276,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdP.push(obj);
@@ -275,6 +292,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdQ.push(obj);
@@ -290,6 +308,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdR.push(obj);
@@ -305,6 +324,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdS.push(obj);
@@ -320,6 +340,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdT.push(obj);
@@ -335,6 +356,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdU.push(obj);
@@ -350,6 +372,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdV.push(obj);
@@ -365,6 +388,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdW.push(obj);
@@ -380,6 +404,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdX.push(obj);
@@ -395,6 +420,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdY.push(obj);
@@ -410,6 +436,7 @@ let allocateNames = (jsonRes) => {
       if (firstName === "") {
         let obj = {
           surname: element.surname,
+          firstName: "",
           id: element._id,
         };
         holdZ.push(obj);
@@ -439,11 +466,20 @@ let createDynamicLinks = (list, firstLetter) => {
     //   firstLetter
     // ).innerHTML += `<button onclick="renderModal('${element}')" id="${element}">${element}</button><br>`;
     let button = document.createElement("button");
+    button.setAttribute("id", `${element.id}`);
+    button.setAttribute("class", "btn-style");
     let br = document.createElement("br");
     button.innerHTML = element.surname + ", " + element.firstName;
     button.onclick = () => {
       createModal(element.surname, element.id);
+
+      $("#person-modal").modal("hide");
+      setTimeout(function () {
+        $(`#${element.id}`).modal({ backdrop: "static", keyboard: false });
+        $(`#${element.id}`).modal("show");
+      }, 100);
     };
+
     document.getElementById(firstLetter).appendChild(button);
     document.getElementById(firstLetter).appendChild(br);
   });
@@ -471,12 +507,141 @@ let createModal = (surname, id) => {
           current = element;
         }
       });
+
+      processXhrResponse(current);
+      createDynamicModals(personInfo);
     }
   };
   xhr.send();
 };
 
-renderModal = (x) => {};
+/**
+ * Functions takes in the xhr response and creates an object out of every response pushing it to an array in the case where there are multiple people
+ * @param {Object} response list of objects if there is more than one match
+ * @returns array of locally created objects to fill out possible information
+ */
+let processXhrResponse = (response) => {
+  // clear local array to avoid pushing multiple people
+  personInfo = [];
+
+  // create new object for every object in list of objects
+  let personInformation = {
+    surname: "",
+    firstname: "",
+    prefix: "",
+    pen_name: "",
+    dob: "",
+    dod: "",
+    position: "",
+    address: "",
+    neighborhood: "",
+    city: "",
+    post_code: "",
+    proposer: "",
+    orgs: "",
+    periodicals: "",
+    sources: "",
+    date_range: "",
+    _id: "",
+  };
+
+  // loop through current object
+  for (const key in response) {
+    if (Object.hasOwnProperty.call(response, key)) {
+      const searchInfo = response[key];
+
+      const keys = Object.keys(personInformation);
+
+      keys.forEach((element) => {
+        if (element == key) {
+          // store values recieved from parameter into local object
+          personInformation[element] = response[key];
+        }
+      });
+    }
+  }
+  // push the object into global array to access
+  personInfo.push(personInformation);
+
+  // return the array of objects created
+  return personInfo;
+};
+
+/**
+ * create dynamic modals for each individual returned by the search by name api
+ * @param {array} personInfoArray global array filled from search by name results
+ */
+let createDynamicModals = (personInfoArray) => {
+  document.getElementById("member-modals").innerHTML = "";
+
+  personInfoArray.forEach((element) => {
+    document.getElementById("member-modals").innerHTML += `
+    <div class="modal fade bd-example-modal-lg" id="${element._id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">${element.surname}, ${element.firstname}</h2>
+          </div>
+          <div id="person-info-body${element._id}" class="modal-body">
+          </div>
+          <div class="modal-footer">
+          <button id="dynamic-close${element._id}" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+  });
+
+  personInfoArray.forEach((element) => {
+    let myModal = $(`#${element._id}`);
+    myModal
+      .find(`#person-info-body${element._id}`)
+      .append(
+        `<p>Surname: ${element.surname}</p>`,
+        element.firstname === ""
+          ? ""
+          : `<p>First Name: ${element.firstname} </p>`,
+        element.prefix === "" ? "" : `<p>Prefix: ${element.prefix}</p>`,
+        element.pen_name === "" ? "" : `<p>Pen Name: ${element.pen_name}</p>`,
+        element.dob === "" ? "" : `<p>Date of Birth: ${element.dob}</p>`,
+        element.dod === "" ? "" : `<p>Date of Death: ${element.dod}</p>`,
+        element.position === "" ? "" : `<p>Position: ${element.position}</p>`,
+        element.address === "" ? "" : `<p>Address: ${element.address}</p>`,
+        element.neighborhood === ""
+          ? ""
+          : `<p>Neighborhood: ${element.neighborhood}</p>`,
+        element.city === "" ? "" : `<p>City: ${element.city}</p>`,
+        element.post_code === ""
+          ? ""
+          : `<p>Postal Code: ${element.post_code}</p>`,
+        element.proposer === "" ? "" : `<p>Proposer: ${element.proposer}</p>`,
+        element.orgs.length === 0
+          ? ""
+          : `<p>Organization(s): ${element.orgs}</p>`,
+        element.periodicals === ""
+          ? ""
+          : `<p>Periodicals: ${element.periodicals}</p>`,
+        element.sources === "" ? "" : `<p>Sources: ${element.sources}</p>`,
+        element.date_range.length === 0
+          ? ""
+          : `<p>Date Range(s): ${element.date_range}</p>`
+      );
+  });
+};
+
+/**
+ * handle manual modal triggers for viewing information about each individual
+ * @param {Array} array global array containing people returned from search by name api
+ */
+let manualDynamicModalTriggers = (id) => {
+  document
+    .getElementById(`dynamic-close${id}`)
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      $(`#${id}`).modal("hide");
+    });
+};
 
 window.addEventListener("load", () => {
   url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
