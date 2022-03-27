@@ -6,6 +6,7 @@ $(document).ready(function () {
 // edges = [{source: <ID>, target: <ID>}, ...]
 let nodes = []
 let edges = []
+let activated = false; 
 
 // Step 1: Get list of all persons from Database
 async function getData() {
@@ -58,8 +59,8 @@ const dataToArray = (person_array) => {
                                 // For a Circle With Radius R r = R * sqrt(random()), theta = random() * 2 * PI 
                                 // x = centerX + r * cos(theta)
                                 // y = centerY + r * sin(theta)
-                                x: (Math.random() * 2000) + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
-                                y: (Math.random() * 200) + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
+                                x: (Math.random() * 9001) - 4500 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: (Math.random() * 6000) - 3000 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
                                 color: '#007bff'
                             });
                         }
@@ -69,8 +70,8 @@ const dataToArray = (person_array) => {
                                 id: person_array[y]._id,
                                 label: person_array[y].surname,
                                 size: 1,
-                                x: (Math.random() * 2000) + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
-                                y: (Math.random() * 200) + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
+                                x: (Math.random() * 9001) - 4500 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: (Math.random() * 6000) - 3000 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
                                 color: '#007bff'
                             });
                         }
@@ -83,7 +84,7 @@ const dataToArray = (person_array) => {
                             color: '#808080',
                             type: 'arrow',
                             size: 1,
-                            // label: "Proposed By"
+                            // label: "Proposed"
 
                         })
                     }
@@ -119,6 +120,11 @@ const dataToArray = (person_array) => {
                 minNodeSize: 3,
                 maxNodeSize: 11,
                 enableEdgeHovering: false,
+                // drawLabels: false
+                nodeLabelSize: 'proportional',
+                
+                // autoRescale: ['nodePosition', 'nodeSize', 'edgeSize'],
+                // labelThreshold: 1,
             }
         }
     );
@@ -139,15 +145,19 @@ const dataToArray = (person_array) => {
     // Then we set the color scheme to make them POP! 
     s.bind('overNode', function (e) {
         var nodeId = e.data.node.id,
-            toKeep = s.graph.neighbors(nodeId);
+        toKeep = s.graph.neighbors(nodeId);
         toKeep[nodeId] = e.data.node;
 
         // If the Nodes are neighbors make them blue! Otherwise make em grey!
         s.graph.nodes().forEach(function (n) {
-            if (toKeep[n.id])
+            if (toKeep[n.id]){
                 n.color = '#007bff';
-            else
+                n.drawlabels = true;
+            }
+            else{
                 n.color = '#808080';
+                n.drawlabels = false;
+            }
         });
 
         // Do the same thing we did to our nodes for our edges!
@@ -178,5 +188,64 @@ const dataToArray = (person_array) => {
 
         //Refresh graph to update colors
         s.refresh();
+    });
+
+    s.bind('clickNode', function (e) {
+        
+        var nodeId = e.data.node.id,
+        toKeep = s.graph.neighbors(nodeId);
+        toKeep[nodeId] = e.data.node;
+
+        if (!activated){ 
+        // If the Nodes are neighbors make them blue! Otherwise make em grey!
+        s.graph.nodes().forEach(function (n) {
+            if (toKeep[n.id]) {
+                n.color = '#007bff';
+                n.drawlabels = true;
+            }
+            else {
+                n.color = '#808080';
+                n.drawlabels = false;
+                n.hidden = true;
+            }
+        });
+
+        // Do the same thing we did to our nodes for our edges!
+        s.graph.edges().forEach(function (e) {
+            if (toKeep[e.source] && toKeep[e.target]){
+                e.color = '#007bff';
+                e.label = 'Proposed';
+            }
+            else{
+                e.color = '#808080';
+                e.hidden = true;
+                e.drawlabels = false;
+                e.label = '';
+                
+            }    
+            });
+
+        //Refresh graph to update colors
+        activated = true;
+        s.refresh();
+    }
+    else{
+            s.graph.nodes().forEach(function (n) {
+                n.color = '#007bff';
+                n.hidden = false;
+            });
+
+            // Go through all edges and make them grey!
+            s.graph.edges().forEach(function (e) {
+                e.color = '#808080';
+                e.drawlabels = false;
+                e.hidden = false;
+                e.label = '';
+            });
+
+            //Refresh graph to update colors
+            activated = false;
+            s.refresh();
+    }
     });
 }
