@@ -6,7 +6,6 @@ $(document).ready(function () {
 // edges = [{source: <ID>, target: <ID>}, ...]
 let nodes = []
 let edges = []
-let activated = false; 
 
 // Step 1: Get list of all persons from Database
 async function getData() {
@@ -121,8 +120,8 @@ const dataToArray = (person_array) => {
                 maxNodeSize: 11,
                 enableEdgeHovering: false,
                 // drawLabels: false
-                nodeLabelSize: 'proportional',
-                
+                // nodeLabelSize: 'proportional',
+
                 // autoRescale: ['nodePosition', 'nodeSize', 'edgeSize'],
                 // labelThreshold: 1,
             }
@@ -135,6 +134,9 @@ const dataToArray = (person_array) => {
         edges
     }
 
+    // used for keeping track of event listners (Clicked) and if they are acitve or not. 
+    let activated = false;
+
     // Let Sigma read those lovely nodes and then refresh our canvas so they get drawn on to it. 
     s.graph.read(graph);
     s.refresh();
@@ -145,16 +147,17 @@ const dataToArray = (person_array) => {
     // Then we set the color scheme to make them POP! 
     s.bind('overNode', function (e) {
         var nodeId = e.data.node.id,
-        toKeep = s.graph.neighbors(nodeId);
+            toKeep = s.graph.neighbors(nodeId);
         toKeep[nodeId] = e.data.node;
 
         // If the Nodes are neighbors make them blue! Otherwise make em grey!
         s.graph.nodes().forEach(function (n) {
-            if (toKeep[n.id]){
+            if (toKeep[n.id]) {
                 n.color = '#007bff';
-                n.drawlabels = true;
+                n.labelWeight = 8;
+                
             }
-            else{
+            else {
                 n.color = '#808080';
                 n.drawlabels = false;
             }
@@ -190,52 +193,57 @@ const dataToArray = (person_array) => {
         s.refresh();
     });
 
+    // Create an Event Listner for when we click on a node. 
+    // We want just those connected to that node to be shown on the graph
+    // Logic is similar to bindover node above, but we choose to hide the 
+    // nodes and edges instead of just making them lighter colored. 
+    //We also apply labels to add more info to the graph. 
     s.bind('clickNode', function (e) {
-        
+
         var nodeId = e.data.node.id,
-        toKeep = s.graph.neighbors(nodeId);
+            toKeep = s.graph.neighbors(nodeId);
         toKeep[nodeId] = e.data.node;
 
-        if (!activated){ 
-        // If the Nodes are neighbors make them blue! Otherwise make em grey!
-        s.graph.nodes().forEach(function (n) {
-            if (toKeep[n.id]) {
-                n.color = '#007bff';
-                n.drawlabels = true;
-            }
-            else {
-                n.color = '#808080';
-                n.drawlabels = false;
-                n.hidden = true;
-            }
-        });
-
-        // Do the same thing we did to our nodes for our edges!
-        s.graph.edges().forEach(function (e) {
-            if (toKeep[e.source] && toKeep[e.target]){
-                e.color = '#007bff';
-                e.label = 'Proposed';
-            }
-            else{
-                e.color = '#808080';
-                e.hidden = true;
-                e.drawlabels = false;
-                e.label = '';
-                
-            }    
+        // if the clicked is not already active we want to hide nodes!
+        if (!activated) {
+            s.settings('labelThreshold', 0);
+            // If the Nodes are neighbors make them blue! Otherwise make em grey!
+            s.graph.nodes().forEach(function (n) {
+                if (toKeep[n.id]) {
+                    n.color = '#007bff';
+                    
+                }
+                else
+                    n.hidden = true;
             });
 
-        //Refresh graph to update colors
-        activated = true;
-        s.refresh();
-    }
-    else{
+            // Do the same thing we did to our nodes for our edges!
+            s.graph.edges().forEach(function (e) {
+                if (toKeep[e.source] && toKeep[e.target]) {
+                    e.color = '#007bff';
+                    e.label = 'Proposed';
+                }
+                else {
+                    e.hidden = true;
+                    e.label = '';
+                }
+            });
+
+            //Refresh graph to update colors and nodes being seen and change activated to true to keep track. 
+            activated = true;
+            s.refresh();
+        }
+        //if the nodes are already clicked we want to show all the nodes again!
+        else {
+            //un hide the nodes we hid earlier
+            s.settings('labelThreshold', 8);
             s.graph.nodes().forEach(function (n) {
                 n.color = '#007bff';
                 n.hidden = false;
+                
             });
 
-            // Go through all edges and make them grey!
+            // Go through all edges and unhide them
             s.graph.edges().forEach(function (e) {
                 e.color = '#808080';
                 e.drawlabels = false;
@@ -243,9 +251,10 @@ const dataToArray = (person_array) => {
                 e.label = '';
             });
 
-            //Refresh graph to update colors
+            //Change activated to false for future use. 
             activated = false;
+            //Refresh graph to update nodes and edges. 
             s.refresh();
-    }
+        }
     });
 }
