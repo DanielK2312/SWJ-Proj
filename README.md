@@ -479,7 +479,7 @@ Duration: 03/01/2022-03/29/2022
 #### Contributions:
 
 1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
-2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+2.  Samuel Miller, ~7 commits, ~45 hours, Worked on Admin Page, Social Graph, Table, and Excel Page.
 3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
 4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
 
