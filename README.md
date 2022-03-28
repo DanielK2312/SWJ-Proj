@@ -504,6 +504,9 @@ You can also check out the Contributions for the project by clicking on the cont
 The References for the Project are also available in the References tab!
 ![References](https://i.imgur.com/azOW4lL.png)
 
+Appendix of information for all current members
+![Member List](https://i.imgur.com/NbiBA5K.jpg)
+
 ## For Admin Members:
 
 Begin by Accessing the Admin Page at https://swj-capstone.herokuapp.com/admin/pages/login.html  
