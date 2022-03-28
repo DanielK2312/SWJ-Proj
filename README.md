@@ -419,28 +419,75 @@ Duration: 17/01/2022-01/03/2022
 | Everyones efforts were visable on the project.                                    |          Some miss-coumunication with ideas about direction of project.          |              Add more detail to the trello board to lessen confusion. |
 | We got into a good rhythm near the end and were able to make substancial progress |                                                                                  |                                                                       |
 
-### Sprint x
+### Sprint 2
 
-Duration: MM/DD/YYYY-MM/DD/YYYY
+Duration: 01/03/2022-02/08/2022
 
 #### Completed Tasks:
 
-1. Task 1
-2. Task 2
-3. ...
+1. Member Search Results displayed in modal window
+2. Admin page ability to update members
+3. Admin page ability to delete members
 
 #### Contributions:
 
-1.  Member 1, x commits, y hours, contributed in xxx
-2.  Member 2, x commits, y hours, contributed in xxx
-3.  Member 3, x commits, y hours, contributed in xxx
-4.  Member 4, x commits, y hours, contributed in xxx
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
 
 #### Sprint Retrospection:
 
-| Good | Could have been better | How to improve? |
-| ---- | :--------------------: | --------------: |
-|      |                        |                 |
+| Good                   |      Could have been better      |                                How to improve? |
+| ---------------------- | :------------------------------: | ---------------------------------------------: |
+| Task Completed on Time | Working off of too many branches | Discuss with team number of necessary branches |
+
+### Sprint 3
+
+Duration: 02/08/2022-03/01/2022
+
+#### Completed Tasks:
+
+1. Relational Graph
+2. Search by position and year
+3. Social Graph
+4. Users Present on Admin Page
+
+#### Contributions:
+
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
+
+#### Sprint Retrospection:
+
+| Good                   |        Could have been better         |                           How to improve? |
+| ---------------------- | :-----------------------------------: | ----------------------------------------: |
+| Task Completed on Time | Not Working so long on blockers alone | Discuss with team assistance with tickets |
+
+### Sprint 4
+
+Duration: 03/01/2022-03/29/2022
+
+#### Completed Tasks:
+
+1. Member List Appendix
+2. Admin Page Excel Tab
+3. Website Domain
+
+#### Contributions:
+
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
+
+#### Sprint Retrospection:
+
+| Good                   |      Could have been better      |                                                        How to improve? |
+| ---------------------- | :------------------------------: | ---------------------------------------------------------------------: |
+| Task Completed on Time | Not much Communication with team | Plan ahead to account for school breaks and tasks assigned during them |
 
 # User guide/Demo
 
