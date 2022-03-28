@@ -20,11 +20,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "/api/v1/auth/redirect",
     scope: ['profile']
 },
-    (accessToken: string, refreshToken: string, profile: any, done: any) => {
-        const tokens = {
-            accessToken,
-            refreshToken,
-        }
+    (accessToken: string, refreshToken: string, profile, done) => {
         return done(null, profile);
     }
 ));

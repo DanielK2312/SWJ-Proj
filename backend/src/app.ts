@@ -2,7 +2,6 @@ import express from 'express';
 import compression from 'compression';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import helmet from 'helmet';
 import mongoSanatize from 'express-mongo-sanitize';
 import path from 'path';
 import API from './routes/API';
@@ -14,7 +13,7 @@ import { KEY1, KEY2 } from './utils/secrets';
 const app = express();
 
 // # - Database Setup -#
-const dbURL: string = "mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ"
+const dbURL = "mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ"
 mongoose.connect(dbURL)
 .then(() => {
     console.log("connection to database established");})
@@ -41,16 +40,6 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
 const options: cors.CorsOptions = { origin: allowedOrigins };
 app.use(cors(options));
-// app.use(helmet.contentSecurityPolicy({
-//     directives: {
-//       scriptSrc: [
-//         '\'self\'',
-//         '\'unsafe-inline\'',
-//         '\'unsafe-eval\'',
-//       ],
-//       imgSrc: ['*', 'blob:', 'data:'],
-//     },
-// }));
 app.use(mongoSanatize());
 
 // # - Serve Static Pages -#
@@ -69,5 +58,5 @@ app.use('/favicon.ico', express.static(
 API(app);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log("App listening on port: " + process.env.PORT || 3000);
+    console.log("App listening on port: ", process.env.PORT || 3000);
 });

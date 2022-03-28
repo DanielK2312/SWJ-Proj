@@ -18,12 +18,13 @@ const personModel_1 = __importDefault(require("../models/personModel"));
 const personRouter = express_1.default.Router();
 /**
  * Gets one person from the database by surname.
+ *
  * @remarks
  * GET /api/v1/person/byname/:surname
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/byname/:surname', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+personRouter.get('/byname/:surname', (req, res) => {
     if (req.params.surname) {
         personModel_1.default.find({ "surname": { "$regex": req.params.surname, "$options": "i" } })
             .then((result) => {
@@ -33,15 +34,16 @@ personRouter.get('/byname/:surname', (req, res, next) => __awaiter(void 0, void 
             res.status(500).json({ err });
         });
     }
-}));
+});
 /**
  * Gets one person from the database by position.
+ *
  * @remarks
  * GET /api/v1/person/byposition/:position
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/byposition/:position', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+personRouter.get('/byposition/:position', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.position) {
         personModel_1.default.find({ "position": { "$regex": req.params.position, "$options": "i" } })
             .then((result) => {
@@ -54,12 +56,13 @@ personRouter.get('/byposition/:position', (req, res, next) => __awaiter(void 0, 
 }));
 /**
  * Gets one person from the database by date_range.
+ *
  * @remarks
  * GET /api/v1/person/bydate/:date_range
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/bydate/:date_range', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+personRouter.get('/bydate/:date_range', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.date_range) {
         personModel_1.default.find({ "date_range": req.params.date_range })
             .then((result) => {
@@ -72,12 +75,13 @@ personRouter.get('/bydate/:date_range', (req, res, next) => __awaiter(void 0, vo
 }));
 /**
  * Lists all persons from the database.
+ *
  * @remarks
  * GET /api/v1/person/list
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/list', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+personRouter.get('/list', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     personModel_1.default.find({})
         .then((result) => {
         res.status(200).json(result);
@@ -89,13 +93,14 @@ personRouter.get('/list', (req, res, next) => __awaiter(void 0, void 0, void 0, 
 }));
 /**
  * Creates a person from the database.
+ *
  * @remarks
  * POST /api/v1/person/create [SECURE ROUTE]
  *
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', authGuard_1.default, (req, res, next) => {
+personRouter.post('/create', authGuard_1.default, (req, res) => {
     // Surname is the only required field to create a person.
     if (req.body.surname) {
         const newPerson = new personModel_1.default(req.body);
@@ -105,6 +110,7 @@ personRouter.post('/create', authGuard_1.default, (req, res, next) => {
 });
 /**
  * Updates a person from the database.
+ *
  * @remarks
  * POST /api/v1/person/update [SECURE ROUTE]
  *
@@ -112,7 +118,7 @@ personRouter.post('/create', authGuard_1.default, (req, res, next) => {
  * @param req.body.updates - JSON of only updated fields
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.post('/update', authGuard_1.default, (req, res, next) => {
+personRouter.post('/update', authGuard_1.default, (req, res) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
     console.log("Made it here in personRoute");
@@ -130,13 +136,14 @@ personRouter.post('/update', authGuard_1.default, (req, res, next) => {
 });
 /**
  * Deletes a person from the database.
+ *
  * @remarks
  * GET /api/v1/person/delete [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.get('/delete', authGuard_1.default, (req, res, next) => {
+personRouter.get('/delete', authGuard_1.default, (req, res) => {
     const id = req.body;
     const person = personModel_1.default.findById(id);
     person.deleteOne()

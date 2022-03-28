@@ -41,16 +41,6 @@ app.use(express_1.default.urlencoded({ extended: true }));
 const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
 const options = { origin: allowedOrigins };
 app.use((0, cors_1.default)(options));
-// app.use(helmet.contentSecurityPolicy({
-//     directives: {
-//       scriptSrc: [
-//         '\'self\'',
-//         '\'unsafe-inline\'',
-//         '\'unsafe-eval\'',
-//       ],
-//       imgSrc: ['*', 'blob:', 'data:'],
-//     },
-// }));
 app.use((0, express_mongo_sanitize_1.default)());
 // # - Serve Static Pages -#
 app.use('/admin', authGuard_1.default, express_1.default.static(path_1.default.join(__dirname, '/../../admin')));
@@ -59,6 +49,6 @@ app.use('/favicon.ico', express_1.default.static(path_1.default.join(__dirname, 
 // API Routes
 (0, API_1.default)(app);
 app.listen(process.env.PORT || 3000, () => {
-    console.log("App listening on port: " + process.env.PORT || 3000);
+    console.log("App listening on port: ", process.env.PORT || 3000);
 });
 //# sourceMappingURL=app.js.map

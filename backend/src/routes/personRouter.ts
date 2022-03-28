@@ -6,12 +6,13 @@ const personRouter = express.Router();
 
 /**
  * Gets one person from the database by surname.
+ *
  * @remarks
  * GET /api/v1/person/byname/:surname
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/byname/:surname', async (req, res, next) => {
+personRouter.get('/byname/:surname', (req, res) => {
     if (req.params.surname) {
         Person.find({ "surname": { "$regex": req.params.surname, "$options": "i" } })
             .then((result) => {
@@ -25,12 +26,13 @@ personRouter.get('/byname/:surname', async (req, res, next) => {
 
 /**
  * Gets one person from the database by position.
+ *
  * @remarks
  * GET /api/v1/person/byposition/:position
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/byposition/:position', async (req, res, next) => {
+personRouter.get('/byposition/:position', async (req, res) => {
     if (req.params.position) {
         Person.find({ "position": { "$regex": req.params.position, "$options": "i" } })
             .then((result) => {
@@ -44,12 +46,13 @@ personRouter.get('/byposition/:position', async (req, res, next) => {
 
 /**
  * Gets one person from the database by date_range.
+ *
  * @remarks
  * GET /api/v1/person/bydate/:date_range
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/bydate/:date_range', async (req, res, next) => {
+personRouter.get('/bydate/:date_range', async (req, res) => {
     if (req.params.date_range) {
         Person.find({ "date_range": req.params.date_range })
             .then((result) => {
@@ -64,12 +67,13 @@ personRouter.get('/bydate/:date_range', async (req, res, next) => {
 
 /**
  * Lists all persons from the database.
+ *
  * @remarks
  * GET /api/v1/person/list
  *
  * @returns <JSON> { Person[] }
  */
-personRouter.get('/list', async (req, res, next) => {
+personRouter.get('/list', async (req, res) => {
     Person.find({})
         .then((result) => {
             res.status(200).json(result);
@@ -82,13 +86,14 @@ personRouter.get('/list', async (req, res, next) => {
 
 /**
  * Creates a person from the database.
+ *
  * @remarks
  * POST /api/v1/person/create [SECURE ROUTE]
  *
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', isLoggedIn, (req, res, next) => {
+personRouter.post('/create', isLoggedIn, (req, res) => {
     // Surname is the only required field to create a person.
     if (req.body.surname) {
         const newPerson = new Person(req.body);
@@ -99,6 +104,7 @@ personRouter.post('/create', isLoggedIn, (req, res, next) => {
 
 /**
  * Updates a person from the database.
+ *
  * @remarks
  * POST /api/v1/person/update [SECURE ROUTE]
  *
@@ -106,7 +112,7 @@ personRouter.post('/create', isLoggedIn, (req, res, next) => {
  * @param req.body.updates - JSON of only updated fields
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.post('/update', isLoggedIn, (req, res, next) => {
+personRouter.post('/update', isLoggedIn, (req, res) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
     console.log("Made it here in personRoute")
@@ -125,13 +131,14 @@ personRouter.post('/update', isLoggedIn, (req, res, next) => {
 
 /**
  * Deletes a person from the database.
+ *
  * @remarks
  * GET /api/v1/person/delete [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.get('/delete', isLoggedIn, (req, res, next) => {
+personRouter.get('/delete', isLoggedIn, (req, res) => {
     const id = req.body;
     const person = Person.findById(id);
     person.deleteOne()

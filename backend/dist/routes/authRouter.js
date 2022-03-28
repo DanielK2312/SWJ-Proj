@@ -21,10 +21,6 @@ passport_1.default.use(new GoogleStrategy({
     callbackURL: "/api/v1/auth/redirect",
     scope: ['profile']
 }, (accessToken, refreshToken, profile, done) => {
-    const tokens = {
-        accessToken,
-        refreshToken,
-    };
     return done(null, profile);
 }));
 authRouter.get('/', passport_1.default.authenticate('google'));
