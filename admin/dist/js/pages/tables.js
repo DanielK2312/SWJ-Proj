@@ -35,10 +35,12 @@ $(document).ready(function () {
                         { data: 'joined' }
                     ],
                     "responsive": true,
-                    "lengthChange": false,
+                    // "lengthChange": false,
                     "autoWidth": false,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#main-table_wrapper .col-md-6:eq(0)');
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                    
+                }).buttons().container().appendTo('#card-title');
 
             //Child Dropdown Logic
             $('#main-table tbody').on('click', 'td.dt-control', function () {
