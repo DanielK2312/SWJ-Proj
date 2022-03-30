@@ -26,7 +26,7 @@ const personRouter = express_1.default.Router();
  */
 personRouter.get('/byname/:surname', (req, res) => {
     if (req.params.surname) {
-        personModel_1.default.find({ "surname": { "$regex": req.params.surname, "$options": "i" } })
+        personModel_1.default.find({ surname: { $regex: req.params.surname, $options: 'i' } })
             .then((result) => {
             res.status(200).json(result);
         })
@@ -45,7 +45,7 @@ personRouter.get('/byname/:surname', (req, res) => {
  */
 personRouter.get('/byposition/:position', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.position) {
-        personModel_1.default.find({ "position": { "$regex": req.params.position, "$options": "i" } })
+        personModel_1.default.find({ position: { $regex: req.params.position, $options: 'i' } })
             .then((result) => {
             res.status(200).json(result);
         })
@@ -64,7 +64,7 @@ personRouter.get('/byposition/:position', (req, res) => __awaiter(void 0, void 0
  */
 personRouter.get('/bydate/:date_range', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.date_range) {
-        personModel_1.default.find({ "date_range": req.params.date_range })
+        personModel_1.default.find({ date_range: req.params.date_range })
             .then((result) => {
             res.status(200).json(result);
         })
@@ -100,7 +100,7 @@ personRouter.get('/list', (req, res) => __awaiter(void 0, void 0, void 0, functi
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', authGuard_1.default, (req, res) => {
+personRouter.post('/create', (req, res) => {
     // Surname is the only required field to create a person.
     if (req.body.surname) {
         const newPerson = new personModel_1.default(req.body);
@@ -121,13 +121,13 @@ personRouter.post('/create', authGuard_1.default, (req, res) => {
 personRouter.post('/update', authGuard_1.default, (req, res) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
-    console.log("Made it here in personRoute");
+    console.log('Made it here in personRoute');
     const { id, updates } = req.body;
     const person = personModel_1.default.findById(id);
     person.updateOne(updates)
         .then(result => {
         res.status(200).json({ status: 'success', result });
-        console.log("Made it to line 118 in personRouter.ts line 118\n");
+        console.log('Made it to line 118 in personRouter.ts line 118\n');
         console.log(result);
     })
         .catch(err => {

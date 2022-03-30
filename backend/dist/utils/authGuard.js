@@ -5,9 +5,9 @@ const isLoggedIn = (req, res, next) => {
     if (req.session.user) {
         next();
     }
-    else if (req.path === '/pages/login.html'
-        || (basePath === 'plugins')
-        || (basePath === 'dist')) {
+    else if (req.path === '/pages/login.html' ||
+        (basePath === 'plugins') ||
+        (basePath === 'dist')) {
         next();
     }
     else {

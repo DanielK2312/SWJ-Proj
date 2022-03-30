@@ -18,7 +18,7 @@ passport_1.default.deserializeUser((user, done) => {
 passport_1.default.use(new GoogleStrategy({
     clientID: secrets_1.GOOGLE_CLIENT_ID,
     clientSecret: secrets_1.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/v1/auth/redirect",
+    callbackURL: '/api/v1/auth/redirect',
     scope: ['profile']
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
