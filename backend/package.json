@@ -7,8 +7,8 @@
     "clean": "rimraf dist/*",
     "lint": "eslint -c .eslintrc.js --ext .ts --fix src/",
     "tsc": "tsc",
-    "build": "npm-run-all --silent clean lint tsc",
-    "dev:start": "npm-run-all --silent build start",
+    "build": "npm-run-all --silent clean tsc",
+    "dev:start": "npm-run-all --silent lint build start",
     "dev": "nodemon --watch src -e ts --exec npm run dev:start",
     "start": "npm run build && node dist/app.js"
   },
@@ -24,6 +24,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "helmet": "^5.0.2",
     "mongoose": "^6.2.9",
+    "multer": "^1.4.4",
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
     "validator": "^13.7.0"

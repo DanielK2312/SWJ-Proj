@@ -139,13 +139,7 @@
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
-            <div class="row">
-              <!-- <input type="file" id="myFile" value="filename" />
-              <input type="submit" /> -->
-              <input type=file oninput="pic.src=window.URL.createObjectURL(this.files[0])">
-            <img id="pic" />
-            </div>
-            <!-- <div id="drop-area">
+            <div id="drop-area">
               <form class="my-form">
                 <p>
                   Upload an Excel file with the file dialog or by dragging and
@@ -154,12 +148,12 @@
                 <input
                   type="file"
                   id="fileElem"
-                  multiple accept="image/*" 
+                  accept="*.xlsx" 
                 />
                 <label class="button" for="fileElem">Select some files</label>
               </form>
 
-          </div> -->
+          </div>
           <!-- /.container-fluid -->
         </section>
         <!-- /.content -->

@@ -2,14 +2,14 @@
 let currentID = "";
 
 $(document).ready(function () {
-    var url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
+    var url = "https://swj1894.org/api/v1/person/list";
     // var url = "http://localhost:3000/api/v1/person/list";
 
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
 
-    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Accept", "application/json; charset=utf-8'");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -113,8 +113,7 @@ $(document).ready(function () {
                         // var formBody = [];
                         //Logic to Update person
                         console.log("Made it to line 110 in tablejs")
-                        var urlEdit = "https://swj-capstone.herokuapp.com/api/v1/person/update";
-                        // var urlEdit = "http://localhost:3000/api/v1/person/update";
+                        var urlEdit = "https://swj1894.org/api/v1/person/update";
 
 
                         var xhrEdit = new XMLHttpRequest();
@@ -126,16 +125,14 @@ $(document).ready(function () {
                             }
                         }
 
-                        xhrEdit.setRequestHeader("Accept", "application/json");
-                        xhrEdit.setRequestHeader("Content-Type", "application/json");
+                        xhrEdit.setRequestHeader("Accept", "application/json; charset=utf-8'");
+                        xhrEdit.setRequestHeader("Content-Type", "application/json; charset=utf-8'");
 
                         xhrEdit.onreadystatechange = function () {
                             // var formBody = [];
                             if (xhrEdit.readyState === 4) {
                                 //Update Person
                                 console.log(editDropValue + ": " + editInputValue + ": " + memberID);
-
-
                             }
                             // xhrEdit.data([formBody]);
 
