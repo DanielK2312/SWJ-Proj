@@ -15,17 +15,10 @@ passport.deserializeUser((user: any, done) => {
 })
 
 passport.use(new GoogleStrategy({
-<<<<<<< HEAD
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://swj1894.org/api/v1/auth/redirect",
-    scope: ['profile']
-=======
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: '/api/v1/auth/redirect',
   scope: ['profile']
->>>>>>> sprint4
 },
 (accessToken: string, refreshToken: string, profile, done) => {
   return done(null, profile)

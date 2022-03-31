@@ -39,31 +39,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // # - Security Middleware -#
-<<<<<<< HEAD
-const allowedOrigins = [
-    'http://localhost:3000', 
-    'https://swj1894.org', 
-    'https://beta.swj1894.org'
-];
-const options: cors.CorsOptions = { origin: allowedOrigins };
-app.use(cors(options));
-// app.use(helmet.contentSecurityPolicy({
-//     directives: {
-//       scriptSrc: [
-//         '\'self\'',
-//         '\'unsafe-inline\'',
-//         '\'unsafe-eval\'',
-//       ],
-//       imgSrc: ['*', 'blob:', 'data:'],
-//     },
-// }));
-app.use(mongoSanatize());
-=======
 const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com']
 const options: cors.CorsOptions = { origin: allowedOrigins }
 app.use(cors(options))
 app.use(mongoSanatize())
->>>>>>> sprint4
 
 // # - Serve Static Pages -#
 app.use('/admin', authGuard, express.static(

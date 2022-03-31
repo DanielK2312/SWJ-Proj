@@ -250,16 +250,9 @@ submitButton.addEventListener("click", (e) => {
     // decide if first name and last name, or just last name was entered
     if (numNamesEntered === 2) {
       url =
-<<<<<<< HEAD
-        "https://swj1894.org/api/v1/person/byname/" +
-        lastName;
-=======
         "https://swj-capstone.herokuapp.com/api/v1/person/byname/" + lastName;
->>>>>>> sprint4
     } else if (numNamesEntered === 1) {
-      url =
-        "https://swj1894.org/api/v1/person/byname/" +
-        inputNameValue;
+      url = "https://swj1894.org/api/v1/person/byname/" + inputNameValue;
     } // #TODO add error handling for 0 names entered
 
     let xhr = new XMLHttpRequest();
