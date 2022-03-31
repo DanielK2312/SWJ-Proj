@@ -58,8 +58,8 @@ const dataToArray = (person_array) => {
                                 // For a Circle With Radius R r = R * sqrt(random()), theta = random() * 2 * PI 
                                 // x = centerX + r * cos(theta)
                                 // y = centerY + r * sin(theta)
-                                x: (Math.random() * 2000) + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
-                                y: (Math.random() * 200) + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
+                                x: (Math.random() * 9001) - 4500 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: (Math.random() * 6000) - 3000 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
                                 color: '#007bff'
                             });
                         }
@@ -69,8 +69,8 @@ const dataToArray = (person_array) => {
                                 id: person_array[y]._id,
                                 label: person_array[y].surname,
                                 size: 1,
-                                x: (Math.random() * 2000) + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
-                                y: (Math.random() * 200) + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
+                                x: (Math.random() * 9001) - 4500 + person_array.length * Math.sqrt(Math.random()) * Math.cos(Math.random() * 2 * Math.PI),
+                                y: (Math.random() * 6000) - 3000 + person_array.length * Math.sqrt(Math.random()) * Math.sin(Math.random() * 2 * Math.PI),
                                 color: '#007bff'
                             });
                         }
@@ -83,7 +83,7 @@ const dataToArray = (person_array) => {
                             color: '#808080',
                             type: 'arrow',
                             size: 1,
-                            // label: "Proposed By"
+                            // label: "Proposed"
 
                         })
                     }
@@ -119,6 +119,11 @@ const dataToArray = (person_array) => {
                 minNodeSize: 3,
                 maxNodeSize: 11,
                 enableEdgeHovering: false,
+                // drawLabels: false
+                // nodeLabelSize: 'proportional',
+
+                // autoRescale: ['nodePosition', 'nodeSize', 'edgeSize'],
+                // labelThreshold: 1,
             }
         }
     );
@@ -128,6 +133,9 @@ const dataToArray = (person_array) => {
         nodes,
         edges
     }
+
+    // used for keeping track of event listners (Clicked) and if they are acitve or not. 
+    let activated = false;
 
     // Let Sigma read those lovely nodes and then refresh our canvas so they get drawn on to it. 
     s.graph.read(graph);
@@ -144,10 +152,15 @@ const dataToArray = (person_array) => {
 
         // If the Nodes are neighbors make them blue! Otherwise make em grey!
         s.graph.nodes().forEach(function (n) {
-            if (toKeep[n.id])
+            if (toKeep[n.id]) {
                 n.color = '#007bff';
-            else
+                n.labelWeight = 8;
+                
+            }
+            else {
                 n.color = '#808080';
+                n.drawlabels = false;
+            }
         });
 
         // Do the same thing we did to our nodes for our edges!
@@ -178,5 +191,70 @@ const dataToArray = (person_array) => {
 
         //Refresh graph to update colors
         s.refresh();
+    });
+
+    // Create an Event Listner for when we click on a node. 
+    // We want just those connected to that node to be shown on the graph
+    // Logic is similar to bindover node above, but we choose to hide the 
+    // nodes and edges instead of just making them lighter colored. 
+    //We also apply labels to add more info to the graph. 
+    s.bind('clickNode', function (e) {
+
+        var nodeId = e.data.node.id,
+            toKeep = s.graph.neighbors(nodeId);
+        toKeep[nodeId] = e.data.node;
+
+        // if the clicked is not already active we want to hide nodes!
+        if (!activated) {
+            s.settings('labelThreshold', 0);
+            // If the Nodes are neighbors make them blue! Otherwise make em grey!
+            s.graph.nodes().forEach(function (n) {
+                if (toKeep[n.id]) {
+                    n.color = '#007bff';
+                    
+                }
+                else
+                    n.hidden = true;
+            });
+
+            // Do the same thing we did to our nodes for our edges!
+            s.graph.edges().forEach(function (e) {
+                if (toKeep[e.source] && toKeep[e.target]) {
+                    e.color = '#007bff';
+                    e.label = 'Proposed';
+                }
+                else {
+                    e.hidden = true;
+                    e.label = '';
+                }
+            });
+
+            //Refresh graph to update colors and nodes being seen and change activated to true to keep track. 
+            activated = true;
+            s.refresh();
+        }
+        //if the nodes are already clicked we want to show all the nodes again!
+        else {
+            //un hide the nodes we hid earlier
+            s.settings('labelThreshold', 8);
+            s.graph.nodes().forEach(function (n) {
+                n.color = '#007bff';
+                n.hidden = false;
+                
+            });
+
+            // Go through all edges and unhide them
+            s.graph.edges().forEach(function (e) {
+                e.color = '#808080';
+                e.drawlabels = false;
+                e.hidden = false;
+                e.label = '';
+            });
+
+            //Change activated to false for future use. 
+            activated = false;
+            //Refresh graph to update nodes and edges. 
+            s.refresh();
+        }
     });
 }

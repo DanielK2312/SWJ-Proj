@@ -25,9 +25,10 @@ Dr. Laura Vorachek
 
 University of Dayton English Department
 
-300 College Park Dayton, Ohio 45469  
+300 College Park Dayton, Ohio 45469
 
-# Project Management Information  
+# Project Management Information
+
 Management board (private access): [Trello Board](https://trello.com/b/tJ4jWeiA/cps-491-dr-vorachek)
 
 Source code repository (private access): [Github](https://github.com/udayton-swj)
@@ -36,29 +37,32 @@ Project homepage (public): [Team 5 Webpage](https://cps491s22-team5.bitbucket.io
 
 ## Revision History
 
-| Date       |   Version     |  Description |
-|------------|:-------------:|-------------:|
-| 28/12/2021 |  0.0          | Gain access to established code repository  |
-| 10/01/2022 |  0.0          | Redesign code repository to make more readable   |
-| 17/01/2022 |  1.0          | Deploy Code base to Heroku.   |
-| 24/01/2022 |  1.1          | Design Homepage to Clients Specifications   |
-| 31/01/2022 |  1.2          | Implement base Admin page   |
-| 07/01/2022 |  1.3          | Add additional features to homepage and admin page   |
-| 14/01/2022 |  1.3          | Formatted the Home page |
-| 17/01/2022 |  1.4          | Created an admin page |
-| 24/01/2022 |  1.4          | Added dropdown to admin page |
-| 25/01/2022 |  1.5          | Move to GitHub and added information to dropdown |
-| 26/01/2022 |  1.5          | Edit/ delete memeber button |
-| 01/02/2022 |  1.6          | Fixed Merge Conflicts |
-| 10/02/2022 |  1.6          | implemented basics for APIs |
-| 14/02/2022 |  1.6          | implemented API for Searching for Members |
-| 18/02/2022 |  1.6          | Can search for members |
-| 21/02/2022 |  1.6          | Created Nodes for linking members |
-| 26/02/2022 |  1.6          | Added in Social Realtion Graph |
-| 28/02/2022 |  1.6          | Added in Statisitics to Admin Dashboard |
+| Date       | Version |                                        Description |
+| ---------- | :-----: | -------------------------------------------------: |
+| 28/12/2021 |   0.0   |         Gain access to established code repository |
+| 10/01/2022 |   0.0   |     Redesign code repository to make more readable |
+| 17/01/2022 |   1.0   |                        Deploy Code base to Heroku. |
+| 24/01/2022 |   1.1   |          Design Homepage to Clients Specifications |
+| 31/01/2022 |   1.2   |                          Implement base Admin page |
+| 07/01/2022 |   1.3   | Add additional features to homepage and admin page |
+| 14/01/2022 |   1.3   |                            Formatted the Home page |
+| 17/01/2022 |   1.4   |                              Created an admin page |
+| 24/01/2022 |   1.4   |                       Added dropdown to admin page |
+| 25/01/2022 |   1.5   |   Move to GitHub and added information to dropdown |
+| 26/01/2022 |   1.5   |                        Edit/ delete memeber button |
+| 01/02/2022 |   1.6   |                              Fixed Merge Conflicts |
+| 10/02/2022 |   1.6   |                        implemented basics for APIs |
+| 14/02/2022 |   1.6   |          implemented API for Searching for Members |
+| 18/02/2022 |   1.6   |                             Can search for members |
+| 21/02/2022 |   1.6   |                  Created Nodes for linking members |
+| 26/02/2022 |   1.6   |                     Added in Social Relation Graph |
+| 28/02/2022 |   1.6   |             Added in Statistics to Admin Dashboard |
+| 01/03/2022 |   1.7   |                   Changing Domain from Heroku Site |
+| 08/03/2022 |   1.8   |             Search by Leadership Position and Year |
+| 16/03/2022 |   1.9   |                               Member List Appendix |
+| 25/03/2022 |   2.0   |                         Admin Page Excel Input Tab |
 
 # Overview
-
 
 ![Overview Architecture](https://i.imgur.com/cAV6USh.jpg)
 
@@ -72,7 +76,6 @@ Map networks of social and professional support among female journalists
 Recover a more detailed history of the early years of the SWJ (Society of Women Journalists)  
 Centralize and make more widely accessible SWJ membership lists
 
-
 # High-level Requirements
 
 1. Update Admin page to allow entries to be editable
@@ -85,7 +88,7 @@ Centralize and make more widely accessible SWJ membership lists
 
 # Use cases
 
-![Use Cases](https://i.imgur.com/6mFGRUQ.png)  
+![Use Cases](https://i.imgur.com/6mFGRUQ.png)
 
 ### 1. Access Webpage
 
@@ -126,7 +129,7 @@ As an Application User, I want to search the websites database for a certain mem
 
 #### Brief Use Case Description
 
-User/Actor Query the website/database for a member(s) based on a certain year. 
+User/Actor Query the website/database for a member(s) based on a certain year.
 
 ### Use Case Diagram Query Name
 
@@ -149,7 +152,7 @@ As an Application User, I want to search the websites database for a certain mem
 
 #### Brief Use Case Description
 
-User/Actor Query the website/database for a member(s) based on a name or part of a name.  
+User/Actor Query the website/database for a member(s) based on a name or part of a name.
 
 ### Use Case Diagram Query Year
 
@@ -161,7 +164,7 @@ Actor: Normal User and Admin
 
 #### User Story
 
-As an Application User, I want to search the websites database for a certain member(s) based on their leadership position  
+As an Application User, I want to search the websites database for a certain member(s) based on their leadership position
 
 #### Acceptance Criteria
 
@@ -174,11 +177,11 @@ As an Application User, I want to search the websites database for a certain mem
 
 User/Actor Access the website at the link and is able to view the webpages contents and begin to use the websites features
 
-### Use Case Diagram Query Leadership Position  
+### Use Case Diagram Query Leadership Position
 
 ![Use Case Access Webpage](https://i.imgur.com/Swvaddz.png)
 
-### 5. Access the Admin page 
+### 5. Access the Admin page
 
 Actor: Admin
 
@@ -201,14 +204,13 @@ The Admin Wants to access the admin webpage so they can edit the information on 
 
 ![Use Case Access Admin page](https://i.imgur.com/n6FIvxz.png)
 
-
 ### 6. Edit the infomation of a member from the Admin page
 
 Actor: Admin
 
 #### User Story
 
-As the Admin I want to edit the infomation of a member on the website  
+As the Admin I want to edit the infomation of a member on the website
 
 #### Acceptance Criteria
 
@@ -220,20 +222,19 @@ As the Admin I want to edit the infomation of a member on the website
 
 #### Brief Use Case Description
 
-Admin wants to edit the information of a current member on the website. 
+Admin wants to edit the information of a current member on the website.
 
 ### Use Case Diagram Edit Member
 
-![Use Case Edit Member](https://i.imgur.com/QiEaSwG.png)  
+![Use Case Edit Member](https://i.imgur.com/QiEaSwG.png)
 
- 
 ### 7. Upload A photo for a member
 
 Actor: Admin
 
 #### User Story
 
-As the Admin I want to add in a photo for a member on the website. 
+As the Admin I want to add in a photo for a member on the website.
 
 #### Acceptance Criteria
 
@@ -248,10 +249,9 @@ As the Admin I want to add in a photo for a member on the website.
 
 The Admin wants to add a photo to a members information section
 
-### Use Case Diagram Add photo 
+### Use Case Diagram Add photo
 
 ![Use Case Add photo](https://i.imgur.com/2YYLFhE.png)
-
 
 ### 8. Delete a member from the website
 
@@ -259,7 +259,7 @@ Actor: Admin
 
 #### User Story
 
-As the Admin I want to remove a member from the website. 
+As the Admin I want to remove a member from the website.
 
 #### Acceptance Criteria
 
@@ -267,11 +267,11 @@ As the Admin I want to remove a member from the website.
 1. User must have access to the website
 2. User must input have admin access to the website
 3. User must input the information of the member they want to Delete
-``` 
+```
 
 #### Brief Use Case Description
 
-The Admin will be able to remove members and information from the website when they need to. 
+The Admin will be able to remove members and information from the website when they need to.
 
 ### Use Case Remove Member
 
@@ -283,7 +283,7 @@ Actor: Admin
 
 #### User Story
 
-As the Admin I want to add a member to the website. 
+As the Admin I want to add a member to the website.
 
 #### Acceptance Criteria
 
@@ -295,55 +295,58 @@ As the Admin I want to add a member to the website.
 
 #### Brief Use Case Description
 
-The Admin will be able to add members and information from the website when they need to. 
+The Admin will be able to add members and information from the website when they need to.
 
 ### Use Case Add Member
 
 ![Use Case Add Memeber](https://i.imgur.com/58ZCxUh.png)
 
-
-
 # System Analysis
-Our System is based around the basic operation of web development where we have an established front end that communicates 
-with a backend server to relay information that is coming from the user. Then we have the backend witch communicates with 
-a database and relays the quiered information from the database back to the front end to dispaly results to the user. 
+
+Our System is based around the basic operation of web development where we have an established front end that communicates
+with a backend server to relay information that is coming from the user. Then we have the backend witch communicates with
+a database and relays the quiered information from the database back to the front end to dispaly results to the user.
 
 # System Design
 
 _(Start from Sprint 1, keep updating)_
 
 ## Use-Case Realization
+
 Users are able to access the website by using the correct link. Should the have the qualification, one can also access the admin page. In the Admin page, users are able to see all the information in the database, see other various statistics, and edit or delete members.
 
 ## Database
 
 We are using MongoDB to store our data that is converted from an Excelsheet.  
-Then we are using APIs and javascript to access the information stored in the Database before displaying it to the users.  
-
+Then we are using APIs and javascript to access the information stored in the Database before displaying it to the users.
 
 ## User Interface
+
 ![Homepage](https://i.imgur.com/F20aLGR.jpg)
 
-For the UI we are using CSS and HTML to style the webpage and recieve user input.  
+For the UI we are using CSS and HTML to style the webpage and recieve user input.
+
 # Implementation
 
-For our implementation our team is using HTML, Javascript, and CSS to develop our project.   
+For our implementation our team is using HTML, Javascript, and CSS to develop our project.  
 Tools we are using include: Heroku for Deployment, Github for code managment, and MongoDB for the Database.
-We are using a Scrum style development approach were we meet daily to discuss what needs to be done, what progress has been made since the previous meeting, and what we have planned for the next 24 hours.   
-To help with our Scrum development we are utilizing Trello to stay organized and keep track of what tasks need to be done and by who.   
+We are using a Scrum style development approach were we meet daily to discuss what needs to be done, what progress has been made since the previous meeting, and what we have planned for the next 24 hours.  
+To help with our Scrum development we are utilizing Trello to stay organized and keep track of what tasks need to be done and by who.
 
-For the frontend of our project we are utilizing HTML and Javacript to get input fromt the user and to display differnt items when requested. 
+For the frontend of our project we are utilizing HTML and Javacript to get input fromt the user and to display differnt items when requested.
 
-For the backend of our project we are using Javascript to query our database to retrieve infomration when requested by the frontend. 
+For the backend of our project we are using Javascript to query our database to retrieve infomration when requested by the frontend.
 
-For testing of our application we are using a CICD Pipeline to push our changes to a staging application hosted on Heroku Servers. Here we can view what we are doing and the implementation so far in the project before pushing final changes to the public website.   
+For testing of our application we are using a CICD Pipeline to push our changes to a staging application hosted on Heroku Servers. Here we can view what we are doing and the implementation so far in the project before pushing final changes to the public website.
 
 Specify the development approach of your team, including programming languages, database, development, testing, and deployment environments.
 
 ## Site
+
 Was able to create a website that scales with different window sizes while also having all the information needed. Includes tabs that take the user to different links in order to see Contributors and References. Includes a dropdown for years.
 
 ## Admin Page
+
 Created a page that lists all the current information about SWJ members. Uses a dropdown in order to see all the information.
 
 # Technology
@@ -352,11 +355,9 @@ We will be using a SCRUM style development approach. Currently it is seperated i
 The technologies we will be woking with are HTML/CSS (Frameworks), JavaScript, Node.js, MongoDB, Heroku, and Docker.  
 This is an ongoing project that we will be taking over from previous students in Capstone II. We will be continuing to update the website according to Dr. Vorachek's guidance and wishes.
 
-
 ## Deployment
 
-Our System will be deployed to the cloud based application platform Heroku. Which allows us to remotly run and operate our application. 
-
+Our System will be deployed to the cloud based application platform Heroku. Which allows us to remotly run and operate our application.
 
 # Impacts
 
@@ -365,18 +366,18 @@ These technologies have also been used so far in the projects development and ar
 
 # Software Process Management
 
-
 Trello Board Overview
-(Update here) 
+(Update here)
 ![Spring 2022 Timeline on Trello](https://i.imgur.com/G1M94t0.png)
-Our Team has Opted for longer sprints to allow ample time for trickier tasks that will need more time to complete.  
+Our Team has Opted for longer sprints to allow ample time for trickier tasks that will need more time to complete.
+
 ## Scrum process
 
 ### Sprint 0
 
 Duration: 10/01/2022-16/01/2022
 
-#### Completed Tasks: 
+#### Completed Tasks:
 
 1. Become Familiar With the new Code Base.
 2. Refactor the Code Base to make it easier to work with
@@ -384,70 +385,118 @@ Duration: 10/01/2022-16/01/2022
 4. Set up Heroku Docker Pipeline for deployment
 5. Convert Excel Sheets to MongoDB
 
-#### Contributions: 
+#### Contributions:
 
 1.  Daniel Kosmin, 13 hours, contributed in Refactoring the Frontend
 2.  Gabe Hoban, 13 hours, contributed in Refactoring the Backend
 3.  Samantha Adrian, 11 hours, contributed in Deployment to Heroku
-4.  Samuel Miller,  11 hours, contributed in Refactoring the Frontend, Readme and docker deployment. 
+4.  Samuel Miller, 11 hours, contributed in Refactoring the Frontend, Readme and docker deployment.
 
 ### Sprint 1
 
 Duration: 17/01/2022-01/03/2022
 
-#### Completed Tasks: 
+#### Completed Tasks:
 
-1. Redesign Homepage Astetic 
+1. Redesign Homepage Astetic
 2. Add Seperated Homepage Content
 3. Add Admin Page
 4. Link Database to Admin Page
 5. Add Functionality to Admin Page
 
-#### Contributions: 
+#### Contributions:
 
-1.  Daniel Kosmin,   ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
-2.  Samuel Miller,   ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
 3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
-4.  Gabriel Hoban,   ~30 commits, ~35 hours, contributed in Developing the Admin Page and Managing the Database
+4.  Gabriel Hoban, ~30 commits, ~35 hours, contributed in Developing the Admin Page and Managing the Database
 
 #### Sprint Retrospection:
 
-| Good                                                         |                                           Could have been better                                           |                                                           How to improve? |
-| ------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------: |
-| We were able to meet/exceed the client sexpectations on what she wanted done.     | There was idile time when waiting for other parts of the project to be finished.                           |      Make sure during meetings we are asking for help with struggle areas.|
-| Everyones efforts were visable on the project.                                    | Some miss-coumunication with ideas about direction of project.                                               |       Add more detail to the trello board to lessen confusion.            |
-| We got into a good rhythm near the end and were able to make substancial progress |                                                                                                            |                                                                           |
+| Good                                                                              |                              Could have been better                              |                                                       How to improve? |
+| --------------------------------------------------------------------------------- | :------------------------------------------------------------------------------: | --------------------------------------------------------------------: |
+| We were able to meet/exceed the client sexpectations on what she wanted done.     | There was idile time when waiting for other parts of the project to be finished. | Make sure during meetings we are asking for help with struggle areas. |
+| Everyones efforts were visable on the project.                                    |          Some miss-coumunication with ideas about direction of project.          |              Add more detail to the trello board to lessen confusion. |
+| We got into a good rhythm near the end and were able to make substancial progress |                                                                                  |                                                                       |
 
-### Sprint x
+### Sprint 2
 
-Duration: MM/DD/YYYY-MM/DD/YYYY
+Duration: 01/03/2022-02/08/2022
 
-#### Completed Tasks: 
+#### Completed Tasks:
 
-1. Task 1
-2. Task 2
-3. ...
+1. Member Search Results displayed in modal window
+2. Admin page ability to update members
+3. Admin page ability to delete members
 
-#### Contributions: 
+#### Contributions:
 
-1.  Member 1, x commits, y hours, contributed in xxx
-2.  Member 2, x commits, y hours, contributed in xxx
-3.  Member 3, x commits, y hours, contributed in xxx
-4.  Member 4, x commits, y hours, contributed in xxx
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
 
-#### Sprint Retrospection: 
+#### Sprint Retrospection:
 
-| Good     |   Could have been better    |  How to improve?  |
-|----------|:---------------------------:|------------------:|
-|          |                             |                   |
+| Good                   |      Could have been better      |                                How to improve? |
+| ---------------------- | :------------------------------: | ---------------------------------------------: |
+| Task Completed on Time | Working off of too many branches | Discuss with team number of necessary branches |
+
+### Sprint 3
+
+Duration: 02/08/2022-03/01/2022
+
+#### Completed Tasks:
+
+1. Relational Graph
+2. Search by position and year
+3. Social Graph
+4. Users Present on Admin Page
+
+#### Contributions:
+
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~23 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
+
+#### Sprint Retrospection:
+
+| Good                   |        Could have been better         |                           How to improve? |
+| ---------------------- | :-----------------------------------: | ----------------------------------------: |
+| Task Completed on Time | Not Working so long on blockers alone | Discuss with team assistance with tickets |
+
+### Sprint 4
+
+Duration: 03/01/2022-03/29/2022
+
+#### Completed Tasks:
+
+1. Member List Appendix
+2. Admin Page Excel Tab
+3. Website Domain
+
+#### Contributions:
+
+1.  Daniel Kosmin, ~30 commits, ~65 hours, contributed in Frontend development with the main homepage
+2.  Samuel Miller, ~7 commits, ~45 hours, Worked on Admin Page, Social Graph, Table, and Excel Page.
+3.  Samantha Adrian, ~24 commits, ~55 hours, contributed in Adding Functionality to the Admin Page and developing the Admin Page
+4.  Gabriel Hoban, ~30 commits, ~55 hours, contributed in Developing the Admin Page and Managing the Database
+
+#### Sprint Retrospection:
+
+| Good                   |      Could have been better      |                                                        How to improve? |
+| ---------------------- | :------------------------------: | ---------------------------------------------------------------------: |
+| Task Completed on Time | Not much Communication with team | Plan ahead to account for school breaks and tasks assigned during them |
 
 # User guide/Demo
 
-## For Regular Members: 
+## For Regular Members:
+
 Begin by Accesses the website at https://swj-capstone.herokuapp.com/  
 ![Homepage](https://i.imgur.com/zUQFVeD.jpg)
 
-After accessing the homepage feel free to explore around and discover the History of the Society of Womens Journalists, by searching for names, leadership positions and year!  
+After accessing the homepage feel free to explore around and discover the History of the Society of Womens Journalists, by searching for names, leadership positions and year!
 
 You can also check out the Contributions for the project by clicking on the contriutor tab!
 ![Contributions](https://i.imgur.com/Siu9YdU.png)
@@ -455,14 +504,16 @@ You can also check out the Contributions for the project by clicking on the cont
 The References for the Project are also available in the References tab!
 ![References](https://i.imgur.com/azOW4lL.png)
 
+Appendix of information for all current members
+![Member List](https://i.imgur.com/NbiBA5K.jpg)
 
-## For Admin Members: 
+## For Admin Members:
 
 Begin by Accessing the Admin Page at https://swj-capstone.herokuapp.com/admin/pages/login.html  
 ![Admin login](https://i.imgur.com/wclGkfj.png)
 After you have logged in you will be redirected to the Admin Homepage  
 ![Admin Homepage](https://i.imgur.com/NgcYTIx.png)
-At the Admin Homepage you can view the database of members and add new members. 
+At the Admin Homepage you can view the database of members and add new members.
 ![Admin Tables](https://i.imgur.com/5eBzPbT.png)
 Create Member(Below)
 ![Admin Add Member](https://i.imgur.com/oxOtbZq.png)
@@ -472,6 +523,6 @@ Add in information about Members
 ![Edit Button](https://i.imgur.com/jbgyOVX.png)
 (Start from Sprint 1, keep updating)
 
-# Acknowledgments 
+# Acknowledgments
 
 Thank you to Dr. Vorachek and Dr. Phung for supporting our work and supplying a fun and interactive project to advance our skills in web development

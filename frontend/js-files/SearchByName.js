@@ -25,13 +25,20 @@ let autoClose = () => {
 };
 
 /**
+ * reset dropdown values to default value
+ */
+let clearDropdowns = () => {
+  $("select").each(function () {
+    this.selectedIndex = 0;
+  });
+};
+
+/**
  * function resets values to default for person search submission
  */
 let clearValue = () => {
   inputName.value = "";
-  leadershipPosition.options[leadershipPosition.selectedIndex].text =
-    "Select Leadership Position...";
-  yearDropdown.options[yearDropdown.selectedIndex].text = "Select Year...";
+  clearDropdowns();
 };
 
 // reset default input values if page is refreshed
@@ -40,7 +47,7 @@ window.onload = function () {
 };
 
 /**
- * Functions takes in the chr response and created and object out of every response pushing it to an array in the case where there are multiple people
+ * Functions takes in the xhr response and creates an object out of every response pushing it to an array in the case where there are multiple people
  * @param {Object} response list of objects if there is more than one match
  * @returns array of locally created objects to fill out possible information
  */
@@ -123,8 +130,6 @@ let createDynamicModals = (personInfoArray) => {
         <div class="modal-content">
           <div class="modal-header">
             <h2 class="modal-title" id="exampleModalLabel">${element.surname}, ${element.firstname}</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            </button>
           </div>
           <div id="person-info-body${element._id}" class="modal-body">
           </div>
@@ -245,8 +250,12 @@ submitButton.addEventListener("click", (e) => {
     // decide if first name and last name, or just last name was entered
     if (numNamesEntered === 2) {
       url =
+<<<<<<< HEAD
         "https://swj1894.org/api/v1/person/byname/" +
         lastName;
+=======
+        "https://swj-capstone.herokuapp.com/api/v1/person/byname/" + lastName;
+>>>>>>> sprint4
     } else if (numNamesEntered === 1) {
       url =
         "https://swj1894.org/api/v1/person/byname/" +
@@ -261,8 +270,10 @@ submitButton.addEventListener("click", (e) => {
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
+        // get rid of spinner
         document.getElementById("overlay").style.display = "none";
 
+        // display main modal window
         $("#person-modal").modal({ backdrop: "static", keyboard: false });
         $("#person-modal").modal("show");
 
@@ -271,10 +282,14 @@ submitButton.addEventListener("click", (e) => {
 
         // process string received from xhr response into object
         jsonRes = JSON.parse(jsonRes);
-        // send object to function to get array of object with info
+
+        // takes in xhr response, returns array of objects to process
         processXhrResponse(jsonRes);
+        // loops through array of objects and creates a button for each of them on the main modal window
         processPersonInfoArray(personInfo);
+        // creates dynamic modal window for each individual with a button created above
         createDynamicModals(personInfo);
+        // handles manual triggers for each modal window
         manualDynamicModalTriggers(personInfo);
       }
     };
@@ -316,13 +331,7 @@ submitButton.addEventListener("click", (e) => {
   }
 }); // end submit button event listener
 
-// manually open and close main search modal
-// document.getElementById("search-members").addEventListener("click", (e) => {
-//   e.preventDefault();
-//   $("#person-modal").modal({ backdrop: "static", keyboard: false });
-//   $("#person-modal").modal("show");
-// });
-
+// manually trigger closing of main search modal
 document.getElementById("close-person-modal").addEventListener("click", (e) => {
   e.preventDefault();
   $("#person-modal").modal("hide");

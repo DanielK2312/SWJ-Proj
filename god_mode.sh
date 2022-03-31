@@ -12,7 +12,7 @@ BPurple='\033[1;35m'      # Bold Purple
 Color_Off='\033[0m'       # Text Reset
 
 # Not building my broken version
-docker build -t swj-capstone-staging . 
+docker buildx build --platform linux/amd64 -t swj-capstone-staging .
 echo -e "[1/3] ${Green}Docker built image successfully.${Color_Off}"
 heroku container:push web -a swj-capstone-staging  
 echo -e "[2/3] ${Green}Heroku uploaded image successfully.${Color_Off}"

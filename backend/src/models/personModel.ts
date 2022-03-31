@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const personSchema = new mongoose.Schema(
   {
@@ -6,103 +6,103 @@ const personSchema = new mongoose.Schema(
       {
         type: String,
         required: false,
-        trim: true,
+        trim: true
       }
     ],
     surname: {
       type: String,
       required: true,
       unique: false,
-      trim: true,
+      trim: true
     },
     firstname: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     prefix: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     pen_name: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     dob: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     dod: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     position: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     address: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     neighborhood: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     city: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     post_code: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     proposer: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     orgs: [
       {
         type: String,
         required: false,
-        trim: true,
-      },
+        trim: true
+      }
     ],
     periodicals: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     sources: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     other: {
       type: String,
       required: false,
-      trim: true,
+      trim: true
     },
     joined: {
       type: String,
       required: false,
-      trim: true,
-    },
+      trim: true
+    }
   },
   {
     timestamps: true,
     collection: 'people'
   }
-);
+)
 
-const Person = mongoose.model('Person', personSchema);
-export default Person;
+const Person = mongoose.model('Person', personSchema)
+export default Person

@@ -197,6 +197,7 @@
   justify-content: center;
   background-color: black;
   overflow: auto;
+  height: 100%;
 }
 
 .copyright-block {

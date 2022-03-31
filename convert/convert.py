@@ -56,6 +56,14 @@ def createArrays(people):
         people[index].update({ 'orgs': orgs })
     return people
 
+def mergeDates(date_list, date):
+    last_index = len(date_list) - 1
+    if date_list[last_index].split('-')[1] == date.split('-')[0]:
+        date_list[last_index] = date_list[last_index].split('-')[0] + "-" + date.split('-')[1]
+    else:
+        date_list.append(date)
+    return date_list
+    
 def mergePerson(index):
     # global people
     for o_index in range(len(people)):
@@ -63,12 +71,17 @@ def mergePerson(index):
             if index == o_index:
                 pass
             elif people[index]['surname'] == people[o_index]['surname'] and people[index]['firstname'] == people[o_index]['firstname']:
-                if type(people[index]['date_range']) != list:
+                if not isinstance(people[index]['date_range'], list):
                     date_range = []
                     date_range.append(people[index]['date_range'])
                     people[index]['date_range'] = date_range
                 if not people[o_index]['date_range'] in people[index]['date_range']:
-                    people[index]['date_range'].append(people[o_index]['date_range'])
+                    if isinstance(people[o_index]['date_range'], list):
+                        for date in people[o_index]['date_range']:
+                            if not date in people[index]['date_range']:
+                                people[index]['date_range'] = mergeDates(people[index]['date_range'], date)
+                    else:
+                        people[index]['date_range'] = mergeDates(people[index]['date_range'], people[o_index]['date_range'])
                 if not people[o_index]['prefix'] in people[index]['prefix']:
                     if people[index]['prefix'] == '':
                         people[index]['prefix'] += people[o_index]['prefix']
@@ -155,6 +168,7 @@ def upload():
         URL = "http://localhost:3000/api/v1/person/create"
         data = people[index]
         r = requests.post(url = URL, data = data)
+        print(r)
 
 def main():
     global people
@@ -167,11 +181,15 @@ def main():
 
     for index in range(len(people)):
         mergePerson(index)
+        
+    for index in range(len(people)):
+        if not isinstance(people[index]['date_range'], list):
+            people[index]['date_range'] = [people[index]['date_range']]
 
     upload()
 
     formatted = json.dumps(people, indent=4)
-    print(formatted)
+    # print(formatted)
 
 if __name__=="__main__":
     main()
