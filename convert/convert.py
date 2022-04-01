@@ -3,7 +3,6 @@ import pandas
 import json
 import helper
 import requests
-import time
 
 columns = helper.columns
 people = []
@@ -38,7 +37,7 @@ def formatRaw(range_index, raw_json):
                 person.update(column)
             except:
                 formatted = json.dumps(raw_json, indent=4)
-                print(formatted)
+                # print(formatted)
         column = {
             "date_range": helper.date_ranges[range_index]
         }
@@ -189,7 +188,7 @@ def main():
     upload()
 
     formatted = json.dumps(people, indent=4)
-    # print(formatted)
+    print(formatted)
 
 if __name__=="__main__":
     main()
