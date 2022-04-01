@@ -1,199 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Cache-Control" content="no-cache"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <title>SWJ Home</title>
-  <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="alerts.css">
-  <link rel="stylesheet" href="modal.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.css" integrity="sha512-Ef5r/bdKQ7JAmVBbTgivSgg3RM+SLRjwU0cAgySwTSv4+jYcVeDukMp+9lZGWT78T4vCUxgT3g+E8t7uabwRuw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-  
-  <!-- spinner -->
-  <div id="overlay">
-    <div class="w-100 d-flex justify-content-center align-items-center">
-      <div class="spinner"></div>
-    </div>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <title>SWJ Home</title>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-MWXEF0VKDB"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <!-- Navbar -->
-  <div class="w3-bar w3-dark-grey">
-    <a href="index.html" class="link-one w3-bar-item w3-button w3-mobile w3-grey w3-padding-16 w3-large" style="width:25%">Home</a>
-    <a href="Contributors.html" class="w3-bar-item w3-button w3-mobile w3-padding-16 w3-large" style="width:25%">Contributors</a>
-    <a href="References.html" class="w3-bar-item w3-button w3-mobile w3-padding-16 w3-large" style="width:25%">References</a>
-    <a href="MembersList.html" class="w3-bar-item w3-button w3-mobile w3-padding-16 w3-large" style="width: 25%;">SWJ Members</a>
-  </div>
+      gtag("config", "G-MWXEF0VKDB");
+    </script>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="alerts.css" />
+    <link rel="stylesheet" href="modal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/w3-css/4.1.0/w3.css"
+      integrity="sha512-Ef5r/bdKQ7JAmVBbTgivSgg3RM+SLRjwU0cAgySwTSv4+jYcVeDukMp+9lZGWT78T4vCUxgT3g+E8t7uabwRuw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- spinner -->
+    <div id="overlay">
+      <div class="w-100 d-flex justify-content-center align-items-center">
+        <div class="spinner"></div>
+      </div>
+    </div>
 
-  <div class="header">
-    <div class="flexbox-item flexbox-item-1">
-      <p class="item-1-text">Society of Women Journalists, 1894 - 1914</p>
+    <!-- Navbar -->
+    <div class="w3-bar w3-dark-grey">
+      <a
+        href="index.html"
+        class="link-one w3-bar-item w3-button w3-mobile w3-grey w3-padding-16 w3-large"
+        style="width: 25%"
+        >Home</a
+      >
+      <a
+        href="Contributors.html"
+        class="w3-bar-item w3-button w3-mobile w3-padding-16 w3-large"
+        style="width: 25%"
+        >Contributors</a
+      >
+      <a
+        href="References.html"
+        class="w3-bar-item w3-button w3-mobile w3-padding-16 w3-large"
+        style="width: 25%"
+        >References</a
+      >
+      <a
+        href="MembersList.html"
+        class="w3-bar-item w3-button w3-mobile w3-padding-16 w3-large"
+        style="width: 25%"
+        >SWJ Members</a
+      >
     </div>
-    <div class="flexbox-item flexbox-item-2">
-      <p class="item-2-text">Search for members by:</p>
-    </div>
-    <div class="flexbox-item flexbox-item-3">
-      <input id="search-name" class="w3-input w3-border" type="text" placeholder="Enter First(optional) and Last Name...">
-    </div>
-    <p class="opacity">OR</p>
-    <div class="flexbox-item flexbox-item-6">
-      <select name="option" id="leadership-dropdown" class="w3-select">
-        <option value="" selected>Select Leadership Position...</option>
-        <option value="">President</option>
-        <option value="">Vice President</option>
-        <option value="">Council Member</option>
-        <option value="">Treasurer</option>
-        <option value="">Chairman of Council</option>
-        <option value="">Vice Chairman of Council</option>
-        <option value="">American Secretary</option>
-        <option value="">Australian Secretary</option>
-        <option value="">Canadian Secretary</option>
-        <option value="">French Secretary</option>
-        <option value="">German Secretary</option>
-        <option value="">Indian Secretary</option>
-        <option value="">Irish Secretary</option>
-        <option value="">Italian Secretary</option>
-        <option value="">New Zealand Secretary</option>
-        <option value="">Paris Secretary</option>
-        <option value="">Peking Secretary</option>
-        <option value="">Rome Secretary</option>
-        <option value="">Scottish Secretary</option>
-        <option value="">Swedish Secretary</option>
-        <option value="">American Secretary</option>
-      </select>
-    </div>
-    <p class="opacity">OR</p>
-    <div class="flexbox-item flexbox-item-4">
-      <select name="option" id="year-dropdown" class="w3-select">
-        <option value="" selected>Select Year...</option>
-        <option value="">1894-1895</option>
-        <option value="">1895-1896</option>
-        <option value="">1896-1897</option>
-        <option value="">1897-1898</option>
-        <option value="">1898-1899</option>
-        <option value="">1899-1900</option>
-        <option value="">1900-1901</option>
-        <option value="">1901-1902</option>
-        <option value="">1902-1903</option>
-        <option value="">1903-1904</option>
-        <option value="">1904-1905</option>
-        <option value="">1905-1906</option>
-        <option value="">1906-1907</option>
-        <option value="">1907-1908</option>
-        <option value="">1908-1909</option>
-        <option value="">1909-1910</option>
-        <option value="">1910-1911</option>
-        <option value="">1911-1912</option>
-        <option value="">1912-1913</option>
-        <option value="">1913-1914</option>
-        <option value="">1914-1915</option>
-      </select>
-    </div>
-    <!-- button opens modal below when searched -->
-    <div class="flexbox-item flexbox-item-5">
-      <button id="search-members" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Search</button>
-    </div>
-  </div>
 
-  <!-- container for dynamic modals -->
-  <div id="dynamic-modals">
-  </div>
+    <div class="header">
+      <div class="flexbox-item flexbox-item-1">
+        <p class="item-1-text">Society of Women Journalists, 1894 - 1914</p>
+      </div>
+      <div class="flexbox-item flexbox-item-2">
+        <p class="item-2-text">Search for members by:</p>
+      </div>
+      <div class="flexbox-item flexbox-item-3">
+        <input
+          id="search-name"
+          class="w3-input w3-border"
+          type="text"
+          placeholder="Enter First(optional) and Last Name..."
+        />
+      </div>
+      <p class="opacity">OR</p>
+      <div class="flexbox-item flexbox-item-6">
+        <select name="option" id="leadership-dropdown" class="w3-select">
+          <option value="" selected>Select Leadership Position...</option>
+          <option value="">President</option>
+          <option value="">Vice President</option>
+          <option value="">Council Member</option>
+          <option value="">Treasurer</option>
+          <option value="">Chairman of Council</option>
+          <option value="">Vice Chairman of Council</option>
+          <option value="">American Secretary</option>
+          <option value="">Australian Secretary</option>
+          <option value="">Canadian Secretary</option>
+          <option value="">French Secretary</option>
+          <option value="">German Secretary</option>
+          <option value="">Indian Secretary</option>
+          <option value="">Irish Secretary</option>
+          <option value="">Italian Secretary</option>
+          <option value="">New Zealand Secretary</option>
+          <option value="">Paris Secretary</option>
+          <option value="">Peking Secretary</option>
+          <option value="">Rome Secretary</option>
+          <option value="">Scottish Secretary</option>
+          <option value="">Swedish Secretary</option>
+          <option value="">American Secretary</option>
+        </select>
+      </div>
+      <p class="opacity">OR</p>
+      <div class="flexbox-item flexbox-item-4">
+        <select name="option" id="year-dropdown" class="w3-select">
+          <option value="" selected>Select Year...</option>
+          <option value="">1894-1895</option>
+          <option value="">1895-1896</option>
+          <option value="">1896-1897</option>
+          <option value="">1897-1898</option>
+          <option value="">1898-1899</option>
+          <option value="">1899-1900</option>
+          <option value="">1900-1901</option>
+          <option value="">1901-1902</option>
+          <option value="">1902-1903</option>
+          <option value="">1903-1904</option>
+          <option value="">1904-1905</option>
+          <option value="">1905-1906</option>
+          <option value="">1906-1907</option>
+          <option value="">1907-1908</option>
+          <option value="">1908-1909</option>
+          <option value="">1909-1910</option>
+          <option value="">1910-1911</option>
+          <option value="">1911-1912</option>
+          <option value="">1912-1913</option>
+          <option value="">1913-1914</option>
+          <option value="">1914-1915</option>
+        </select>
+      </div>
+      <!-- button opens modal below when searched -->
+      <div class="flexbox-item flexbox-item-5">
+        <button
+          id="search-members"
+          class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large"
+        >
+          Search
+        </button>
+      </div>
+    </div>
 
+    <!-- container for dynamic modals -->
+    <div id="dynamic-modals"></div>
 
-  
-  <!-- Modal -->
-  <div class="modal fade bd-example-modal-md" id="person-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md" role="document">
-      <div id="cont" class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
-        </div>
-        <div id="person-info-body" class="modal-body">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="close-person-modal">Close</button>
+    <!-- Modal -->
+    <div
+      class="modal fade bd-example-modal-md"
+      id="person-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-md" role="document">
+        <div id="cont" class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Search Results</h2>
+          </div>
+          <div id="person-info-body" class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="close-person-modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="w3-container">
-    <!-- alert -->
-    <div id="alert-message" class="w3-panel w3-red w3-display-container">
-      <span id="error-alert" class="w3-button w3-large w3-display-topright">x</span>
-      <h3>Error!</h3>
-      <p>Please make sure you are searching by Name, Leadership Position, Year, or Leadership Position and Year</p>
+    <div class="w3-container">
+      <!-- alert -->
+      <div id="alert-message" class="w3-panel w3-red w3-display-container">
+        <span id="error-alert" class="w3-button w3-large w3-display-topright"
+          >x</span
+        >
+        <h3>Error!</h3>
+        <p>
+          Please make sure you are searching by Name, Leadership Position, Year,
+          or Leadership Position and Year
+        </p>
+      </div>
     </div>
-  </div>
 
-  <div class="body-flexbox">
-    <div class="body-child-1">
-      <h1 class="about-header ">About</h1>
-      <p class="about-header-one bold no-margin left-margin right-margin">History of the Society of Woman Journalists (SWJ)</p>
-      <p class="about-body-one no-margin left-margin right-margin">The SWJ was formed in the spring of 1894 by J. S. Wood, editor and publisher of The Gentlewoman. Charlotte Humphry, who wrote under the pen name “Madge” for Truth, was the first president, and Mary Frances Billington, Mrs. Talbot Coke, Lady Colin Campbell, Mrs. Frank Leslie, and Mrs. Arthur Stannard were among the first Vice Presidents. Founded at a time when most press clubs and organizations either excluded women or admitted them only grudgingly, the SWJ offered considerable benefits to members. In addition to space to work, the organization provided a literary advisor to read manuscripts, a lawyer to help negotiate contracts, and numerous networking opportunities through its regular teas, president’s receptions, and lecture series. Though membership fell considerably during World War I, as paper shortages prompted periodicals to furlough staff, by 1945 the organization had rebounded. In 1951, the organization changed its name to the <a class=link href="https://www.swwj.co.uk/" >Society of Women Writers and Journalists</a> to reflect its expanding scope. It continues to support women writers today.</p>
-      
-      <p class="about-header-two bold no-margin top left-margin right-margin">About this Project</p>
-      <p class="about-project-text-1 no-margin left-margin right-margin">This site is a research database of membership in the Society of Women Journalists between 1894 and 1914. It is a searchable, free online resource that currently offers the ability to:</p>
-      <ul class="list-one no-margin left-margin right-margin">
-        <li>Search by member name</li>
-        <li>Search by leadership position</li>
-        <li>Search year of membership</li>
-      </ul>
+    <div class="body-flexbox">
+      <div class="body-child-1">
+        <h1 class="about-header">About</h1>
+        <p class="about-header-one bold no-margin left-margin right-margin">
+          History of the Society of Woman Journalists (SWJ)
+        </p>
+        <p class="about-body-one no-margin left-margin right-margin">
+          The SWJ was formed in the spring of 1894 by J. S. Wood, editor and
+          publisher of The Gentlewoman. Charlotte Humphry, who wrote under the
+          pen name “Madge” for Truth, was the first president, and Mary Frances
+          Billington, Mrs. Talbot Coke, Lady Colin Campbell, Mrs. Frank Leslie,
+          and Mrs. Arthur Stannard were among the first Vice Presidents. Founded
+          at a time when most press clubs and organizations either excluded
+          women or admitted them only grudgingly, the SWJ offered considerable
+          benefits to members. In addition to space to work, the organization
+          provided a literary advisor to read manuscripts, a lawyer to help
+          negotiate contracts, and numerous networking opportunities through its
+          regular teas, president’s receptions, and lecture series. Though
+          membership fell considerably during World War I, as paper shortages
+          prompted periodicals to furlough staff, by 1945 the organization had
+          rebounded. In 1951, the organization changed its name to the
+          <a class="link" href="https://www.swwj.co.uk/"
+            >Society of Women Writers and Journalists</a
+          >
+          to reflect its expanding scope. It continues to support women writers
+          today.
+        </p>
 
-      <p class="no-margin top left-margin right-margin">
-        This project was created in order to: 
-      </p>
-      <ul class="list-one no-margin left-margin right-margin">
-        <li>Recover the identities of women working as journalists at the turn of the twentieth century</li>
-        <li>Map networks of social and professional support among female journalists</li>
-        <li>Recover a more detailed history of the early years of the SWJ</li>
-        <li>Centralize and make more widely accessible SWJ membership lists</li>
-      </ul>
+        <p class="about-header-two bold no-margin top left-margin right-margin">
+          About this Project
+        </p>
+        <p class="about-project-text-1 no-margin left-margin right-margin">
+          This site is a research database of membership in the Society of Women
+          Journalists between 1894 and 1914. It is a searchable, free online
+          resource that currently offers the ability to:
+        </p>
+        <ul class="list-one no-margin left-margin right-margin">
+          <li>Search by member name</li>
+          <li>Search by leadership position</li>
+          <li>Search year of membership</li>
+        </ul>
 
-      <p class="no-margin top left-margin right-margin">
-        Membership lists are drawn from the SWJ Annual Reports published between 1898 and 1915. Incomplete runs of the Annual Reports can be found at the British Library, the Bodleian Library, the New York Public Library, and the Toronto Public Library. I have not been able to locate Annual Reports for the first four years of the organization’s existence or for its twentieth year, 1913-1914. I draw on contemporary reports in The Journalist about the formation of the SWJ to reconstitute a membership list for its first year, 1894-1895.
-      </p>
-      <p class="no-margin top left-margin right-margin">
-        The database and website were created by a team of faculty and students at the University of Dayton. The project facilitates student and faculty research on women writers from the turn of the twentieth century and on web development.
-      </p>
+        <p class="no-margin top left-margin right-margin">
+          This project was created in order to:
+        </p>
+        <ul class="list-one no-margin left-margin right-margin">
+          <li>
+            Recover the identities of women working as journalists at the turn
+            of the twentieth century
+          </li>
+          <li>
+            Map networks of social and professional support among female
+            journalists
+          </li>
+          <li>Recover a more detailed history of the early years of the SWJ</li>
+          <li>
+            Centralize and make more widely accessible SWJ membership lists
+          </li>
+        </ul>
 
-      <p class="header-three bold no-margin top left-margin right-margin">Acknowledgements</p>
-      <p class="no-margin left-margin right-margin">
-        This project was funded by a Liberal Arts Scholarship Catalyst Grant (2021) and a Dean’s Summer Fellowship (2021), both awarded by the College of Arts and Sciences at the University of Dayton. A special thank you to Dr. Phu Phung for generously sharing his time and expertise in the web development of this project. This project was inspired by Troy Bassett’s database of nineteenth-century British fiction, At the Circulating Library, and by Andrea Stewart’s research on women writers’ networks during the long nineteenth century.
-      </p>
+        <p class="no-margin top left-margin right-margin">
+          Membership lists are drawn from the SWJ Annual Reports published
+          between 1898 and 1915. Incomplete runs of the Annual Reports can be
+          found at the British Library, the Bodleian Library, the New York
+          Public Library, and the Toronto Public Library. I have not been able
+          to locate Annual Reports for the first four years of the
+          organization’s existence or for its twentieth year, 1913-1914. I draw
+          on contemporary reports in The Journalist about the formation of the
+          SWJ to reconstitute a membership list for its first year, 1894-1895.
+        </p>
+        <p class="no-margin top left-margin right-margin">
+          The database and website were created by a team of faculty and
+          students at the University of Dayton. The project facilitates student
+          and faculty research on women writers from the turn of the twentieth
+          century and on web development.
+        </p>
 
-      <p class="header-four bold no-margin top left-margin right-margin">About the Illustrations</p>
-      <ul class="list-one no-margin left-margin right-margin">
-        <li>
-          <a class=link href="https://en.wikipedia.org/wiki/Fleet_Street#/media/File:Fleet_Street._By_James_Valentine_c.1890..jpg">Fleet Street. Photograph by James Valentine c. 1890.</a>
-        </li>
-        <li>
-          <a class=link href="https://www.artic.edu/artworks/14591/woman-reading">Fleet Street (near intersection with Whitefriars Street; looking toward Farringdon Street and St. Paul’s Cathedral). Photograph by Ann Hale, 3 July 2021, with Édouard Manet’s “Woman Reading” (1880–81) from the Art Institute of Chicago</a>
-        </li>
-        <li>“Women Journalists Organize.” The Journalist (May 26,1894). Photograph by Laura Vorachek, 2018.
-        </li>
-      </ul>
+        <p class="header-three bold no-margin top left-margin right-margin">
+          Acknowledgements
+        </p>
+        <p class="no-margin left-margin right-margin">
+          This project was funded by a Liberal Arts Scholarship Catalyst Grant
+          (2021) and a Dean’s Summer Fellowship (2021), both awarded by the
+          College of Arts and Sciences at the University of Dayton. A special
+          thank you to Dr. Phu Phung for generously sharing his time and
+          expertise in the web development of this project. This project was
+          inspired by Troy Bassett’s database of nineteenth-century British
+          fiction, At the Circulating Library, and by Andrea Stewart’s research
+          on women writers’ networks during the long nineteenth century.
+        </p>
 
-      <div class="body-image"></div>
+        <p class="header-four bold no-margin top left-margin right-margin">
+          About the Illustrations
+        </p>
+        <ul class="list-one no-margin left-margin right-margin">
+          <li>
+            <a
+              class="link"
+              href="https://en.wikipedia.org/wiki/Fleet_Street#/media/File:Fleet_Street._By_James_Valentine_c.1890..jpg"
+              >Fleet Street. Photograph by James Valentine c. 1890.</a
+            >
+          </li>
+          <li>
+            <a
+              class="link"
+              href="https://www.artic.edu/artworks/14591/woman-reading"
+              >Fleet Street (near intersection with Whitefriars Street; looking
+              toward Farringdon Street and St. Paul’s Cathedral). Photograph by
+              Ann Hale, 3 July 2021, with Édouard Manet’s “Woman Reading”
+              (1880–81) from the Art Institute of Chicago</a
+            >
+          </li>
+          <li>
+            “Women Journalists Organize.” The Journalist (May 26,1894).
+            Photograph by Laura Vorachek, 2018.
+          </li>
+        </ul>
 
+        <div class="body-image"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="copyright-container">
-    <div class="copyright-block">
-      <p class="copyright">Copyright © Laura Vorachek 2022</p>
+    <div class="copyright-container">
+      <div class="copyright-block">
+        <p class="copyright">Copyright © Laura Vorachek 2022</p>
+      </div>
     </div>
-  </div>
-<script src="./js-files/SearchByName.js"></script>
-<script src="./js-files/SearchByNameAndOrPosition.js"></script>
-<script src="./js-files/HandleErrorAlert.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+    <script src="./js-files/SearchByName.js"></script>
+    <script src="./js-files/SearchByNameAndOrPosition.js"></script>
+    <script src="./js-files/HandleErrorAlert.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
