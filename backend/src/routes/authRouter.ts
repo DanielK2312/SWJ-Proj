@@ -18,7 +18,7 @@ passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: '/api/v1/auth/redirect',
-  scope: ['profile']
+  scope: ['profile', 'email']
 },
 (accessToken: string, refreshToken: string, profile, done) => {
   return done(null, profile)
