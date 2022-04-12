@@ -487,7 +487,7 @@ let createDynamicLinks = (list, firstLetter) => {
 
 // #TODO currently here trying to solve issue
 let createModal = (surname, id) => {
-  url = "https://swj-capstone.herokuapp.com/api/v1/person/byname/" + surname;
+  url = "https://swj1894.org/api/v1/person/byname/" + surname;
 
   let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
@@ -644,7 +644,7 @@ let manualDynamicModalTriggers = (id) => {
 };
 
 window.addEventListener("load", () => {
-  url = "https://swj-capstone.herokuapp.com/api/v1/person/list";
+  url = "https://swj1894.org/api/v1/person/list";
 
   let xhr = new XMLHttpRequest();
   xhr.open("GET", url);

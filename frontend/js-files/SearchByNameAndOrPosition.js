@@ -77,13 +77,9 @@ submitButton.addEventListener("click", (e) => {
 
     // take care of council member due to data inconsistency
     if (leadershipValue === "Council Member") {
-      url =
-        "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
-        "Councilmember";
+      url = "https://swj1894.org/api/v1/person/byposition/" + "Councilmember";
     } else {
-      url =
-        "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
-        leadershipValue;
+      url = "https://swj1894.org/api/v1/person/byposition/" + leadershipValue;
     }
 
     let xhr = new XMLHttpRequest();
@@ -133,8 +129,7 @@ submitButton.addEventListener("click", (e) => {
 
     document.getElementById("overlay").style.display = "flex";
 
-    url =
-      "https://swj-capstone.herokuapp.com/api/v1/person/bydate/" + yearValue;
+    url = "https://swj1894.org/api/v1/person/bydate/" + yearValue;
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -183,9 +178,7 @@ submitButton.addEventListener("click", (e) => {
 
     document.getElementById("overlay").style.display = "flex";
 
-    url =
-      "https://swj-capstone.herokuapp.com/api/v1/person/byposition/" +
-      leadershipValue;
+    url = "https://swj1894.org/api/v1/person/byposition/" + leadershipValue;
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -207,8 +200,7 @@ submitButton.addEventListener("click", (e) => {
     };
     xhr.send();
 
-    url2 =
-      "https://swj-capstone.herokuapp.com/api/v1/person/bydate/" + yearValue;
+    url2 = "https://swj1894.org/api/v1/person/bydate/" + yearValue;
 
     let xhr2 = new XMLHttpRequest();
     xhr2.open("GET", url2);
