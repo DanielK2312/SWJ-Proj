@@ -25,3 +25,8 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.text-color {
+  color: #069;
+  font-size: 20px;
+}
