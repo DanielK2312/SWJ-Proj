@@ -9,15 +9,13 @@ const isLoggedIn = (req, res, next) => {
     if ((req.session.user) || (req.path === '/pages/login.html') || (basePath === 'plugins') || (basePath === 'dist')) {
         if (req.session.user) {
             // If the request contains a session, check if the user is valid
-            userModel_1.default.findOne({ email: req.session.user.email })
+            userModel_1.default.findOne({ email: req.session.user._json.email })
                 .then((user) => {
                 if (user) {
-                    console.log(user);
                     // User is found in database
                     next();
                 }
                 else {
-                    console.log(user);
                     // Clear session and redirect to login page
                     req.session = null;
                     res.writeHead(302, {
@@ -34,7 +32,6 @@ const isLoggedIn = (req, res, next) => {
         }
     }
     else {
-        console.log(req.session);
         res.writeHead(302, {
             Location: '/admin/pages/login.html'
         });
