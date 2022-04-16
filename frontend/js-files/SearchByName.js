@@ -3,12 +3,11 @@
  */
 
 // variable
-let inputName = document.getElementById("search-name");
+let inputName = document.getElementById("myInput");
 let submitButton = document.getElementById("search-members");
 let numNamesEntered = 0; // 1 == first (or last) name, 2 == first and last name
 let url = "";
 // local variables to store name value
-let inputNameValue = "";
 let firstName = "";
 let lastName = "";
 // store all personInformation objects
@@ -209,28 +208,6 @@ let manualDynamicModalTriggers = (array) => {
 };
 
 // event listeners
-/**
- * Checks for name value inputted and splits the name into first and last into seperate variables
- * Need to account for (first name, last name), (last name, first name), (first name), (last name), (empty)
- */
-inputName.addEventListener("input", (e) => {
-  e.preventDefault();
-
-  inputNameValue = inputName.value;
-  let split = inputNameValue.split(" ");
-  if (split.length === 2) {
-    // if first and last name are entered, assign each to variable
-    numNamesEntered = 2;
-    firstName = split[0];
-    lastName = split[1];
-  } else if (split.length === 1) {
-    // if just last name entered, assign to variable
-    numNamesEntered = 1;
-    lastName = inputNameValue;
-  } else {
-    numNamesEntered = 0;
-  }
-});
 
 /**
  * handles the search button being pressed querying data from the database
@@ -240,7 +217,7 @@ submitButton.addEventListener("click", (e) => {
 
   // case where ONLY name input is filled
   if (
-    inputNameValue !== "" &&
+    inputName.value !== "" &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text ===
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
@@ -248,11 +225,13 @@ submitButton.addEventListener("click", (e) => {
     document.getElementById("overlay").style.display = "flex";
 
     // decide if first name and last name, or just last name was entered
-    if (numNamesEntered === 2) {
-      url = "https://swj1894.org/api/v1/person/byname/" + lastName;
-    } else if (numNamesEntered === 1) {
-      url = "https://swj1894.org/api/v1/person/byname/" + inputNameValue;
-    } // #TODO add error handling for 0 names entered
+    // if (numNamesEntered === 2) {
+    //   url = "https://swj1894.org/api/v1/person/byname/" + lastName;
+    // } else if (numNamesEntered === 1) {
+    //   url = "https://swj1894.org/api/v1/person/byname/" + inputName;
+    // } // #TODO add error handling for 0 names entered
+
+    url = "https://swj1894.org/api/v1/person/byname/" + inputName.value;
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
@@ -289,7 +268,7 @@ submitButton.addEventListener("click", (e) => {
   }
   // case where name and leadership position is filled with year staying empty
   else if (
-    inputNameValue !== "" &&
+    inputName.value !== "" &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text !==
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
@@ -300,7 +279,7 @@ submitButton.addEventListener("click", (e) => {
   }
   // case where name and year are filled but leadership is empty
   else if (
-    inputNameValue !== "" &&
+    inputName.value !== "" &&
     yearDropdown.options[yearDropdown.selectedIndex].text !==
       "Select Year..." &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text ===
@@ -312,7 +291,7 @@ submitButton.addEventListener("click", (e) => {
   }
   // case where name, leadership, and year are filled
   else if (
-    inputNameValue !== "" &&
+    inputName.value !== "" &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text !==
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
