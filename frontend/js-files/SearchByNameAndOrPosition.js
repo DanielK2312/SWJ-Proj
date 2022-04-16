@@ -65,7 +65,7 @@ submitButton.addEventListener("click", (e) => {
 
   // case where name is blank, leadership is filled, and year is blank
   if (
-    inputNameValue === "" &&
+    inputName.value === "" &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text !==
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
@@ -119,7 +119,7 @@ submitButton.addEventListener("click", (e) => {
   }
   // case where name is blank, leadership is blank, and year is filled
   else if (
-    inputNameValue === "" &&
+    inputName.value === "" &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text ===
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."
@@ -168,7 +168,7 @@ submitButton.addEventListener("click", (e) => {
   }
   // case where name is blank, leadership and year are filled
   else if (
-    inputNameValue === "" &&
+    inputName.value === "" &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text !==
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text !== "Select Year..."

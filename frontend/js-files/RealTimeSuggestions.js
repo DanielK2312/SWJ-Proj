@@ -4,7 +4,12 @@ let surnames = [];
 // functions
 let storeNames = (jsonRes) => {
   jsonRes.forEach((element) => {
-    surnames.push(element.surname);
+    if (element.firstname == "") {
+      surnames.push(element.surname);
+    } else {
+      let fullName = element.firstname + " " + element.surname;
+      surnames.push(fullName);
+    }
   });
 };
 

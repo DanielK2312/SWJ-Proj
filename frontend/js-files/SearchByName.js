@@ -207,6 +207,14 @@ let manualDynamicModalTriggers = (array) => {
   });
 };
 
+/**
+ * Handle splitting up strings when autofilled
+ */
+let splitString = (fullName) => {
+  let strArr = fullName.split(" ");
+  return strArr[strArr.length - 1];
+};
+
 // event listeners
 
 /**
@@ -224,14 +232,9 @@ submitButton.addEventListener("click", (e) => {
   ) {
     document.getElementById("overlay").style.display = "flex";
 
-    // decide if first name and last name, or just last name was entered
-    // if (numNamesEntered === 2) {
-    //   url = "https://swj1894.org/api/v1/person/byname/" + lastName;
-    // } else if (numNamesEntered === 1) {
-    //   url = "https://swj1894.org/api/v1/person/byname/" + inputName;
-    // } // #TODO add error handling for 0 names entered
+    let lastName = splitString(inputName.value);
 
-    url = "https://swj1894.org/api/v1/person/byname/" + inputName.value;
+    url = "https://swj1894.org/api/v1/person/byname/" + lastName;
 
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
