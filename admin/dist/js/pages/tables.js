@@ -150,8 +150,13 @@ $(document).ready(function () {
 
 //Code that determines what is shown in the Dropdown
 function format(d) {
+  let currId = "";
   // `d` is the original data object for the row
   //shows the Edit and Delete Member buttons and any avaliable information regarding the member
+  console.log(d);
+  d.forEach(element => {
+    currId = element._id 
+  });
   let memberInfo =
     '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
     '<button id="editBtn" class="btn" onclick="editMember()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
@@ -190,7 +195,7 @@ function format(d) {
         // '</div>' +
 
         //Edit button pt 2
-        '<section class="content">' +
+        `<section id=${currId} class="content">` +
                 '<div class="container-fluid">' +
                     '<div class="row">' +
                         '<!-- left column -->' +
