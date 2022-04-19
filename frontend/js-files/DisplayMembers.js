@@ -452,6 +452,16 @@ let allocateNames = (jsonRes) => {
   });
 };
 
+let SortArray = (x, y) => {
+  if (x.surname < y.surname) {
+    return -1;
+  }
+  if (x.surname > y.surname) {
+    return 1;
+  }
+  return 0;
+};
+
 /**
  * function takes in list of a certain last name and first letter of last name and dynamically lists out all of the members
  * @param {List} list
@@ -485,7 +495,6 @@ let createDynamicLinks = (list, firstLetter) => {
   });
 };
 
-// #TODO currently here trying to solve issue
 let createModal = (surname, id) => {
   url = "https://swj1894.org/api/v1/person/byname/" + surname;
 
@@ -662,6 +671,32 @@ window.addEventListener("load", () => {
       jsonRes = JSON.parse(jsonRes);
 
       allocateNames(jsonRes);
+      holdA.sort(SortArray);
+      holdB.sort(SortArray);
+      holdC.sort(SortArray);
+      holdD.sort(SortArray);
+      holdE.sort(SortArray);
+      holdF.sort(SortArray);
+      holdG.sort(SortArray);
+      holdH.sort(SortArray);
+      holdI.sort(SortArray);
+      holdJ.sort(SortArray);
+      holdK.sort(SortArray);
+      holdL.sort(SortArray);
+      holdM.sort(SortArray);
+      holdN.sort(SortArray);
+      holdO.sort(SortArray);
+      holdP.sort(SortArray);
+      holdQ.sort(SortArray);
+      holdR.sort(SortArray);
+      holdS.sort(SortArray);
+      holdT.sort(SortArray);
+      holdU.sort(SortArray);
+      holdV.sort(SortArray);
+      holdW.sort(SortArray);
+      holdX.sort(SortArray);
+      holdY.sort(SortArray);
+      holdZ.sort(SortArray);
       createDynamicLinks(holdA, "a");
       createDynamicLinks(holdB, "b");
       createDynamicLinks(holdC, "c");
