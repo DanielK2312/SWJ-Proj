@@ -644,6 +644,7 @@ let manualDynamicModalTriggers = (id) => {
 };
 
 window.addEventListener("load", () => {
+  document.getElementById("spinner").classList.add("show");
   url = "https://swj1894.org/api/v1/person/list";
 
   let xhr = new XMLHttpRequest();
@@ -687,6 +688,7 @@ window.addEventListener("load", () => {
       createDynamicLinks(holdX, "x");
       createDynamicLinks(holdY, "y");
       createDynamicLinks(holdZ, "z");
+      document.getElementById("spinner").classList.remove("show");
     }
   };
   xhr.send();

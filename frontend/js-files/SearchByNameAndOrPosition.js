@@ -73,7 +73,7 @@ submitButton.addEventListener("click", (e) => {
     // get value of leadership position
     setPosition();
 
-    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("spinner").classList.add("show");
 
     // take care of council member due to data inconsistency
     if (leadershipValue === "Council Member") {
@@ -91,7 +91,7 @@ submitButton.addEventListener("click", (e) => {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         // get rid of spinner
-        document.getElementById("overlay").style.display = "none";
+        document.getElementById("spinner").classList.remove("show");
 
         // display main modal window
         $("#person-modal").modal({ backdrop: "static", keyboard: false });
@@ -127,7 +127,7 @@ submitButton.addEventListener("click", (e) => {
     // get value of year
     setYear();
 
-    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("spinner").classList.add("show");
 
     url = "https://swj1894.org/api/v1/person/bydate/" + yearValue;
 
@@ -140,7 +140,7 @@ submitButton.addEventListener("click", (e) => {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         // get rid of spinner
-        document.getElementById("overlay").style.display = "none";
+        document.getElementById("spinner").classList.remove("show");
 
         // display main modal window
         $("#person-modal").modal({ backdrop: "static", keyboard: false });
@@ -176,7 +176,7 @@ submitButton.addEventListener("click", (e) => {
     // get value of leadership position and year
     setYearAndPosition();
 
-    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("spinner").classList.add("show");
 
     url = "https://swj1894.org/api/v1/person/byposition/" + leadershipValue;
 
@@ -211,7 +211,7 @@ submitButton.addEventListener("click", (e) => {
     xhr2.onreadystatechange = function () {
       if (xhr2.readyState === 4 && xhr2.status === 200) {
         // get rid of spinner
-        document.getElementById("overlay").style.display = "none";
+        document.getElementById("spinner").classList.remove("show");
 
         // display main modal window
         $("#person-modal").modal({ backdrop: "static", keyboard: false });

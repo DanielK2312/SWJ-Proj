@@ -230,7 +230,7 @@ submitButton.addEventListener("click", (e) => {
       "Select Leadership Position..." &&
     yearDropdown.options[yearDropdown.selectedIndex].text === "Select Year..."
   ) {
-    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("spinner").classList.add("show");
 
     let lastName = splitString(inputName.value);
 
@@ -245,7 +245,7 @@ submitButton.addEventListener("click", (e) => {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         // get rid of spinner
-        document.getElementById("overlay").style.display = "none";
+        document.getElementById("spinner").classList.remove("show");
 
         // display main modal window
         $("#person-modal").modal({ backdrop: "static", keyboard: false });
