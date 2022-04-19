@@ -8,13 +8,12 @@ import API from './routes/API'
 import cookieSession from 'cookie-session'
 import passport from 'passport'
 import authGuard from './utils/authGuard'
-import { KEY1, KEY2 } from './utils/secrets'
+import * as SECRETS from './utils/secrets'
 
 const app = express()
 
 // # - Database Setup -#
-const dbURL = 'mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ'
-mongoose.connect(dbURL)
+mongoose.connect(SECRETS.DB_CONN)
   .then(() => {
     console.log('connection to database established')
   })
@@ -27,7 +26,7 @@ mongoose.connect(dbURL)
 
 app.use(cookieSession({
   name: 'session',
-  keys: [KEY1, KEY2],
+  keys: [SECRETS.KEY1, SECRETS.KEY2],
   maxAge: 7 * 24 * 60 * 60 * 1000
 }))
 app.use(passport.initialize())
@@ -39,8 +38,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // # - Security Middleware -#
-const allowedOrigins = ['https://localhost:3000', 'https://swj-capstone-staging.herokuapp.com']
+const allowedOrigins = ['https://swj1894.org', 'https://beta.swj1894.org', 'http://localhost:3000']
 const options: cors.CorsOptions = { origin: allowedOrigins }
+app.disable('x-powered-by')
 app.use(cors(options))
 app.use(mongoSanatize())
 

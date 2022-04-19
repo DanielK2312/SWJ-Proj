@@ -100,7 +100,7 @@ personRouter.get('/list', (req, res) => __awaiter(void 0, void 0, void 0, functi
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', (req, res) => {
+personRouter.post('/create', authGuard_1.default, (req, res) => {
     // Surname is the only required field to create a person.
     if (req.body.surname) {
         const newPerson = new personModel_1.default(req.body);
@@ -121,14 +121,11 @@ personRouter.post('/create', (req, res) => {
 personRouter.post('/update', authGuard_1.default, (req, res) => {
     // ID is mongoDB _id field
     // updates is a JSON like { surname: 'NewName' }
-    console.log('Made it here in personRoute');
     const { id, updates } = req.body;
     const person = personModel_1.default.findById(id);
     person.updateOne(updates)
         .then(result => {
         res.status(200).json({ status: 'success', result });
-        console.log('Made it to line 118 in personRouter.ts line 118\n');
-        console.log(result);
     })
         .catch(err => {
         res.status(500).json({ status: 'error', err });

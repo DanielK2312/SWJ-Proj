@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -13,11 +36,10 @@ const API_1 = __importDefault(require("./routes/API"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const passport_1 = __importDefault(require("passport"));
 const authGuard_1 = __importDefault(require("./utils/authGuard"));
-const secrets_1 = require("./utils/secrets");
+const SECRETS = __importStar(require("./utils/secrets"));
 const app = (0, express_1.default)();
 // # - Database Setup -#
-const dbURL = 'mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ';
-mongoose_1.default.connect(dbURL)
+mongoose_1.default.connect(SECRETS.DB_CONN)
     .then(() => {
     console.log('connection to database established');
 })
@@ -28,7 +50,7 @@ mongoose_1.default.connect(dbURL)
 // # - Authentication Middleware - #
 app.use((0, cookie_session_1.default)({
     name: 'session',
-    keys: [secrets_1.KEY1, secrets_1.KEY2],
+    keys: [SECRETS.KEY1, SECRETS.KEY2],
     maxAge: 7 * 24 * 60 * 60 * 1000
 }));
 app.use(passport_1.default.initialize());
@@ -38,7 +60,7 @@ app.use((0, compression_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // # - Security Middleware -#
-const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
+const allowedOrigins = ['https://swj1894.org', 'https://beta.swj1894.org', 'http://localhost:3000'];
 const options = { origin: allowedOrigins };
 app.use((0, cors_1.default)(options));
 app.use((0, express_mongo_sanitize_1.default)());
