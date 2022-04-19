@@ -250,7 +250,7 @@ submitButton.addEventListener("click", (e) => {
     // decide if first name and last name, or just last name was entered
     if (numNamesEntered === 2) {
       url =
-        "https://swj-capstone.herokuapp.com/api/v1/person/byname/" + lastName;
+        "https://swj1894.org/api/v1/person/byname/" + lastName;
     } else if (numNamesEntered === 1) {
       url = "https://swj1894.org/api/v1/person/byname/" + inputNameValue;
     } // #TODO add error handling for 0 names entered
@@ -258,7 +258,7 @@ submitButton.addEventListener("click", (e) => {
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
 
-    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Accept", "application/json; charset=utf-8");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -306,6 +306,7 @@ submitButton.addEventListener("click", (e) => {
       "Select Year..." &&
     leadershipPosition.options[leadershipPosition.selectedIndex].text ===
       "Select Leadership Position..."
+  // file deepcode ignore DuplicateIfBody: Snyk warning
   ) {
     document.querySelector(".w3-panel").style.display = "block";
     autoClose();

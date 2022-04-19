@@ -31,9 +31,8 @@ userRouter.get('/list', async (req, res) => {
  * @param req.body.* - Fields of the user object.
  * @returns <JSON> { User }
  */
-// userRouter.post('/create', isLoggedIn, (req, res) => {
 
-userRouter.post('/create', (req, res) => {
+userRouter.post('/create', isLoggedIn, (req, res) => {
   // Email is the only required field to create a User.
   if (req.body.email) {
     const newUser = new User(req.body)
