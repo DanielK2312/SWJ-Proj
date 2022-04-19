@@ -39,17 +39,19 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // # - Security Middleware -#
-const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com']
+const allowedOrigins = ['https://swj1894.org', 'https://beta.swj1894.org', 'http://localhost:3000']
 const options: cors.CorsOptions = { origin: allowedOrigins }
 app.use(cors(options))
 app.use(mongoSanatize())
 
 // # - Serve Static Pages -#
 app.use('/admin', authGuard, express.static(
-  path.join(__dirname, '/../../admin')
+  path.join(__dirname, '/../../admin'),
+  { extensions: ['html'] }
 ))
 app.use('/', express.static(
-  path.join(__dirname, '/../../frontend')
+  path.join(__dirname, '/../../frontend'),
+  { extensions: ['html'] }
 ))
 
 app.use('/favicon.ico', express.static(

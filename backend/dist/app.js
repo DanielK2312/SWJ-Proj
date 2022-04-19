@@ -38,13 +38,13 @@ app.use((0, compression_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // # - Security Middleware -#
-const allowedOrigins = ['http://localhost:3000', 'https://swj-capstone-staging.herokuapp.com'];
+const allowedOrigins = ['https://swj1894.org', 'https://beta.swj1894.org', 'http://localhost:3000'];
 const options = { origin: allowedOrigins };
 app.use((0, cors_1.default)(options));
 app.use((0, express_mongo_sanitize_1.default)());
 // # - Serve Static Pages -#
-app.use('/admin', authGuard_1.default, express_1.default.static(path_1.default.join(__dirname, '/../../admin')));
-app.use('/', express_1.default.static(path_1.default.join(__dirname, '/../../frontend')));
+app.use('/admin', authGuard_1.default, express_1.default.static(path_1.default.join(__dirname, '/../../admin'), { extensions: ['html'] }));
+app.use('/', express_1.default.static(path_1.default.join(__dirname, '/../../frontend'), { extensions: ['html'] }));
 app.use('/favicon.ico', express_1.default.static(path_1.default.join(__dirname, '/../../admin/favicon.ico')));
 // API Routes
 (0, API_1.default)(app);
