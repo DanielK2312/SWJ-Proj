@@ -154,267 +154,222 @@ function format(d) {
   // `d` is the original data object for the row
   //shows the Edit and Delete Member buttons and any avaliable information regarding the member
   console.log(d);
-  d.forEach(element => {
-    currId = element._id 
-  });
   let memberInfo =
     '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
     '<button id="editBtn" class="btn" onclick="editMember()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
     '<button id="deleteBtn" class="btn" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
     //Edit Member Modal information
     '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span>' +
-            // '<div class="flexbox-item flexbox-item-6">' +
-        // '<select name="option" id="edit-dropdown" class="w3-select">' +
-        // '<option value="" selected>Select to be Edited...</option>' +
-        // '<option value="">Surname</option>' +
-        // '<option value="">First Name</option>' +
-        // '<option value="">Prefix/Title</option>' +
-        // '<option value="">Pen Name</option>' +
-        // '<option value="">DOB</option>' +
-        // '<option value="">DOD</option>' +
-        // '<option value="">Leadership Position</option>' +
-        // '<option value="">Street Address</option>' +
-        // '<option value="">Neighborhood</option>' +
-        // '<option value="">City</option>' +
-        // '<option value="">Post Code</option>' +
-        // '<option value="">Proposer</option>' +
-        // '<option value="">Org1</option>' +
-        // '<option value="">Org2</option>' +
-        // '<option value="">Org3</option>' +
-        // '<option value="">Org4</option>' +
-        // '<option value="">Org5</option>' +
-        // '<option value="">Periodicals</option>' +
-        // '<option value="">Source of Info</option>' +
-        // '<option value="">Other</option>' +
-        // '<option value="">Joined</option>' +
-        // '</select>' +
-        // '<form class="w3-container">' +
-        // '<input id="new-edit" class="w3-input w3-border" type="text" placeholder="New Edit...">' +
-        // '</form>' +
-        // '<button id="submit-edit" class="w3-button w3-wide w3-teal w3-border w3-border-teal w3-round-large">Submit</button>' +
-        // '</div>' +
 
         //Edit button pt 2
-        `<section id=${currId} class="content">` +
-                '<div class="container-fluid">' +
-                    '<div class="row">' +
-                        '<!-- left column -->' +
-                        '<div class="col-md-9">' +
-                            '<!-- general form elements -->' +
-                            '<div class="card card-primary">' +
-                                '<div class="card-header">' +
-                                    '<h3 class="card-title">Create a person</h3>' +
-                                '</div>' +
-                                '<!-- /.card-header -->' +
-                                '<!-- form start -->' +
-                                '<form>' +
-                                    '<div class="card-body">' +
-                                        '<div class="row">' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>First Name</label>' +
-                                                    '<input type="text" class="form-control" placeholder="John">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Last Name*</label>' +
-                                                    '<input type="text" class="form-control" placeholder="Doe">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Prefix</label>' +
-                                                    '<input type="text" class="form-control" placeholder="Mrs.">' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                        '<div class="row">' +
-                                            '<div class="col-sm-2">' +
-                                                '<!-- select -->' +
-                                                '<div class="form-group">' +
-                                                    '<label>Date Range*</label>' +
-                                                    '<select class="form-control">' +
-                                                        '<option>1894-1895</option>' +
-                                                        '<option>1895-1896</option>' +
-                                                        '<option>1896-1897</option>' +
-                                                        '<option>1897-1898</option>' +
-                                                        '<option>1898-1899</option>' +
-                                                        '<option>1899-1900</option>' +
-                                                        '<option>1900-1901</option>' +
-                                                        '<option>1901-1902</option>' +
-                                                        '<option>1902-1903</option>' +
-                                                        '<option>1903-1904</option>' +
-                                                        '<option>1904-1905</option>' +
-                                                        '<option>1905-1906</option>' +
-                                                        '<option>1906-1907</option>' +
-                                                        '<option>1907-1908</option>' +
-                                                        '<option>1908-1909</option>' +
-                                                        '<option>1909-1910</option>' +
-                                                        '<option>1910-1911</option>' +
-                                                        '<option>1911-1912</option>' +
-                                                        '<option>1912-1913</option>' +
-                                                        '<option>1913-1914</option>' +
-                                                        '<option>1914-1915</option>' +
-                                                    '</select>' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-3">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Pen Name</label>' +
-                                                    '<input type="text" class="form-control" placeholder="John Doe">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<!-- Date mm/dd/yyyy -->' +
-                                            '<div class="col-sm-2">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Date of Birth</label>' +
-                                                    '<div class="input-group">' +
-                                                        '<div class="input-group-prepend">' +
-                                                            '<span class="input-group-text"><i' +
-                                                                    'class="far fa-calendar-alt"></i></span>' +
-                                                        '</div>' +
-                                                        '<input type="text" class="form-control"' +
-                                                            'placeholder="03/13/1905">' +
-                                                    '</div>' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-2">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Date of Death</label>' +
-                                                    '<div class="input-group">' +
-                                                        '<div class="input-group-prepend">' +
-                                                            '<span class="input-group-text"><i' +
-                                                                    'class="far fa-calendar-alt"></i></span>' +
-                                                        '</div>' +
-                                                        '<input type="text" class="form-control"' +
-                                                            'placeholder="11/02/1908">' +
-                                                    '</div>' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-3">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Position</label>' +
-                                                    '<div class="input-group">' +
-                                                        '<div class="input-group-prepend">' +
-                                                            '<span class="input-group-text"><i' +
-                                                                    'class="far fa-calendar-alt"></i></span>' +
-                                                        '</div>' +
-                                                        '<input type="text" class="form-control"' +
-                                                            'placeholder="council member">' +
-                                                    '</div>' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                        '<div class="row">' +
-                                            '<div class="col-sm-3">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Address</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="33 Eccleston Square">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-2">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Neighborhood</label>' +
-                                                    '<input type="text" class="form-control" placeholder="Amersham">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-2">' +
-                                                '<div class="form-group">' +
-                                                    '<label>City</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="Buckinghamshire">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-2">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Postal Code</label>' +
-                                                    '<input type="text" class="form-control" placeholder="W 35">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-3">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Proposer</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="Jonny Appleseed">' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                        '<div class="row">' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Organizations (comma seperated)</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="Women\'s Freedom League, The Electrical Association for Women">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Periodicals (comma seperated)</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="Temple Magazine, Ludgate, Saturday Review of Politics">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Sources (comma seperated)</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="Wikipedia, C-19">' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                        '<div class="row">' +
-                                            '<div class="col-sm-4">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Other</label>' +
-                                                    '<input type="text" class="form-control"' +
-                                                        'placeholder="Connections, life facts, etc.">' +
-                                                '</div>' +
-                                            '</div>' +
-                                            '<div class="col-sm-2">' +
-                                                '<div class="form-group">' +
-                                                    '<label>Join Date</label>' +
-                                                    '<div class="input-group">' +
-                                                        '<div class="input-group-prepend">' +
-                                                            '<span class="input-group-text"><i' +
-                                                                    'class="far fa-calendar-alt"></i></span>' +
-                                                        '</div>' +
-                                                        '<input type="text" class="form-control" placeholder="May 1904">' +
-                                                    '</div>' +
-                                                '</div>' +
-                                            '</div>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '<!-- /.card-body -->' +
+        //'<!-- form start -->' +
+          '<form>' +
+            '<div class="card-body">' +
 
-                                    '<div class="card-footer">' +
-                                        '<button type="submit" class="btn btn-primary">Submit</button>' +
-                                    '</div>' +
-                                '</form>' +
-                            '</div>' +
-                            '<!-- /.card -->' +
-                        '</div>' +
-                        '<!--/.col (left) -->' +
-                        '<!--/.col (right) -->' +
+            //row 1
+              '<div class="row">' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>First Name</label>' +
+                    '<input type="text" class="form-control" placeholder="John">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Last Name*</label>' +
+                    '<input type="text" class="form-control" placeholder="Doe">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Prefix</label>' +
+                    '<input type="text" class="form-control" placeholder="Mrs.">' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              //row 2
+              '<div class="row">' +
+                '<div class="col-sm-3">' +
+                  //'<!-- select -->' +
+                  '<div class="form-group">' +
+                    '<label>Date Range*</label>' +
+                    '<select class="form-control">' +
+                      '<option>1894-1895</option>' +
+                      '<option>1895-1896</option>' +
+                      '<option>1896-1897</option>' +
+                      '<option>1897-1898</option>' +
+                      '<option>1898-1899</option>' +
+                      '<option>1899-1900</option>' +
+                      '<option>1900-1901</option>' +
+                      '<option>1901-1902</option>' +
+                      '<option>1902-1903</option>' +
+                      '<option>1903-1904</option>' +
+                      '<option>1904-1905</option>' +
+                      '<option>1905-1906</option>' +
+                      '<option>1906-1907</option>' +
+                      '<option>1907-1908</option>' +
+                      '<option>1908-1909</option>' +
+                      '<option>1909-1910</option>' +
+                      '<option>1910-1911</option>' +
+                      '<option>1911-1912</option>' +
+                      '<option>1912-1913</option>' +
+                      '<option>1913-1914</option>' +
+                      '<option>1914-1915</option>' +
+                    '</select>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-3">' +
+                  '<div class="form-group">' +
+                    '<label>Pen Name</label>' +
+                    '<input type="text" class="form-control" placeholder="John Doe">' +
+                  '</div>' +
+                '</div>' +
+                //'<!-- Date mm/dd/yyyy -->' +
+                '<div class="col-sm-3">' +
+                  '<div class="form-group">' +
+                    '<label>Date of Birth</label>' +
+                    '<div class="input-group">' +
+                      '<div class="input-group-prepend">' +
+                        '<span class="input-group-text"><i' +
+                          'class="far fa-calendar-alt"></i></span>' +
+                      '</div>' +
+                      '<input type="text" class="form-control"' +
+                        'placeholder="03/13/1905">' +
                     '</div>' +
-                    '<!-- /.row -->' +
-                '</div><!-- /.container-fluid -->' +
-            '</section>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-3">' +
+                  '<div class="form-group">' +
+                    '<label>Date of Death</label>' +
+                    '<div class="input-group">' +
+                      '<div class="input-group-prepend">' +
+                        '<span class="input-group-text"><i' +
+                          'class="far fa-calendar-alt"></i></span>' +
+                      '</div>' +
+                      '<input type="text" class="form-control"' +
+                        'placeholder="11/02/1908">' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              //row 3
+              '<div class="row">' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Position</label>' +
+                    '<div class="input-group">' +
+                      '<div class="input-group-prepend">' +
+                        '<span class="input-group-text"><i' +
+                          'class="far fa-calendar-alt"></i></span>' +
+                      '</div>' +
+                      '<input type="text" class="form-control"' +
+                        'placeholder="council member">' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Address</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="33 Eccleston Square">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Neighborhood</label>' +
+                    '<input type="text" class="form-control" placeholder="Amersham">' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              //row 4
+              '<div class="row">' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>City</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="Buckinghamshire">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-3">' +
+                  '<div class="form-group">' +
+                    '<label>Postal Code</label>' +
+                    '<input type="text" class="form-control" placeholder="W 35">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Proposer</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="Jonny Appleseed">' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              //row 5
+              '<div class="row">' +
+                '<div class="col-sm-5">' +
+                  '<div class="form-group">' +
+                    '<label>Organizations (comma seperated)</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="Women\'s Freedom League, The Electrical Association for Women">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-5">' +
+                  '<div class="form-group">' +
+                    '<label>Periodicals (comma seperated)</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="Temple Magazine, Ludgate, Saturday Review of Politics">' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              //row 6
+              '<div class="row">' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Sources (comma seperated)</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="Wikipedia, C-19">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-4">' +
+                  '<div class="form-group">' +
+                    '<label>Other</label>' +
+                    '<input type="text" class="form-control"' +
+                      'placeholder="Connections, life facts, etc.">' +
+                  '</div>' +
+                '</div>' +
+                '<div class="col-sm-3">' +
+                  '<div class="form-group">' +
+                    '<label>Join Date</label>' +
+                    '<div class="input-group">' +
+                      '<div class="input-group-prepend">' +
+                        '<span class="input-group-text"><i' +
+                          'class="far fa-calendar-alt"></i></span>' +
+                      '</div>' +
+                      '<input type="text" class="form-control" placeholder="May 1904">' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+            '</div>' +
+            //'<!-- /.card-body -->' +
+            '<button type="submit" class="btn btn-primary">Submit</button>' +
+          '</form>' +
 
         '</div></div>' +
 
 
     //shows Member's full name
     "<tr>" +
-    "<td>Full name:</td>" +
-    "<td>" +
-    d.prefix +
-    " " +
-    d.firstname +
-    " " +
-    d.surname +
-    "</td>" +
+      "<td>Full name:</td>" +
+      "<td>" +
+        d.prefix + " " + d.firstname + " " + d.surname +
+      "</td>" +
     "</tr>";
 
   //shows member Pen Name if applicable
@@ -439,10 +394,10 @@ function format(d) {
   if (d.position != "") {
     memberInfo +=
       "<tr>" +
-      "<td>Position Held:</td>" +
-      "<td>" +
-      d.position +
-      "</td>" +
+        "<td>Position Held:</td>" +
+        "<td>" +
+          d.position +
+        "</td>" +
       "</tr>";
   }
 
@@ -456,16 +411,16 @@ function format(d) {
   if (d.address != "") {
     memberInfo +=
       "<tr>" +
-      "<td>Address:</td>" +
-      "<td>" +
-      d.address +
-      "<br>" +
-      d.neighborhood +
-      "<br>" +
-      d.city +
-      "<br>" +
-      d.post_code +
-      "</td>" +
+        "<td>Address:</td>" +
+        "<td>" +
+          d.address +
+          "<br>" +
+          d.neighborhood +
+          "<br>" +
+          d.city +
+          "<br>" +
+          d.post_code +
+        "</td>" +
       "</tr>";
   }
 
@@ -485,10 +440,10 @@ function format(d) {
   if (d.periodicals != "") {
     memberInfo +=
       "<tr>" +
-      "<td>Periodicals:</td>" +
-      "<td>" +
-      d.periodicals +
-      "</td>" +
+        "<td>Periodicals:</td>" +
+        "<td>" +
+          d.periodicals +
+        "</td>" +
       "</tr>";
   }
 
@@ -496,10 +451,10 @@ function format(d) {
   if (d.sources != "") {
     memberInfo +=
       "<tr>" +
-      "<td>Source of Info:</td>" +
-      "<td>" +
-      d.sources +
-      "</td>" +
+        "<td>Source of Info:</td>" +
+        "<td>" +
+          d.sources +
+        "</td>" +
       "</tr>";
   }
 
@@ -507,10 +462,10 @@ function format(d) {
   if (d.other != "") {
     memberInfo +=
       "<tr>" +
-      "<td>Additional Info:</td>" +
-      "<td>" +
-      d.other +
-      "</td>" +
+        "<td>Additional Info:</td>" +
+        "<td>" +
+          d.other +
+        "</td>" +
       "</tr>";
   }
 
