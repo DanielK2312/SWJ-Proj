@@ -43,6 +43,7 @@ const allowedOrigins = ['https://swj1894.org', 'https://beta.swj1894.org', 'http
 const options: cors.CorsOptions = { origin: allowedOrigins }
 app.use(cors(options))
 app.use(mongoSanatize())
+app.disable('x-powered-by')
 
 // # - Serve Static Pages -#
 app.use('/admin', authGuard, express.static(
