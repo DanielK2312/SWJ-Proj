@@ -113,11 +113,19 @@
 
             <!-- Main content -->
             <section class="content">
+                <div class="alert alert-danger alert-dismissible show w-50" id="alert" role="alert" style="display: none;">
+                    <strong>Invalid Email!</strong> Please verify that you entered a valid email address.
+                    <button type="button" class="close" onclick="document.getElementById('alert').style.display = 'none';">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
                 <label for="basic-url">Email to add to the database.</label>
                 <div class="input-group mb-3 w-50">
-                    <input type="text" class="form-control" id="new-email" placeholder="email address" aria-label="email address">
+                    <input type="text" class="form-control" id="new-email" placeholder="email address"
+                        aria-label="email address">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" onclick="addUser(this)">Submit</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="addUser()">Submit</button>
                     </div>
                 </div>
                 </br>

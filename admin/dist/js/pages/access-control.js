@@ -40,24 +40,31 @@ const getRowData = (row) => {
 const addUser = () => {
   newEmail = document.getElementById("new-email").value;
 
-  var url = "https://swj1894.org/api/v1/user/create";
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", url);
-  xhr.setRequestHeader("Accept", "application/json; charset=utf-8'");
-  xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8'");
+  // DATA Validation
+  var emailRegex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  if (newEmail.match(emailRegex)) {
+    var url = "https://swj1894.org/api/v1/user/create";
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Accept", "application/json; charset=utf-8'");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8'");
 
-  var user_email = {
-    email: newEmail,
-  }
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      const data = JSON.parse(xhr.responseText);
-      console.log(data);
-      location.reload();
+    var user_email = {
+      email: newEmail,
     }
-  };
-  xhr.send(JSON.stringify(user_email));
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        const data = JSON.parse(xhr.responseText);
+        console.log(data);
+        location.reload();
+      }
+    };
+    xhr.send(JSON.stringify(user_email));
+  } else {
+    var alert = document.getElementById("alert");
+    alert.style.display = "block";
+  }
 }
 
 const removeUser = () => {
