@@ -8,12 +8,12 @@ import API from './routes/API'
 import cookieSession from 'cookie-session'
 import passport from 'passport'
 import authGuard from './utils/authGuard'
-import { KEY1, KEY2 } from './utils/secrets'
+import { DB_URL, DB_USERNAME, DB_PASSWORD, DB_NAME, KEY1, KEY2 } from './utils/secrets'
 
 const app = express()
 
 // # - Database Setup -#
-const dbURL = 'mongodb+srv://admin:INEEDROOT@cluster0.gnboq.mongodb.net/SWJ'
+const dbURL = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_URL}/${DB_NAME}`
 mongoose.connect(dbURL)
   .then(() => {
     console.log('connection to database established')

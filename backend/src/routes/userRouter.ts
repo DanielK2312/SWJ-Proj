@@ -33,10 +33,10 @@ userRouter.get('/list', async (req, res) => {
  */
 // userRouter.post('/create', isLoggedIn, (req, res) => {
 
-userRouter.post('/create', (req, res) => {
+userRouter.post('/create', isLoggedIn, (req, res) => {
   // Email is the only required field to create a User.
   if (req.body.email) {
-    const newUser = new User(req.body)
+    const newUser = new User(req.body.email)
     newUser.save()
     res.status(200).json(newUser)
   }
@@ -51,15 +51,16 @@ userRouter.post('/create', (req, res) => {
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-userRouter.get('/delete', isLoggedIn, (req, res) => {
-  const id = req.body
+userRouter.post('/delete', isLoggedIn, (req, res) => {
+  const id = req.body.id
   const user = User.findById(id)
+  console.log('User: ' + user)
   user.deleteOne()
     .then(result => {
-      res.status(200).json({ status: 'success', result })
+      res.status(200).json({ status: 'success', result: result })
     })
     .catch(err => {
-      res.status(500).json({ status: 'error', err })
+      res.status(500).json({ status: 'error', err: err })
     })
 })
 

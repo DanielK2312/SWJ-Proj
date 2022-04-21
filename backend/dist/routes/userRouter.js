@@ -43,10 +43,10 @@ userRouter.get('/list', (req, res) => __awaiter(void 0, void 0, void 0, function
  * @returns <JSON> { User }
  */
 // userRouter.post('/create', isLoggedIn, (req, res) => {
-userRouter.post('/create', (req, res) => {
+userRouter.post('/create', authGuard_1.default, (req, res) => {
     // Email is the only required field to create a User.
     if (req.body.email) {
-        const newUser = new userModel_1.default(req.body);
+        const newUser = new userModel_1.default(req.body.email);
         newUser.save();
         res.status(200).json(newUser);
     }
@@ -60,15 +60,16 @@ userRouter.post('/create', (req, res) => {
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-userRouter.get('/delete', authGuard_1.default, (req, res) => {
-    const id = req.body;
+userRouter.post('/delete', authGuard_1.default, (req, res) => {
+    const id = req.body.id;
     const user = userModel_1.default.findById(id);
+    console.log('User: ' + user);
     user.deleteOne()
         .then(result => {
-        res.status(200).json({ status: 'success', result });
+        res.status(200).json({ status: 'success', result: result });
     })
         .catch(err => {
-        res.status(500).json({ status: 'error', err });
+        res.status(500).json({ status: 'error', err: err });
     });
 });
 exports.default = userRouter;
