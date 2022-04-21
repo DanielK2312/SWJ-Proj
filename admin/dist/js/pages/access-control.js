@@ -19,7 +19,7 @@ $(document).ready(function () {
         tr += `<td>
                           <a data-toggle="modal" data-target="#exampleModalCenter" onclick="getRowData(this)">
                             <span class="delete-user" aria-hidden="true">
-                              <i class="fa-solid fa-xmark"></i>
+                              <i class="fa fa-minus-circle"></i>
                             </span>
                           </a>
                         </td>`                                   // CLOSE
