@@ -150,7 +150,6 @@ $(document).ready(function () {
 
 //Code that determines what is shown in the Dropdown
 function format(d) {
-  let currId = "";
   // `d` is the original data object for the row
   //shows the Edit and Delete Member buttons and any avaliable information regarding the member
   console.log(d);
@@ -171,19 +170,19 @@ function format(d) {
                 '<div class="col-sm-4">' +
                   '<div class="form-group">' +
                     '<label>First Name</label>' +
-                    '<input type="text" class="form-control" placeholder="John">' +
+                    '<input type="text" class="form-control" placeholder="'+d.firstname+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div class="form-group">' +
-                    '<label>Last Name*</label>' +
-                    '<input type="text" class="form-control" placeholder="Doe">' +
+                    '<label>Last Name</label>' +
+                    '<input type="text" class="form-control" placeholder="'+d.surname+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div class="form-group">' +
                     '<label>Prefix</label>' +
-                    '<input type="text" class="form-control" placeholder="Mrs.">' +
+                    '<input type="text" class="form-control" placeholder="'+d.prefix+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -193,7 +192,7 @@ function format(d) {
                 '<div class="col-sm-3">' +
                   //'<!-- select -->' +
                   '<div class="form-group">' +
-                    '<label>Date Range*</label>' +
+                    '<label>Date Range</label>' +
                     '<select class="form-control">' +
                       '<option>1894-1895</option>' +
                       '<option>1895-1896</option>' +
@@ -222,7 +221,7 @@ function format(d) {
                 '<div class="col-sm-3">' +
                   '<div class="form-group">' +
                     '<label>Pen Name</label>' +
-                    '<input type="text" class="form-control" placeholder="John Doe">' +
+                    '<input type="text" class="form-control" placeholder="'+d.pen_name+'">' +
                   '</div>' +
                 '</div>' +
                 //'<!-- Date mm/dd/yyyy -->' +
@@ -235,7 +234,7 @@ function format(d) {
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
                       '<input type="text" class="form-control"' +
-                        'placeholder="03/13/1905">' +
+                        'placeholder="'+d.dob+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
@@ -248,7 +247,7 @@ function format(d) {
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
                       '<input type="text" class="form-control"' +
-                        'placeholder="11/02/1908">' +
+                        'placeholder="'+d.dod+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
@@ -265,7 +264,7 @@ function format(d) {
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
                       '<input type="text" class="form-control"' +
-                        'placeholder="council member">' +
+                        'placeholder="'+d.position+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
@@ -273,13 +272,13 @@ function format(d) {
                   '<div class="form-group">' +
                     '<label>Address</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="33 Eccleston Square">' +
+                      'placeholder="'+d.address+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div class="form-group">' +
                     '<label>Neighborhood</label>' +
-                    '<input type="text" class="form-control" placeholder="Amersham">' +
+                    '<input type="text" class="form-control" placeholder="'+d.neighborhood+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -290,20 +289,20 @@ function format(d) {
                   '<div class="form-group">' +
                     '<label>City</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="Buckinghamshire">' +
+                      'placeholder="'+d.city+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
                   '<div class="form-group">' +
                     '<label>Postal Code</label>' +
-                    '<input type="text" class="form-control" placeholder="W 35">' +
+                    '<input type="text" class="form-control" placeholder="'+d.post_code+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div class="form-group">' +
                     '<label>Proposer</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="Jonny Appleseed">' +
+                      'placeholder="'+d.proposer+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -314,14 +313,21 @@ function format(d) {
                   '<div class="form-group">' +
                     '<label>Organizations (comma seperated)</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="Women\'s Freedom League, The Electrical Association for Women">' +
+                      'placeholder="';
+                        for (var i = 0; i < d.orgs.length; i++) {
+                          memberInfo += d.orgs[i];
+                          if (i != d.orgs.length - 1) {
+                            memberInfo += ", ";
+                          }
+                        }
+                      memberInfo +='">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-5">' +
                   '<div class="form-group">' +
                     '<label>Periodicals (comma seperated)</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="Temple Magazine, Ludgate, Saturday Review of Politics">' +
+                      'placeholder="'+d.periodicals+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -332,14 +338,14 @@ function format(d) {
                   '<div class="form-group">' +
                     '<label>Sources (comma seperated)</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="Wikipedia, C-19">' +
+                      'placeholder="'+d.sources+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div class="form-group">' +
                     '<label>Other</label>' +
                     '<input type="text" class="form-control"' +
-                      'placeholder="Connections, life facts, etc.">' +
+                      'placeholder="'+d.other+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
@@ -350,7 +356,7 @@ function format(d) {
                         '<span class="input-group-text"><i' +
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
-                      '<input type="text" class="form-control" placeholder="May 1904">' +
+                      '<input type="text" class="form-control" placeholder="'+d.joined+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
