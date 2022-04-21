@@ -19,3 +19,8 @@ export const DB_URL: string =
   process.env.DB_URL ? process.env.DB_URL : ''
 export const DB_NAME: string =
   process.env.DB_NAME ? process.env.DB_NAME : ''
+
+export const CLOUDFLARE_TOKEN: string =
+  process.env.CLOUDFLARE_TOKEN ? process.env.CLOUDFLARE_TOKEN : ''
+export const CLOUDFLARE_ZONE: string =
+  process.env.CLOUDFLARE_ZONE ? process.env.CLOUDFLARE_ZONE : ''

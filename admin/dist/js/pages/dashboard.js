@@ -1,11 +1,11 @@
 $(document).ready(function () {
-    var url = "https://swj1894.org/api/v1/person/list";
+    var url = "https://swj1894.org/api/v1/analytics/list";
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url);
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -18,17 +18,6 @@ $(document).ready(function () {
             //Handling user-count info box
                 //edit here after setting up domain
             document.getElementById("loading2").style.display = "none";
-
-            //map logic
-            $('#world-map-markers').mapael({
-                map: {
-                  name: 'world_countries',
-                  zoom: {
-                    enabled: true,
-                    maxLevel: 10
-                  }
-                }
-              })
         }
     };
     xhr.send()
