@@ -66,7 +66,7 @@ const removeUser = () => {
   xhr.open("POST", url);
   xhr.setRequestHeader("Accept", "application/json; charset=utf-8'");
   xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8'");
-  
+
   console.log("[Delete] " + userToDelete);
   var user_id = {
     id: userToDelete,

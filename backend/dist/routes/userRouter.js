@@ -46,7 +46,7 @@ userRouter.get('/list', (req, res) => __awaiter(void 0, void 0, void 0, function
 userRouter.post('/create', authGuard_1.default, (req, res) => {
     // Email is the only required field to create a User.
     if (req.body.email) {
-        const newUser = new userModel_1.default(req.body.email);
+        const newUser = new userModel_1.default(req.body);
         newUser.save();
         res.status(200).json(newUser);
     }
