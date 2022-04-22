@@ -168,19 +168,19 @@ function format(d) {
             //row 1
               '<div class="row">' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo1" class="form-group">' +
                     '<label>First Name</label>' +
                     '<input type="text" class="form-control" placeholder="'+d.firstname+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo2" class="form-group">' +
                     '<label>Last Name</label>' +
                     '<input type="text" class="form-control" placeholder="'+d.surname+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo3" class="form-group">' +
                     '<label>Prefix</label>' +
                     '<input type="text" class="form-control" placeholder="'+d.prefix+'">' +
                   '</div>' +
@@ -191,7 +191,7 @@ function format(d) {
               '<div class="row">' +
                 '<div class="col-sm-3">' +
                   //'<!-- select -->' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo4" class="form-group">' +
                     '<label>Date Range</label>' +
                     '<select class="form-control">' +
                       '<option>1894-1895</option>' +
@@ -219,14 +219,14 @@ function format(d) {
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo5" class="form-group">' +
                     '<label>Pen Name</label>' +
                     '<input type="text" class="form-control" placeholder="'+d.pen_name+'">' +
                   '</div>' +
                 '</div>' +
                 //'<!-- Date mm/dd/yyyy -->' +
                 '<div class="col-sm-3">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo6" class="form-group">' +
                     '<label>Date of Birth</label>' +
                     '<div class="input-group">' +
                       '<div class="input-group-prepend">' +
@@ -239,7 +239,7 @@ function format(d) {
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo7" class="form-group">' +
                     '<label>Date of Death</label>' +
                     '<div class="input-group">' +
                       '<div class="input-group-prepend">' +
@@ -256,7 +256,7 @@ function format(d) {
               //row 3
               '<div class="row">' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo8" class="form-group">' +
                     '<label>Position</label>' +
                     '<div class="input-group">' +
                       '<div class="input-group-prepend">' +
@@ -269,14 +269,14 @@ function format(d) {
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo9" class="form-group">' +
                     '<label>Address</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="'+d.address+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo10" class="form-group">' +
                     '<label>Neighborhood</label>' +
                     '<input type="text" class="form-control" placeholder="'+d.neighborhood+'">' +
                   '</div>' +
@@ -286,20 +286,20 @@ function format(d) {
               //row 4
               '<div class="row">' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo11" class="form-group">' +
                     '<label>City</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="'+d.city+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo12" class="form-group">' +
                     '<label>Postal Code</label>' +
                     '<input type="text" class="form-control" placeholder="'+d.post_code+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo13" class="form-group">' +
                     '<label>Proposer</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="'+d.proposer+'">' +
@@ -310,7 +310,7 @@ function format(d) {
               //row 5
               '<div class="row">' +
                 '<div class="col-sm-5">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo14" class="form-group">' +
                     '<label>Organizations (comma seperated)</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="';
@@ -324,7 +324,7 @@ function format(d) {
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-5">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo15" class="form-group">' +
                     '<label>Periodicals (comma seperated)</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="'+d.periodicals+'">' +
@@ -335,21 +335,21 @@ function format(d) {
               //row 6
               '<div class="row">' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo16" class="form-group">' +
                     '<label>Sources (comma seperated)</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="'+d.sources+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo17" class="form-group">' +
                     '<label>Other</label>' +
                     '<input type="text" class="form-control"' +
                       'placeholder="'+d.other+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
-                  '<div class="form-group">' +
+                  '<div id="editInfo18" class="form-group">' +
                     '<label>Join Date</label>' +
                     '<div class="input-group">' +
                       '<div class="input-group-prepend">' +
@@ -364,7 +364,7 @@ function format(d) {
 
             '</div>' +
             //'<!-- /.card-body -->' +
-            '<button type="submit" class="btn btn-primary">Submit</button>' +
+            '<button id="submit-edit" type="submit" class="btn btn-primary">Submit</button>' +
           '</form>' +
 
         '</div></div>' +
