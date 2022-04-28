@@ -64,8 +64,6 @@ $(document).ready(function () {
 
           //Logic to Handle Edit Member Button
           //variables used
-          let editDropdown = document.getElementById("edit-dropdown");
-          let editInput = document.getElementById("new-edit");
           let editSubmit = document.getElementById("submit-edit");
           let editDropValue = "";
           let editInputValue = "";
@@ -92,22 +90,40 @@ $(document).ready(function () {
             "joined",
           ];
 
-          //grab selected Section to be Edited
-          editDropdown.addEventListener("change", (e) => {
-            e.preventDefault();
-            editDropValue = db_col_min[editDropdown.selectedIndex];
-          });
-
-          //grab user Input
-          editInput.addEventListener("input", (e) => {
-            e.preventDefault();
-            editInputValue = editInput.value;
-          });
-
           //Submit button
           editSubmit.addEventListener("click", (e) => {
             e.preventDefault();
-            // var formBody = [];
+
+            var firstName = document.getElementById("updateFirstName").value;
+            var lastName = document.getElementById("updateLastName").value;
+            var prefix = document.getElementById("updatePrefix").value;
+            var dateRange = document.getElementById("updateDateRange").value;
+            var penName = document.getElementById("updatePenName").value;
+            var dob = document.getElementById("updateDOB").value;
+            var dod = document.getElementById("updateDOD").value;
+            var position = document.getElementById("updatePosition").value;
+            var address = document.getElementById("updateAddress").value;
+            var neighborhood = document.getElementById("updateNeighborhood").value;
+            var city = document.getElementById("updateCity").value;
+            var postCode = document.getElementById("updatePostCode").value;
+            var proposer = document.getElementById("updateProposer").value;
+            var orgs = document.getElementById("updateOrgs").value;
+            var periodicals = document.getElementById("updatePeriodicals").value;
+            var sources = document.getElementById("updateSources").value;
+            var other = document.getElementById("updateOther").value;
+            var join = document.getElementById("updateJoin").value;
+
+            if (dateRange.includes(",")) {
+              dateRange = dateRange.split(",");
+            } else {
+              dateRange = [dateRange];
+            }
+            if (orgs.includes(",")) {
+              orgs = orgs.split(",");
+            } else {
+              orgs = [orgs];
+            }
+
             //Logic to Update person
             var urlEdit = "https://swj1894.org/api/v1/person/update";
 
@@ -116,7 +132,24 @@ $(document).ready(function () {
             var tosend = {
               id: memberID,
               updates: {
-                editDropValue: editInputValue,
+                date_range: dateRange,
+                surname: lastName,
+                firstname: firstName,
+                prefix: prefix,
+                pen_name: penName,
+                dob: dob,
+                dod: dod,
+                position: position,
+                address: address,
+                neighborhood: neighborhood,
+                city: city,
+                post_code: postCode,
+                proposer: proposer,
+                orgs: orgs,
+                periodicals: periodicals,
+                sources: sources,
+                other: other,
+                joined: join,
               },
             };
 
@@ -133,9 +166,7 @@ $(document).ready(function () {
               // var formBody = [];
               if (xhrEdit.readyState === 4) {
                 //Update Person
-                console.log(
-                  editDropValue + ": " + editInputValue + ": " + memberID
-                );
+                console.log(xhrEdit.responseText);
               }
               // xhrEdit.data([formBody]);
             };
@@ -162,7 +193,7 @@ function format(d) {
 
         //Edit button pt 2
         //'<!-- form start -->' +
-          '<form>' +
+          '<form id="editForm">' +
             '<div class="card-body">' +
 
             //row 1
@@ -170,58 +201,36 @@ function format(d) {
                 '<div class="col-sm-4">' +
                   '<div id="editInfo1" class="form-group">' +
                     '<label>First Name</label>' +
-                    '<input type="text" class="form-control" placeholder="'+d.firstname+'">' +
+                    '<input type="text" class="form-control" id="updateFirstName" value="'+d.firstname+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div id="editInfo2" class="form-group">' +
                     '<label>Last Name</label>' +
-                    '<input type="text" class="form-control" placeholder="'+d.surname+'">' +
+                    '<input type="text" class="form-control" id="updateLastName" value="'+d.surname+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div id="editInfo3" class="form-group">' +
                     '<label>Prefix</label>' +
-                    '<input type="text" class="form-control" placeholder="'+d.prefix+'">' +
+                    '<input type="text" class="form-control" id="updatePrefix" value="'+d.prefix+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
 
               //row 2
               '<div class="row">' +
-                '<div class="col-sm-3">' +
+                '<div class="col-sm-4">' +
                   //'<!-- select -->' +
                   '<div id="editInfo4" class="form-group">' +
                     '<label>Date Range</label>' +
-                    '<select class="form-control">' +
-                      '<option>1894-1895</option>' +
-                      '<option>1895-1896</option>' +
-                      '<option>1896-1897</option>' +
-                      '<option>1897-1898</option>' +
-                      '<option>1898-1899</option>' +
-                      '<option>1899-1900</option>' +
-                      '<option>1900-1901</option>' +
-                      '<option>1901-1902</option>' +
-                      '<option>1902-1903</option>' +
-                      '<option>1903-1904</option>' +
-                      '<option>1904-1905</option>' +
-                      '<option>1905-1906</option>' +
-                      '<option>1906-1907</option>' +
-                      '<option>1907-1908</option>' +
-                      '<option>1908-1909</option>' +
-                      '<option>1909-1910</option>' +
-                      '<option>1910-1911</option>' +
-                      '<option>1911-1912</option>' +
-                      '<option>1912-1913</option>' +
-                      '<option>1913-1914</option>' +
-                      '<option>1914-1915</option>' +
-                    '</select>' +
+                    '<input type="text" class="form-control" id="updateDateRange" value="'+d.date_range+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
                   '<div id="editInfo5" class="form-group">' +
                     '<label>Pen Name</label>' +
-                    '<input type="text" class="form-control" placeholder="'+d.pen_name+'">' +
+                    '<input type="text" class="form-control" id="updatePenName" value="'+d.pen_name+'">' +
                   '</div>' +
                 '</div>' +
                 //'<!-- Date mm/dd/yyyy -->' +
@@ -233,12 +242,12 @@ function format(d) {
                         '<span class="input-group-text"><i' +
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
-                      '<input type="text" class="form-control"' +
-                        'placeholder="'+d.dob+'">' +
+                      '<input type="text" class="form-control" id="updateDOB"' +
+                        'value="'+d.dob+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
-                '<div class="col-sm-3">' +
+                '<div class="col-sm-2">' +
                   '<div id="editInfo7" class="form-group">' +
                     '<label>Date of Death</label>' +
                     '<div class="input-group">' +
@@ -246,8 +255,8 @@ function format(d) {
                         '<span class="input-group-text"><i' +
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
-                      '<input type="text" class="form-control"' +
-                        'placeholder="'+d.dod+'">' +
+                      '<input type="text" class="form-control" id="updateDOD"' +
+                        'value="'+d.dod+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
@@ -263,22 +272,22 @@ function format(d) {
                         '<span class="input-group-text"><i' +
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
-                      '<input type="text" class="form-control"' +
-                        'placeholder="'+d.position+'">' +
+                      '<input type="text" class="form-control" id="updatePosition"' +
+                        'value="'+d.position+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div id="editInfo9" class="form-group">' +
                     '<label>Address</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="'+d.address+'">' +
+                    '<input type="text" class="form-control" id="updateAddress"' +
+                      'value="'+d.address+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div id="editInfo10" class="form-group">' +
                     '<label>Neighborhood</label>' +
-                    '<input type="text" class="form-control" placeholder="'+d.neighborhood+'">' +
+                    '<input type="text" class="form-control" id="updateNeighborhood" value="'+d.neighborhood+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -288,21 +297,21 @@ function format(d) {
                 '<div class="col-sm-4">' +
                   '<div id="editInfo11" class="form-group">' +
                     '<label>City</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="'+d.city+'">' +
+                    '<input type="text" class="form-control" id="updateCity"' +
+                      'value="'+d.city+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
                   '<div id="editInfo12" class="form-group">' +
                     '<label>Postal Code</label>' +
-                    '<input type="text" class="form-control" placeholder="'+d.post_code+'">' +
+                    '<input type="text" class="form-control" id="updatePostCode" value="'+d.post_code+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div id="editInfo13" class="form-group">' +
                     '<label>Proposer</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="'+d.proposer+'">' +
+                    '<input type="text" class="form-control" id="updateProposer"' +
+                      'value="'+d.proposer+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -312,8 +321,8 @@ function format(d) {
                 '<div class="col-sm-5">' +
                   '<div id="editInfo14" class="form-group">' +
                     '<label>Organizations (comma seperated)</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="';
+                    '<input type="text" class="form-control" id="updateOrgs"' +
+                      'value="';
                         for (var i = 0; i < d.orgs.length; i++) {
                           memberInfo += d.orgs[i];
                           if (i != d.orgs.length - 1) {
@@ -326,8 +335,8 @@ function format(d) {
                 '<div class="col-sm-5">' +
                   '<div id="editInfo15" class="form-group">' +
                     '<label>Periodicals (comma seperated)</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="'+d.periodicals+'">' +
+                    '<input type="text" class="form-control" id="updatePeriodicals"' +
+                      'value="'+d.periodicals+'">' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -337,15 +346,15 @@ function format(d) {
                 '<div class="col-sm-4">' +
                   '<div id="editInfo16" class="form-group">' +
                     '<label>Sources (comma seperated)</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="'+d.sources+'">' +
+                    '<input type="text" class="form-control" id="updateSources"' +
+                      'value="'+d.sources+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-4">' +
                   '<div id="editInfo17" class="form-group">' +
                     '<label>Other</label>' +
-                    '<input type="text" class="form-control"' +
-                      'placeholder="'+d.other+'">' +
+                    '<input type="text" class="form-control" id="updateOther"' +
+                      'value="'+d.other+'">' +
                   '</div>' +
                 '</div>' +
                 '<div class="col-sm-3">' +
@@ -356,7 +365,7 @@ function format(d) {
                         '<span class="input-group-text"><i' +
                           'class="far fa-calendar-alt"></i></span>' +
                       '</div>' +
-                      '<input type="text" class="form-control" placeholder="'+d.joined+'">' +
+                      '<input type="text" class="form-control" id="updateJoin" value="'+d.joined+'">' +
                     '</div>' +
                   '</div>' +
                 '</div>' +
@@ -377,7 +386,7 @@ function format(d) {
         d.prefix + " " + d.firstname + " " + d.surname +
       "</td>" +
     "</tr>";
-
+  
   //shows member Pen Name if applicable
   if (d.pen_name != "") {
     memberInfo +=

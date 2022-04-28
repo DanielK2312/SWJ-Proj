@@ -14,7 +14,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" type="text/css" href="../dist/css/adminlte.min.css">
   <link rel="stylesheet" type="text/css" href="../dist/css/dataTable.min.css">
-  
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -70,6 +70,12 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
+                  <a href="/admin/pages/add-user" class="nav-link">
+                    <i class="far fa fa-plus nav-icon"></i>
+                    <p>Add User</p>
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a href="/admin/pages/access-control" class="nav-link ">
                     <i class="far fa fa-lock nav-icon"></i>
                     <p>Access List</p>
@@ -89,10 +95,8 @@
       </div>
       <!-- /.sidebar -->
     </aside>
-
-    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Header (Page header) -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
       <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
@@ -117,8 +121,9 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title" id="card-title">List of historical figures   </h3>
+                  <h3 class="card-title" id="card-title">List of historical figures</h3>
                 </div>
+
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="main-table" class="table display table-bordered table-striped">
@@ -132,10 +137,9 @@
                         <th>City</th>
                         <th>Joined</th>
                       </tr>
-                      </thead>
+                    </thead>
 
-                      <!-- Where the DataTable gets appended -->
-                    
+                    <!-- Where the DataTable gets appended -->
                   </table>
                 </div>
                 <!-- /.card -->
@@ -143,6 +147,8 @@
             </div>
             <!-- /.row -->
           </div><!-- /.container-fluid -->
+
+          <!-- ADD USER MODAL -->
       </section>
       <!-- /.content -->
     </div>
@@ -166,7 +172,6 @@
   <!-- jQuery -->
   <!-- <script src="../plugins/jquery/jquery.min.js" type="text/javascript"></script> -->
   <script src="../plugins/jquery/jquery-3.5.1.js" type="text/javascript"></script>
-  
   <!-- Bootstrap 4 -->
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
   <!-- DataTables  & Plugins -->
