@@ -132,13 +132,13 @@ personRouter.post('/update', isLoggedIn, (req, res) => {
  * Deletes a person from the database.
  *
  * @remarks
- * GET /api/v1/person/delete [SECURE ROUTE]
+ * POST /api/v1/person/delete [SECURE ROUTE]
  *
  * @param req.body.id - The _id field created by MongoDB.
  * @returns <JSON> { status, result } | { status, err }
  */
-personRouter.get('/delete', isLoggedIn, (req, res) => {
-  const id = req.body
+personRouter.post('/delete', isLoggedIn, (req, res) => {
+  const id = req.body.id
   const person = Person.findById(id)
   person.deleteOne()
     .then(result => {

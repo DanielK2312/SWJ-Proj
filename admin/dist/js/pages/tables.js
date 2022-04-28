@@ -1,9 +1,12 @@
 //global variable
+
+// Warning, this file is pure madness... if possible, find a better alterative for the datatable framework.
+// Again, so sorry for this file. -GH
+
 let currentID = "";
 
 $(document).ready(function () {
   var url = "https://swj1894.org/api/v1/person/list";
-  // var url = "http://localhost:3000/api/v1/person/list";
 
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url);
@@ -65,35 +68,14 @@ $(document).ready(function () {
           //Logic to Handle Edit Member Button
           //variables used
           let editSubmit = document.getElementById("submit-edit");
-          let editDropValue = "";
-          let editInputValue = "";
+          localStorage.id = currentID;
           let memberID = currentID;
-          //Column names from Database
-          let db_col_min = [
-            null,
-            "surname",
-            "firstname",
-            "prefix",
-            "pen_name",
-            "dob",
-            "dod",
-            "position",
-            "address",
-            "neighborhood",
-            "city",
-            "post_code",
-            "proposer",
-            "orgs",
-            "periodicals",
-            "sources",
-            "other",
-            "joined",
-          ];
 
           //Submit button
           editSubmit.addEventListener("click", (e) => {
             e.preventDefault();
 
+            // Grab data from inputs
             var firstName = document.getElementById("updateFirstName").value;
             var lastName = document.getElementById("updateLastName").value;
             var prefix = document.getElementById("updatePrefix").value;
@@ -103,74 +85,80 @@ $(document).ready(function () {
             var dod = document.getElementById("updateDOD").value;
             var position = document.getElementById("updatePosition").value;
             var address = document.getElementById("updateAddress").value;
-            var neighborhood = document.getElementById("updateNeighborhood").value;
+            var neighborhood =
+              document.getElementById("updateNeighborhood").value;
             var city = document.getElementById("updateCity").value;
             var postCode = document.getElementById("updatePostCode").value;
             var proposer = document.getElementById("updateProposer").value;
             var orgs = document.getElementById("updateOrgs").value;
-            var periodicals = document.getElementById("updatePeriodicals").value;
+            var periodicals =
+              document.getElementById("updatePeriodicals").value;
             var sources = document.getElementById("updateSources").value;
             var other = document.getElementById("updateOther").value;
             var join = document.getElementById("updateJoin").value;
 
-            if (dateRange.includes(",")) {
-              dateRange = dateRange.split(",");
-            } else {
-              dateRange = [dateRange];
-            }
-            if (orgs.includes(",")) {
-              orgs = orgs.split(",");
-            } else {
-              orgs = [orgs];
-            }
-
-            //Logic to Update person
-            var urlEdit = "https://swj1894.org/api/v1/person/update";
-
-            var xhrEdit = new XMLHttpRequest();
-            xhrEdit.open("POST", urlEdit);
-            var tosend = {
-              id: memberID,
-              updates: {
-                date_range: dateRange,
-                surname: lastName,
-                firstname: firstName,
-                prefix: prefix,
-                pen_name: penName,
-                dob: dob,
-                dod: dod,
-                position: position,
-                address: address,
-                neighborhood: neighborhood,
-                city: city,
-                post_code: postCode,
-                proposer: proposer,
-                orgs: orgs,
-                periodicals: periodicals,
-                sources: sources,
-                other: other,
-                joined: join,
-              },
-            };
-
-            xhrEdit.setRequestHeader(
-              "Accept",
-              "application/json; charset=utf-8'"
-            );
-            xhrEdit.setRequestHeader(
-              "Content-Type",
-              "application/json; charset=utf-8'"
-            );
-
-            xhrEdit.onreadystatechange = function () {
-              // var formBody = [];
-              if (xhrEdit.readyState === 4) {
-                //Update Person
-                console.log(xhrEdit.responseText);
+            // Let the validating begin.
+            var date_regex = /^(1[8-9][0-9][0-9]{1}-1[8-9][0-9][0-9]{1},*)+$/;
+            if (date_regex.test(dateRange)) {
+              // Convert to array (split if multiple ranges given)
+              if (dateRange.includes(",")) {
+                dateRange = dateRange.split(",");
+              } else {
+                dateRange = [dateRange];
               }
-              // xhrEdit.data([formBody]);
-            };
-            xhrEdit.send(JSON.stringify(tosend));
+              // Convert to array (split if multiple orgs given)
+              if (orgs.includes(",")) {
+                orgs = orgs.split(",");
+              } else {
+                orgs = [orgs];
+              }
+              //Logic to Update person
+              var urlEdit = "https://swj1894.org/api/v1/person/update";
+
+              var xhrEdit = new XMLHttpRequest();
+              xhrEdit.open("POST", urlEdit);
+              var tosend = {
+                id: memberID,
+                updates: {
+                  date_range: dateRange,
+                  surname: lastName,
+                  firstname: firstName,
+                  prefix: prefix,
+                  pen_name: penName,
+                  dob: dob,
+                  dod: dod,
+                  position: position,
+                  address: address,
+                  neighborhood: neighborhood,
+                  city: city,
+                  post_code: postCode,
+                  proposer: proposer,
+                  orgs: orgs,
+                  periodicals: periodicals,
+                  sources: sources,
+                  other: other,
+                  joined: join,
+                },
+              };
+
+              xhrEdit.setRequestHeader(
+                "Accept",
+                "application/json; charset=utf-8'"
+              );
+              xhrEdit.setRequestHeader(
+                "Content-Type",
+                "application/json; charset=utf-8'"
+              );
+
+              xhrEdit.onreadystatechange = function () {
+                if (xhrEdit.readyState === 4) {
+                  console.log(xhrEdit.responseText);
+                }
+              };
+              xhrEdit.send(JSON.stringify(tosend));
+            } else {
+              console.log("[REGEX] Failed for date range.");
+            }
           });
         }
       });
@@ -183,210 +171,237 @@ $(document).ready(function () {
 function format(d) {
   // `d` is the original data object for the row
   //shows the Edit and Delete Member buttons and any avaliable information regarding the member
-  console.log(d);
   let memberInfo =
     '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
     '<button id="editBtn" class="btn" onclick="editMember()" style="border:1px; border-style:solid, padx:5px;">Edit Member</button>' +
-    '<button id="deleteBtn" class="btn" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>' +
+    `<button id="deleteBtn" class="btn" onclick="deleteMember()" style="border:0.5px; border-style:solid, padx:3px; float:right;"><small>Delete Member</small></button>` +
     //Edit Member Modal information
     '<div id="editModal" class="modal"><div class="modal-content"><span class="close">&times;</span>' +
-
-        //Edit button pt 2
-        //'<!-- form start -->' +
-          '<form id="editForm">' +
-            '<div class="card-body">' +
-
-            //row 1
-              '<div class="row">' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo1" class="form-group">' +
-                    '<label>First Name</label>' +
-                    '<input type="text" class="form-control" id="updateFirstName" value="'+d.firstname+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo2" class="form-group">' +
-                    '<label>Last Name</label>' +
-                    '<input type="text" class="form-control" id="updateLastName" value="'+d.surname+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo3" class="form-group">' +
-                    '<label>Prefix</label>' +
-                    '<input type="text" class="form-control" id="updatePrefix" value="'+d.prefix+'">' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-
-              //row 2
-              '<div class="row">' +
-                '<div class="col-sm-4">' +
-                  //'<!-- select -->' +
-                  '<div id="editInfo4" class="form-group">' +
-                    '<label>Date Range</label>' +
-                    '<input type="text" class="form-control" id="updateDateRange" value="'+d.date_range+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-3">' +
-                  '<div id="editInfo5" class="form-group">' +
-                    '<label>Pen Name</label>' +
-                    '<input type="text" class="form-control" id="updatePenName" value="'+d.pen_name+'">' +
-                  '</div>' +
-                '</div>' +
-                //'<!-- Date mm/dd/yyyy -->' +
-                '<div class="col-sm-3">' +
-                  '<div id="editInfo6" class="form-group">' +
-                    '<label>Date of Birth</label>' +
-                    '<div class="input-group">' +
-                      '<div class="input-group-prepend">' +
-                        '<span class="input-group-text"><i' +
-                          'class="far fa-calendar-alt"></i></span>' +
-                      '</div>' +
-                      '<input type="text" class="form-control" id="updateDOB"' +
-                        'value="'+d.dob+'">' +
-                    '</div>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-2">' +
-                  '<div id="editInfo7" class="form-group">' +
-                    '<label>Date of Death</label>' +
-                    '<div class="input-group">' +
-                      '<div class="input-group-prepend">' +
-                        '<span class="input-group-text"><i' +
-                          'class="far fa-calendar-alt"></i></span>' +
-                      '</div>' +
-                      '<input type="text" class="form-control" id="updateDOD"' +
-                        'value="'+d.dod+'">' +
-                    '</div>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-
-              //row 3
-              '<div class="row">' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo8" class="form-group">' +
-                    '<label>Position</label>' +
-                    '<div class="input-group">' +
-                      '<div class="input-group-prepend">' +
-                        '<span class="input-group-text"><i' +
-                          'class="far fa-calendar-alt"></i></span>' +
-                      '</div>' +
-                      '<input type="text" class="form-control" id="updatePosition"' +
-                        'value="'+d.position+'">' +
-                    '</div>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo9" class="form-group">' +
-                    '<label>Address</label>' +
-                    '<input type="text" class="form-control" id="updateAddress"' +
-                      'value="'+d.address+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo10" class="form-group">' +
-                    '<label>Neighborhood</label>' +
-                    '<input type="text" class="form-control" id="updateNeighborhood" value="'+d.neighborhood+'">' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-
-              //row 4
-              '<div class="row">' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo11" class="form-group">' +
-                    '<label>City</label>' +
-                    '<input type="text" class="form-control" id="updateCity"' +
-                      'value="'+d.city+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-3">' +
-                  '<div id="editInfo12" class="form-group">' +
-                    '<label>Postal Code</label>' +
-                    '<input type="text" class="form-control" id="updatePostCode" value="'+d.post_code+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo13" class="form-group">' +
-                    '<label>Proposer</label>' +
-                    '<input type="text" class="form-control" id="updateProposer"' +
-                      'value="'+d.proposer+'">' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-
-              //row 5
-              '<div class="row">' +
-                '<div class="col-sm-5">' +
-                  '<div id="editInfo14" class="form-group">' +
-                    '<label>Organizations (comma seperated)</label>' +
-                    '<input type="text" class="form-control" id="updateOrgs"' +
-                      'value="';
-                        for (var i = 0; i < d.orgs.length; i++) {
-                          memberInfo += d.orgs[i];
-                          if (i != d.orgs.length - 1) {
-                            memberInfo += ", ";
-                          }
-                        }
-                      memberInfo +='">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-5">' +
-                  '<div id="editInfo15" class="form-group">' +
-                    '<label>Periodicals (comma seperated)</label>' +
-                    '<input type="text" class="form-control" id="updatePeriodicals"' +
-                      'value="'+d.periodicals+'">' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-
-              //row 6
-              '<div class="row">' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo16" class="form-group">' +
-                    '<label>Sources (comma seperated)</label>' +
-                    '<input type="text" class="form-control" id="updateSources"' +
-                      'value="'+d.sources+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-4">' +
-                  '<div id="editInfo17" class="form-group">' +
-                    '<label>Other</label>' +
-                    '<input type="text" class="form-control" id="updateOther"' +
-                      'value="'+d.other+'">' +
-                  '</div>' +
-                '</div>' +
-                '<div class="col-sm-3">' +
-                  '<div id="editInfo18" class="form-group">' +
-                    '<label>Join Date</label>' +
-                    '<div class="input-group">' +
-                      '<div class="input-group-prepend">' +
-                        '<span class="input-group-text"><i' +
-                          'class="far fa-calendar-alt"></i></span>' +
-                      '</div>' +
-                      '<input type="text" class="form-control" id="updateJoin" value="'+d.joined+'">' +
-                    '</div>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-
-            '</div>' +
-            //'<!-- /.card-body -->' +
-            '<button id="submit-edit" type="submit" class="btn btn-primary">Submit</button>' +
-          '</form>' +
-
-        '</div></div>' +
-
-
+    //Edit button pt 2
+    //'<!-- form start -->' +
+    '<form id="editForm">' +
+    '<div class="card-body">' +
+    //row 1
+    '<div class="row">' +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo1" class="form-group">' +
+    "<label>First Name</label>" +
+    '<input type="text" class="form-control" id="updateFirstName" value="' +
+    d.firstname +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo2" class="form-group">' +
+    "<label>Last Name</label>" +
+    '<input type="text" class="form-control" id="updateLastName" value="' +
+    d.surname +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo3" class="form-group">' +
+    "<label>Prefix</label>" +
+    '<input type="text" class="form-control" id="updatePrefix" value="' +
+    d.prefix +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    //row 2
+    '<div class="row">' +
+    '<div class="col-sm-4">' +
+    //'<!-- select -->' +
+    '<div id="editInfo4" class="form-group">' +
+    "<label>Date Range</label>" +
+    '<input type="text" class="form-control" id="updateDateRange" value="' +
+    d.date_range +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-3">' +
+    '<div id="editInfo5" class="form-group">' +
+    "<label>Pen Name</label>" +
+    '<input type="text" class="form-control" id="updatePenName" value="' +
+    d.pen_name +
+    '">' +
+    "</div>" +
+    "</div>" +
+    //'<!-- Date mm/dd/yyyy -->' +
+    '<div class="col-sm-3">' +
+    '<div id="editInfo6" class="form-group">' +
+    "<label>Date of Birth</label>" +
+    '<div class="input-group">' +
+    '<div class="input-group-prepend">' +
+    '<span class="input-group-text"><i' +
+    'class="far fa-calendar-alt"></i></span>' +
+    "</div>" +
+    '<input type="text" class="form-control" id="updateDOB"' +
+    'value="' +
+    d.dob +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-2">' +
+    '<div id="editInfo7" class="form-group">' +
+    "<label>Date of Death</label>" +
+    '<div class="input-group">' +
+    '<div class="input-group-prepend">' +
+    '<span class="input-group-text"><i' +
+    'class="far fa-calendar-alt"></i></span>' +
+    "</div>" +
+    '<input type="text" class="form-control" id="updateDOD"' +
+    'value="' +
+    d.dod +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    //row 3
+    '<div class="row">' +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo8" class="form-group">' +
+    "<label>Position</label>" +
+    '<div class="input-group">' +
+    '<div class="input-group-prepend">' +
+    '<span class="input-group-text"><i' +
+    'class="far fa-calendar-alt"></i></span>' +
+    "</div>" +
+    '<input type="text" class="form-control" id="updatePosition"' +
+    'value="' +
+    d.position +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo9" class="form-group">' +
+    "<label>Address</label>" +
+    '<input type="text" class="form-control" id="updateAddress"' +
+    'value="' +
+    d.address +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo10" class="form-group">' +
+    "<label>Neighborhood</label>" +
+    '<input type="text" class="form-control" id="updateNeighborhood" value="' +
+    d.neighborhood +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    //row 4
+    '<div class="row">' +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo11" class="form-group">' +
+    "<label>City</label>" +
+    '<input type="text" class="form-control" id="updateCity"' +
+    'value="' +
+    d.city +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-3">' +
+    '<div id="editInfo12" class="form-group">' +
+    "<label>Postal Code</label>" +
+    '<input type="text" class="form-control" id="updatePostCode" value="' +
+    d.post_code +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo13" class="form-group">' +
+    "<label>Proposer</label>" +
+    '<input type="text" class="form-control" id="updateProposer"' +
+    'value="' +
+    d.proposer +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    //row 5
+    '<div class="row">' +
+    '<div class="col-sm-5">' +
+    '<div id="editInfo14" class="form-group">' +
+    "<label>Organizations (comma seperated)</label>" +
+    '<input type="text" class="form-control" id="updateOrgs"' +
+    'value="';
+  for (var i = 0; i < d.orgs.length; i++) {
+    memberInfo += d.orgs[i];
+    if (i != d.orgs.length - 1) {
+      memberInfo += ", ";
+    }
+  }
+  memberInfo +=
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-5">' +
+    '<div id="editInfo15" class="form-group">' +
+    "<label>Periodicals (comma seperated)</label>" +
+    '<input type="text" class="form-control" id="updatePeriodicals"' +
+    'value="' +
+    d.periodicals +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    //row 6
+    '<div class="row">' +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo16" class="form-group">' +
+    "<label>Sources (comma seperated)</label>" +
+    '<input type="text" class="form-control" id="updateSources"' +
+    'value="' +
+    d.sources +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-4">' +
+    '<div id="editInfo17" class="form-group">' +
+    "<label>Other</label>" +
+    '<input type="text" class="form-control" id="updateOther"' +
+    'value="' +
+    d.other +
+    '">' +
+    "</div>" +
+    "</div>" +
+    '<div class="col-sm-3">' +
+    '<div id="editInfo18" class="form-group">' +
+    "<label>Join Date</label>" +
+    '<div class="input-group">' +
+    '<div class="input-group-prepend">' +
+    '<span class="input-group-text"><i' +
+    'class="far fa-calendar-alt"></i></span>' +
+    "</div>" +
+    '<input type="text" class="form-control" id="updateJoin" value="' +
+    d.joined +
+    '">' +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    //'<!-- /.card-body -->' +
+    '<button id="submit-edit" type="submit" class="btn btn-primary">Submit</button>' +
+    "</form>" +
+    "</div></div>" +
     //shows Member's full name
     "<tr>" +
-      "<td>Full name:</td>" +
-      "<td>" +
-        d.prefix + " " + d.firstname + " " + d.surname +
-      "</td>" +
+    "<td>Full name:</td>" +
+    "<td>" +
+    d.prefix +
+    " " +
+    d.firstname +
+    " " +
+    d.surname +
+    "</td>" +
     "</tr>";
-  
+
   //shows member Pen Name if applicable
   if (d.pen_name != "") {
     memberInfo +=
@@ -409,10 +424,10 @@ function format(d) {
   if (d.position != "") {
     memberInfo +=
       "<tr>" +
-        "<td>Position Held:</td>" +
-        "<td>" +
-          d.position +
-        "</td>" +
+      "<td>Position Held:</td>" +
+      "<td>" +
+      d.position +
+      "</td>" +
       "</tr>";
   }
 
@@ -426,16 +441,16 @@ function format(d) {
   if (d.address != "") {
     memberInfo +=
       "<tr>" +
-        "<td>Address:</td>" +
-        "<td>" +
-          d.address +
-          "<br>" +
-          d.neighborhood +
-          "<br>" +
-          d.city +
-          "<br>" +
-          d.post_code +
-        "</td>" +
+      "<td>Address:</td>" +
+      "<td>" +
+      d.address +
+      "<br>" +
+      d.neighborhood +
+      "<br>" +
+      d.city +
+      "<br>" +
+      d.post_code +
+      "</td>" +
       "</tr>";
   }
 
@@ -455,10 +470,10 @@ function format(d) {
   if (d.periodicals != "") {
     memberInfo +=
       "<tr>" +
-        "<td>Periodicals:</td>" +
-        "<td>" +
-          d.periodicals +
-        "</td>" +
+      "<td>Periodicals:</td>" +
+      "<td>" +
+      d.periodicals +
+      "</td>" +
       "</tr>";
   }
 
@@ -466,10 +481,10 @@ function format(d) {
   if (d.sources != "") {
     memberInfo +=
       "<tr>" +
-        "<td>Source of Info:</td>" +
-        "<td>" +
-          d.sources +
-        "</td>" +
+      "<td>Source of Info:</td>" +
+      "<td>" +
+      d.sources +
+      "</td>" +
       "</tr>";
   }
 
@@ -477,10 +492,10 @@ function format(d) {
   if (d.other != "") {
     memberInfo +=
       "<tr>" +
-        "<td>Additional Info:</td>" +
-        "<td>" +
-          d.other +
-        "</td>" +
+      "<td>Additional Info:</td>" +
+      "<td>" +
+      d.other +
+      "</td>" +
       "</tr>";
   }
 

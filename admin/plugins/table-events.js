@@ -21,3 +21,17 @@ function editMember() {
         modal.style.display = "none";
     }
 }
+
+function deleteMember() {
+    console.log("REMOVING PERSON: "+localStorage.id);
+    fetch("/api/v1/person/delete", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: localStorage.id })
+    }).then(() => {
+        localStorage.id="NULL"
+    })
+}
