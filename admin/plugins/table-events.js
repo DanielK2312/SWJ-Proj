@@ -36,11 +36,5 @@ function deleteMember() {
     }).then(() => {
         localStorage.id="NULL"
         window.location.reload();
-        toastHeader.innerHTML = "<h3>Success.</h3>";
-        toastBody.innerHTML =
-        "<p>This person has been successfully deleted from the database.</p>";
-        var toastLiveExample = document.getElementById("liveToast");
-        var toast = new bootstrap.Toast(toastLiveExample);
-        toast.show();
     })
 }
