@@ -68,6 +68,12 @@ const addUser = () => {
       .then((data) => data.json())
       .then((json) => {
         console.log(json);
+        errorHeader.innerHTML = "<h3>Success.</h3>";
+        errorBody.innerHTML =
+          "<p>The new person has been successfully saved in the database</p>";
+        var toastLiveExample = document.getElementById("liveToast");
+        var toast = new bootstrap.Toast(toastLiveExample);
+        toast.show();
       });
       window.location.reload();
   } else if (dateRange === "") {

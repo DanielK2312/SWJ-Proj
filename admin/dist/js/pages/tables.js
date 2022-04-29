@@ -75,6 +75,9 @@ $(document).ready(function () {
           editSubmit.addEventListener("click", (e) => {
             e.preventDefault();
 
+            var toastHeader = document.getElementById("toastHeader");
+            var toastBody = document.getElementById("toastBody");
+
             // Grab data from inputs
             var firstName = document.getElementById("updateFirstName").value;
             var lastName = document.getElementById("updateLastName").value;
@@ -154,6 +157,12 @@ $(document).ready(function () {
                 if (xhrEdit.readyState === 4) {
                   console.log(xhrEdit.responseText);
                   window.location.reload();
+                  toastHeader.innerHTML = "<h3>Success.</h3>";
+                  toastBody.innerHTML =
+                    "<p>This person has been successfully updated in the database</p>";
+                  var toastLiveExample = document.getElementById("liveToast");
+                  var toast = new bootstrap.Toast(toastLiveExample);
+                  toast.show();
                 }
               };
               xhrEdit.send(JSON.stringify(tosend));
