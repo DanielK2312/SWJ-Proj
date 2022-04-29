@@ -69,6 +69,7 @@ const addUser = () => {
       .then((json) => {
         console.log(json);
       });
+      window.location.reload();
   } else if (dateRange === "") {
     errorHeader.innerHTML = "<h3>Operation Failed!</h3>";
     errorBody.innerHTML =

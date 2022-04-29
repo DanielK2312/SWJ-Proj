@@ -33,5 +33,6 @@ function deleteMember() {
         body: JSON.stringify({ id: localStorage.id })
     }).then(() => {
         localStorage.id="NULL"
+        window.location.reload();
     })
 }

@@ -153,6 +153,7 @@ $(document).ready(function () {
               xhrEdit.onreadystatechange = function () {
                 if (xhrEdit.readyState === 4) {
                   console.log(xhrEdit.responseText);
+                  window.location.reload();
                 }
               };
               xhrEdit.send(JSON.stringify(tosend));

@@ -11,5 +11,4 @@ const API = (app: express.Express) => {
   app.use('/api/v1/user', userRouter)
   app.use('/api/v1/analytics', analyticRouter)
 }
-
 export default API

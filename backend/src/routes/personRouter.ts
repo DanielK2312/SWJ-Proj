@@ -84,7 +84,7 @@ personRouter.get('/list', async (req, res) => {
 })
 
 /**
- * Creates a person from the database.
+ * Creates a person in the database.
  *
  * @remarks
  * POST /api/v1/person/create [SECURE ROUTE]
@@ -92,7 +92,7 @@ personRouter.get('/list', async (req, res) => {
  * @param req.body.* - Fields of the person object.
  * @returns <JSON> { Person }
  */
-personRouter.post('/create', (req, res) => {
+personRouter.post('/create', isLoggedIn, (req, res) => {
   // Surname is the only required field to create a person.
   if (req.body.surname) {
     const newPerson = new Person(req.body)
@@ -102,7 +102,7 @@ personRouter.post('/create', (req, res) => {
 })
 
 /**
- * Updates a person from the database.
+ * Updates a person in the database.
  *
  * @remarks
  * POST /api/v1/person/update [SECURE ROUTE]
